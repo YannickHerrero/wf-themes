@@ -55,50 +55,40 @@ bash scripts/build-xpi.sh
 # → produces dist/wf-themes.xpi
 ```
 
-### Windows Firefox with WSL-resident wmenu
+### Windows Firefox
 
-If Firefox runs on Windows but wmenu is in WSL, the Linux ELF host needs a
-thin Windows wrapper so Firefox can launch it across the boundary. Two steps:
-
-**Inside WSL** (same as Linux install — builds the actual binary):
-
-```bash
-git clone https://github.com/YannickHerrero/wf-themes.git
-cd wf-themes
-bash scripts/install-native-host.sh
-# → installs /home/<wsl-user>/.local/bin/wf-themes-host
-```
-
-The Linux-side native messaging manifest written to `~/.mozilla/...` is
-harmless but inert — Windows Firefox doesn't read it. The Windows registry
-entry below is what actually wires things up.
-
-**In Windows PowerShell** (registers the wrapper + the registry entry that
-Windows Firefox reads):
+The native host ships pre-built as `windows/wf-themes-host.exe`, cross-
+compiled from the same Rust source. No Rust toolchain needed on Windows.
 
 ```powershell
-cd \\wsl.localhost\<your-distro>\home\<wsl-user>\dev\wf-themes
+# Clone (or download) the repo, then in PowerShell:
+cd <path-to-wf-themes>
 .\windows\install.ps1
-# → writes %LOCALAPPDATA%\wf-themes\wf-themes-host.bat
-# → writes %LOCALAPPDATA%\wf-themes\com.yannick.wf_themes.json
+# → installs %LOCALAPPDATA%\wf-themes\wf-themes-host.exe
+# → writes  %LOCALAPPDATA%\wf-themes\com.yannick.wf_themes.json
 # → creates HKCU\Software\Mozilla\NativeMessagingHosts\com.yannick.wf_themes
 ```
 
-The .bat wraps `wsl.exe -e /home/<user>/.local/bin/wf-themes-host` and
-preserves binary stdio so Firefox's length-prefixed JSON wire format
-survives the WSL ↔ Windows hop. Override the binary path with
-`.\windows\install.ps1 -BinPath "/some/other/path"` if you keep the host
-somewhere non-default.
-
 Restart Firefox (or disable + re-enable the extension) afterwards to force
-a reconnect.
+a reconnect to the host.
 
-**Build the .xpi** (works equally well from WSL or Windows — Mozilla signs
-the same archive either way):
+**Build the .xpi** (works equally well from WSL/Linux or Windows — Mozilla
+signs the same archive either way):
 
 ```bash
 bash scripts/build-xpi.sh
 # → produces dist/wf-themes.xpi
+```
+
+### Rebuilding the Windows host
+
+If you change the Rust code, regenerate `windows/wf-themes-host.exe` and
+commit it. From WSL (or any Linux with mingw-w64 + the rust target):
+
+```bash
+bash scripts/build-windows.sh
+git add windows/wf-themes-host.exe
+git commit -m "build: refresh windows host"
 ```
 
 ### Signing the extension (Firefox Release)
@@ -160,8 +150,9 @@ bash scripts/build-xpi.sh           # rebuild the .xpi
     `ls -l ~/.local/bin/wf-themes-host`. Re-run `bash scripts/install-native-host.sh`.
   - **Windows Firefox**: check the registry entry exists:
     `reg query "HKCU\Software\Mozilla\NativeMessagingHosts\com.yannick.wf_themes"` —
-    its default value must point at an existing `com.yannick.wf_themes.json`.
-    Re-run `windows\install.ps1` from PowerShell.
+    its default value must point at an existing `com.yannick.wf_themes.json`,
+    whose `path` field must point at an existing .exe. Re-run
+    `windows\install.ps1` from PowerShell.
 - **Extension ID drifted** — in the background console run `browser.runtime.id`.
   Must match the `allowed_extensions` entry in the manifest
   (`wf-themes@yannick.herrero`). If different, the signed extension ID changed
@@ -194,11 +185,12 @@ wf-themes/
 ├── packaging/
 │   └── com.yannick.wf_themes.json.tpl   (Linux NM manifest template)
 ├── windows/                              (Windows-side bridge)
-│   ├── wf-themes-host.bat.tpl
+│   ├── wf-themes-host.exe               (pre-built, cross-compiled)
 │   ├── com.yannick.wf_themes.json.tpl
 │   └── install.ps1
 └── scripts/
-    ├── install-native-host.sh           (run inside WSL/Linux)
+    ├── install-native-host.sh           (Linux Firefox install)
+    ├── build-windows.sh                  (cross-compile .exe from WSL/Linux)
     ├── build-xpi.sh
     └── sync-themes.sh
 ```
