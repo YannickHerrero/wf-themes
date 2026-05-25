@@ -1,8 +1,8 @@
 // wf-themes — Firefox extension background script
 //
-// Stage 1 (this commit): load the 5 bundled theme CSS files into memory and
-// inject a hardcoded default (paper) into matching tabs at startup. No native
-// messaging yet — that arrives in later commits.
+// Stage 2 (this commit): also re-inject on tab navigation, and properly remove
+// the previous theme's CSS when switching. Theme is still hardcoded; native
+// messaging arrives in the next commit.
 
 const THEMES = ["paper", "stone", "sage", "clay", "ink"];
 
@@ -28,7 +28,7 @@ async function loadCss() {
   );
 }
 
-async function applyToTab(tabId, css) {
+async function insertInto(tabId, css) {
   try {
     await browser.tabs.insertCSS(tabId, {
       code: css,
@@ -41,17 +41,49 @@ async function applyToTab(tabId, css) {
   }
 }
 
+async function removeFrom(tabId, css) {
+  try {
+    await browser.tabs.removeCSS(tabId, {
+      code: css,
+      allFrames: true,
+      cssOrigin: "user",
+    });
+  } catch (err) {
+    // Tab may have closed or never had this CSS — ignore.
+  }
+}
+
 async function applyTheme(name) {
-  const css = cssByTheme[name];
-  if (!css) {
+  if (!cssByTheme[name]) {
     console.warn(`[wf-themes] unknown theme: ${name}`);
     return;
   }
-  currentTheme = name;
+  if (name === currentTheme) return;
+
+  const prevCss = currentTheme ? cssByTheme[currentTheme] : null;
+  const nextCss = cssByTheme[name];
+
   const tabs = await browser.tabs.query({ url: URL_PATTERNS });
-  await Promise.all(tabs.map((t) => applyToTab(t.id, css)));
+  await Promise.all(
+    tabs.map(async (t) => {
+      if (prevCss) await removeFrom(t.id, prevCss);
+      await insertInto(t.id, nextCss);
+    })
+  );
+  currentTheme = name;
   console.log(`[wf-themes] applied ${name} to ${tabs.length} tab(s)`);
 }
+
+// Re-inject the current theme whenever a matching tab navigates: the page
+// reload wipes out our injected CSS.
+browser.tabs.onUpdated.addListener(
+  (tabId, info) => {
+    if (info.status !== "loading") return;
+    if (!currentTheme) return;
+    insertInto(tabId, cssByTheme[currentTheme]);
+  },
+  { urls: URL_PATTERNS, properties: ["status"] }
+);
 
 (async () => {
   await loadCss();
