@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+  "name": "wf-themes",
+  "version": "0.1.0",
+  "description": "Theme injector for Discord, Claude, GitHub, Reddit, Teams, and MTools. Driven by the wmenu global theme selector via native messaging.",
+  "homepage_url": "https://github.com/YannickHerrero/wf-themes",
+  "applications": {
+    "gecko": {
+      "id": "wf-themes@yannick.herrero",
+      "strict_min_version": "115.0"
+    }
+  },
+  "permissions": [
+    "tabs",
+    "storage",
+    "nativeMessaging",
+    "*://discord.com/*",
+    "*://claude.ai/*",
+    "*://github.com/*",
+    "*://*.reddit.com/*",
+    "*://teams.microsoft.com/*",
+    "*://mtools-rho.vercel.app/*"
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  }
+}
