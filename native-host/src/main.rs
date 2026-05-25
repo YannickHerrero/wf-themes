@@ -6,7 +6,9 @@ use serde::Deserialize;
 use serde_json::{Value, json};
 use std::io::{Read, Write, stdin, stdout};
 use std::path::{Path, PathBuf};
+use std::process::exit;
 use std::sync::mpsc::channel;
+use std::thread;
 use std::time::Duration;
 
 /// Write one message to stdout in Firefox's native messaging wire format:
@@ -22,7 +24,6 @@ fn write_msg(msg: &Value) -> Result<()> {
 }
 
 /// Read one message from stdin. Returns Ok(None) on clean EOF.
-#[allow(dead_code)]
 fn read_msg() -> Result<Option<Value>> {
     let mut len_buf = [0u8; 4];
     let mut input = stdin().lock();
@@ -70,7 +71,31 @@ fn push_if_changed(path: &Path, last: &mut String) {
     }
 }
 
+/// Read inbound messages from Firefox in a background thread. We don't act on
+/// the payloads (the extension never sends any), but we need to notice when
+/// stdin closes — that's how Firefox signals "the extension is gone, please
+/// exit cleanly".
+fn spawn_stdin_drain() {
+    thread::spawn(|| {
+        loop {
+            match read_msg() {
+                Ok(Some(_)) => continue,
+                Ok(None) => {
+                    eprintln!("wf-themes-host: stdin closed, exiting");
+                    exit(0);
+                }
+                Err(e) => {
+                    eprintln!("wf-themes-host: stdin error: {e:#}, exiting");
+                    exit(0);
+                }
+            }
+        }
+    });
+}
+
 fn main() -> Result<()> {
+    spawn_stdin_drain();
+
     let path = config_path()?;
     let parent = path
         .parent()
