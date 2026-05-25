@@ -1,8 +1,12 @@
 // wf-themes — Firefox extension background script
 //
-// Stage 2 (this commit): also re-inject on tab navigation, and properly remove
-// the previous theme's CSS when switching. Theme is still hardcoded; native
-// messaging arrives in the next commit.
+// Connects to the wf-themes native messaging host, listens for theme change
+// messages produced by the host as it watches ~/.config/wmenu/config.toml,
+// and applies the matching bundled CSS to the 6 target sites.
+
+const NATIVE_HOST = "com.yannick.wf_themes";
+const STORAGE_KEY = "currentTheme";
+const DEFAULT_THEME = "paper";
 
 const THEMES = ["paper", "stone", "sage", "clay", "ink"];
 
@@ -17,6 +21,10 @@ const URL_PATTERNS = [
 
 const cssByTheme = {};
 let currentTheme = null;
+
+let port = null;
+let reconnectDelayMs = 1000;
+const RECONNECT_MAX_MS = 30000;
 
 async function loadCss() {
   await Promise.all(
@@ -37,7 +45,7 @@ async function insertInto(tabId, css) {
       runAt: "document_start",
     });
   } catch (err) {
-    // Privileged pages (about:, file:) reject insertCSS — ignore.
+    // Privileged pages reject insertCSS — ignore.
   }
 }
 
@@ -71,11 +79,10 @@ async function applyTheme(name) {
     })
   );
   currentTheme = name;
+  await browser.storage.local.set({ [STORAGE_KEY]: name });
   console.log(`[wf-themes] applied ${name} to ${tabs.length} tab(s)`);
 }
 
-// Re-inject the current theme whenever a matching tab navigates: the page
-// reload wipes out our injected CSS.
 browser.tabs.onUpdated.addListener(
   (tabId, info) => {
     if (info.status !== "loading") return;
@@ -85,7 +92,49 @@ browser.tabs.onUpdated.addListener(
   { urls: URL_PATTERNS, properties: ["status"] }
 );
 
+function connectNativeHost() {
+  try {
+    port = browser.runtime.connectNative(NATIVE_HOST);
+  } catch (err) {
+    console.error(`[wf-themes] connectNative threw:`, err);
+    scheduleReconnect();
+    return;
+  }
+
+  port.onMessage.addListener((msg) => {
+    if (!msg || typeof msg.theme !== "string") {
+      console.warn(`[wf-themes] ignoring malformed message:`, msg);
+      return;
+    }
+    reconnectDelayMs = 1000; // healthy traffic → reset backoff
+    applyTheme(msg.theme);
+  });
+
+  port.onDisconnect.addListener(() => {
+    const err = browser.runtime.lastError || port.error;
+    console.warn(`[wf-themes] native host disconnected:`, err);
+    port = null;
+    scheduleReconnect();
+  });
+
+  console.log(`[wf-themes] connected to native host ${NATIVE_HOST}`);
+}
+
+function scheduleReconnect() {
+  setTimeout(() => {
+    connectNativeHost();
+  }, reconnectDelayMs);
+  reconnectDelayMs = Math.min(reconnectDelayMs * 2, RECONNECT_MAX_MS);
+}
+
 (async () => {
   await loadCss();
-  await applyTheme("paper");
+
+  // Apply the last-known theme immediately so tabs are themed before the
+  // native host has a chance to respond. The host will overwrite this with
+  // the authoritative current value as soon as it connects.
+  const stored = await browser.storage.local.get(STORAGE_KEY);
+  await applyTheme(stored[STORAGE_KEY] || DEFAULT_THEME);
+
+  connectNativeHost();
 })();
