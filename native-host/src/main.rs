@@ -100,8 +100,6 @@ fn spawn_stdin_drain() {
 }
 
 fn main() -> Result<()> {
-    spawn_stdin_drain();
-
     let path = config_path()?;
     let parent = path
         .parent()
@@ -113,8 +111,13 @@ fn main() -> Result<()> {
     std::fs::create_dir_all(&parent)
         .with_context(|| format!("create {}", parent.display()))?;
 
+    // Push the initial theme BEFORE spawning the stdin drainer. If Firefox
+    // closes stdin immediately (or we're being fed /dev/null in a test), the
+    // drainer would otherwise race ahead and exit before our first send.
     let mut last_theme = String::new();
     push_if_changed(&path, &mut last_theme);
+
+    spawn_stdin_drain();
 
     let (tx, rx) = channel();
     let mut watcher: RecommendedWatcher = notify::recommended_watcher(tx)?;
