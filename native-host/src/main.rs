@@ -1,8 +1,10 @@
 //! wf-themes-host — Firefox native messaging host.
 
-use anyhow::Result;
+use anyhow::{Context, Result};
+use serde::Deserialize;
 use serde_json::{Value, json};
 use std::io::{Read, Write, stdin, stdout};
+use std::path::{Path, PathBuf};
 
 /// Write one message to stdout in Firefox's native messaging wire format:
 /// 4-byte native-endian length prefix followed by UTF-8 JSON.
@@ -33,9 +35,29 @@ fn read_msg() -> Result<Option<Value>> {
     Ok(Some(serde_json::from_slice(&buf)?))
 }
 
+/// We only care about the theme field; wmenu's config has many others.
+#[derive(Deserialize)]
+struct WmenuConfig {
+    theme: String,
+}
+
+fn config_path() -> Result<PathBuf> {
+    let dir = dirs::config_dir().context("no XDG config dir")?;
+    Ok(dir.join("wmenu").join("config.toml"))
+}
+
+fn read_theme(path: &Path) -> Result<String> {
+    let text = std::fs::read_to_string(path)
+        .with_context(|| format!("read {}", path.display()))?;
+    let cfg: WmenuConfig =
+        toml::from_str(&text).with_context(|| format!("parse {}", path.display()))?;
+    Ok(cfg.theme)
+}
+
 fn main() -> Result<()> {
-    // Smoke test: send a hardcoded theme so we can verify wire format end-to-end
-    // before adding the wmenu reader.
-    write_msg(&json!({ "theme": "paper" }))?;
+    let path = config_path()?;
+    let theme = read_theme(&path)?;
+    eprintln!("wf-themes-host: pushing initial theme={}", theme);
+    write_msg(&json!({ "theme": theme }))?;
     Ok(())
 }
