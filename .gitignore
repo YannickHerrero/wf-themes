@@ -1,0 +1,17 @@
+# Rust
+native-host/target/
+
+# Build outputs
+dist/
+
+# Node (in case we add web-ext later)
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
