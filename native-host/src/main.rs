@@ -1,6 +1,7 @@
 //! wf-themes-host — Firefox native messaging host.
 
 use anyhow::{Context, Result};
+use directories::ProjectDirs;
 use notify::{RecommendedWatcher, RecursiveMode, Watcher};
 use serde::Deserialize;
 use serde_json::{Value, json};
@@ -44,8 +45,13 @@ struct WmenuConfig {
 }
 
 fn config_path() -> Result<PathBuf> {
-    let dir = dirs::config_dir().context("no XDG config dir")?;
-    Ok(dir.join("wmenu").join("config.toml"))
+    // Mirrors wmenu's own ProjectDirs::from("", "", "wmenu") usage so the
+    // path matches on every platform — notably on Windows where the
+    // `directories` crate inserts an extra "config" subdirectory:
+    //   Linux:   ~/.config/wmenu/config.toml
+    //   Windows: %APPDATA%\wmenu\config\config.toml
+    let pd = ProjectDirs::from("", "", "wmenu").context("resolve wmenu project dirs")?;
+    Ok(pd.config_dir().join("config.toml"))
 }
 
 fn read_theme(path: &Path) -> Result<String> {
