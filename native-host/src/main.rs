@@ -1,10 +1,13 @@
 //! wf-themes-host — Firefox native messaging host.
 
 use anyhow::{Context, Result};
+use notify::{RecommendedWatcher, RecursiveMode, Watcher};
 use serde::Deserialize;
 use serde_json::{Value, json};
 use std::io::{Read, Write, stdin, stdout};
 use std::path::{Path, PathBuf};
+use std::sync::mpsc::channel;
+use std::time::Duration;
 
 /// Write one message to stdout in Firefox's native messaging wire format:
 /// 4-byte native-endian length prefix followed by UTF-8 JSON.
@@ -18,8 +21,7 @@ fn write_msg(msg: &Value) -> Result<()> {
     Ok(())
 }
 
-/// Read one message from stdin. Returns Ok(None) on clean EOF (Firefox
-/// disconnected).
+/// Read one message from stdin. Returns Ok(None) on clean EOF.
 #[allow(dead_code)]
 fn read_msg() -> Result<Option<Value>> {
     let mut len_buf = [0u8; 4];
@@ -35,7 +37,6 @@ fn read_msg() -> Result<Option<Value>> {
     Ok(Some(serde_json::from_slice(&buf)?))
 }
 
-/// We only care about the theme field; wmenu's config has many others.
 #[derive(Deserialize)]
 struct WmenuConfig {
     theme: String,
@@ -54,10 +55,48 @@ fn read_theme(path: &Path) -> Result<String> {
     Ok(cfg.theme)
 }
 
+fn push_if_changed(path: &Path, last: &mut String) {
+    match read_theme(path) {
+        Ok(theme) if theme != *last => {
+            eprintln!("wf-themes-host: theme {} -> {}", last, theme);
+            if write_msg(&json!({ "theme": theme.clone() })).is_err() {
+                // Firefox closed stdout; the recv() in main will also stop.
+                return;
+            }
+            *last = theme;
+        }
+        Ok(_) => {}
+        Err(e) => eprintln!("wf-themes-host: read error: {e:#}"),
+    }
+}
+
 fn main() -> Result<()> {
     let path = config_path()?;
-    let theme = read_theme(&path)?;
-    eprintln!("wf-themes-host: pushing initial theme={}", theme);
-    write_msg(&json!({ "theme": theme }))?;
+    let parent = path
+        .parent()
+        .context("config has no parent dir")?
+        .to_path_buf();
+
+    let mut last_theme = String::new();
+    push_if_changed(&path, &mut last_theme);
+
+    let (tx, rx) = channel();
+    let mut watcher: RecommendedWatcher = notify::recommended_watcher(tx)?;
+    // Watch the parent dir (not the file directly) so we catch atomic-rename
+    // writes — many editors save by writing to a tempfile and renaming.
+    watcher.watch(&parent, RecursiveMode::NonRecursive)?;
+    eprintln!("wf-themes-host: watching {}", parent.display());
+
+    loop {
+        if rx.recv().is_err() {
+            break;
+        }
+        // Coalesce a burst of events (atomic-rename triggers several): wait a
+        // short debounce window, then drain anything else that landed.
+        std::thread::sleep(Duration::from_millis(50));
+        while rx.try_recv().is_ok() {}
+
+        push_if_changed(&path, &mut last_theme);
+    }
     Ok(())
 }
