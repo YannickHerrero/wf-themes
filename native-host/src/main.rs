@@ -102,6 +102,11 @@ fn main() -> Result<()> {
         .context("config has no parent dir")?
         .to_path_buf();
 
+    // The user may install this before ever running wmenu — make sure the
+    // directory we want to watch exists, otherwise notify::watch fails.
+    std::fs::create_dir_all(&parent)
+        .with_context(|| format!("create {}", parent.display()))?;
+
     let mut last_theme = String::new();
     push_if_changed(&path, &mut last_theme);
 
