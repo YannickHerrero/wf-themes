@@ -36,7 +36,9 @@ re-run `scripts/sync-themes.sh` after a stylus change.
 
 ## Install
 
-Prerequisites: `cargo`, `zip`, and Firefox.
+Prerequisites: `cargo`, `python3`, and Firefox.
+
+### Linux Firefox
 
 ```bash
 git clone https://github.com/YannickHerrero/wf-themes.git
@@ -49,6 +51,52 @@ bash scripts/install-native-host.sh
 
 # 2. Build the .xpi (unsigned). For Firefox Release, this needs to be signed
 #    by Mozilla before it can be installed permanently — see below.
+bash scripts/build-xpi.sh
+# → produces dist/wf-themes.xpi
+```
+
+### Windows Firefox with WSL-resident wmenu
+
+If Firefox runs on Windows but wmenu is in WSL, the Linux ELF host needs a
+thin Windows wrapper so Firefox can launch it across the boundary. Two steps:
+
+**Inside WSL** (same as Linux install — builds the actual binary):
+
+```bash
+git clone https://github.com/YannickHerrero/wf-themes.git
+cd wf-themes
+bash scripts/install-native-host.sh
+# → installs /home/<wsl-user>/.local/bin/wf-themes-host
+```
+
+The Linux-side native messaging manifest written to `~/.mozilla/...` is
+harmless but inert — Windows Firefox doesn't read it. The Windows registry
+entry below is what actually wires things up.
+
+**In Windows PowerShell** (registers the wrapper + the registry entry that
+Windows Firefox reads):
+
+```powershell
+cd \\wsl.localhost\<your-distro>\home\<wsl-user>\dev\wf-themes
+.\windows\install.ps1
+# → writes %LOCALAPPDATA%\wf-themes\wf-themes-host.bat
+# → writes %LOCALAPPDATA%\wf-themes\com.yannick.wf_themes.json
+# → creates HKCU\Software\Mozilla\NativeMessagingHosts\com.yannick.wf_themes
+```
+
+The .bat wraps `wsl.exe -e /home/<user>/.local/bin/wf-themes-host` and
+preserves binary stdio so Firefox's length-prefixed JSON wire format
+survives the WSL ↔ Windows hop. Override the binary path with
+`.\windows\install.ps1 -BinPath "/some/other/path"` if you keep the host
+somewhere non-default.
+
+Restart Firefox (or disable + re-enable the extension) afterwards to force
+a reconnect.
+
+**Build the .xpi** (works equally well from WSL or Windows — Mozilla signs
+the same archive either way):
+
+```bash
 bash scripts/build-xpi.sh
 # → produces dist/wf-themes.xpi
 ```
@@ -103,18 +151,28 @@ bash scripts/build-xpi.sh           # rebuild the .xpi
 
 ## Troubleshooting
 
-- **Extension installs but nothing themes** — open the background console
-  (`about:debugging` → Inspect). Look for `connected to native host` and
-  `applied <theme>`. If you see `native host disconnected`, the binary path
-  in `~/.mozilla/native-messaging-hosts/com.yannick.wf_themes.json` is wrong
-  or the binary isn't executable — re-run `install-native-host.sh`.
+- **Extension installs and themes a fallback (paper) but never reacts to wmenu changes** —
+  the extension is loaded but the native host isn't connecting. Open the
+  background console (`about:debugging` → Inspect): if you don't see
+  `connected to native host`, the host lookup failed.
+  - **Linux Firefox**: check the manifest path and binary executable bit:
+    `cat ~/.mozilla/native-messaging-hosts/com.yannick.wf_themes.json` and
+    `ls -l ~/.local/bin/wf-themes-host`. Re-run `bash scripts/install-native-host.sh`.
+  - **Windows Firefox**: check the registry entry exists:
+    `reg query "HKCU\Software\Mozilla\NativeMessagingHosts\com.yannick.wf_themes"` —
+    its default value must point at an existing `com.yannick.wf_themes.json`.
+    Re-run `windows\install.ps1` from PowerShell.
+- **Extension ID drifted** — in the background console run `browser.runtime.id`.
+  Must match the `allowed_extensions` entry in the manifest
+  (`wf-themes@yannick.herrero`). If different, the signed extension ID changed
+  — update both manifest templates and re-run the installers.
 - **Native host stderr** — Firefox suppresses native host stderr by default.
   To see it, launch Firefox from a terminal; the host's `eprintln!` lines
-  show up in that terminal.
-- **Manual host smoke test:**
+  show up there.
+- **Manual host smoke test** (Linux/WSL):
   ```bash
   printf '\x00\x00\x00\x00' | ~/.local/bin/wf-themes-host
-  # → should print a length-prefixed JSON {"theme":"<current>"} and exit
+  # → prints a length-prefixed JSON {"theme":"<current>"} then exits on EOF
   ```
 - **Theme not changing on save** — confirm wmenu actually wrote the file:
   `cat ~/.config/wmenu/config.toml | grep theme`. Some editors save via
@@ -134,9 +192,13 @@ wf-themes/
 │   ├── Cargo.toml
 │   └── src/main.rs
 ├── packaging/
-│   └── com.yannick.wf_themes.json.tpl
+│   └── com.yannick.wf_themes.json.tpl   (Linux NM manifest template)
+├── windows/                              (Windows-side bridge)
+│   ├── wf-themes-host.bat.tpl
+│   ├── com.yannick.wf_themes.json.tpl
+│   └── install.ps1
 └── scripts/
-    ├── install-native-host.sh
+    ├── install-native-host.sh           (run inside WSL/Linux)
     ├── build-xpi.sh
     └── sync-themes.sh
 ```
