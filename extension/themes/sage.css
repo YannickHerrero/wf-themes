@@ -4272,7 +4272,7 @@
 @author       yherrero
 @license      MIT
 ==/UserStyle== */
-@-moz-document regexp("https:\/\/github\.com(?!(\/home$|\/features($|\/.*)|\/organizations\/plan)).*$"), domain("gist.github.com"), domain("docs.github.com"), domain("viewscreen.githubusercontent.com") {
+@-moz-document domain("github.com"), domain("gist.github.com"), domain("docs.github.com"), domain("viewscreen.githubusercontent.com") {
   @media (prefers-color-scheme: light) {
     [data-color-mode][data-color-mode="auto"][data-light-theme="light"] {
       accent-color: #3F5C32;
