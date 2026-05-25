@@ -16,8 +16,18 @@ TARGET="x86_64-pc-windows-gnu"
 OUTPUT_NAME="wf-themes-host.exe"
 COMMITTED_PATH="${REPO_DIR}/windows/${OUTPUT_NAME}"
 
+# Find cargo: prefer one on PATH; fall back to a rustup-style install.
+CARGO="${CARGO:-$(command -v cargo || true)}"
+if [[ -z "${CARGO}" && -x "${HOME}/.cargo/bin/cargo" ]]; then
+  CARGO="${HOME}/.cargo/bin/cargo"
+fi
+if [[ -z "${CARGO}" ]]; then
+  echo "error: cargo not found on PATH or in ~/.cargo/bin/" >&2
+  exit 1
+fi
+
 echo "[wf-themes] cross-compiling for ${TARGET}..."
-cargo build --release \
+"${CARGO}" build --release \
   --manifest-path "${REPO_DIR}/native-host/Cargo.toml" \
   --target "${TARGET}"
 
