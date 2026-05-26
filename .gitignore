@@ -7,6 +7,10 @@ dist/
 # Node (in case we add web-ext later)
 node_modules/
 
+# web-ext build / AMO upload
+web-ext-artifacts/
+extension/.amo-upload-uuid
+
 # OS
 .DS_Store
 Thumbs.db
