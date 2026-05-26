@@ -19,21 +19,111 @@ const URL_PATTERNS = [
   "*://mtools-rho.vercel.app/*",
 ];
 
-const cssByTheme = {};
+// themesAsSections[theme] = [{ domains: [...], urlPrefixes: [...], code }, ...]
+// One entry per `@-moz-document` block parsed out of the bundled .user.css.
+// `code` is the bare inner CSS — the wrapper is discarded.
+const themesAsSections = {};
 let currentTheme = null;
 
 let port = null;
 let reconnectDelayMs = 1000;
 const RECONNECT_MAX_MS = 30000;
 
+// --- userstyle parser ------------------------------------------------------
+
+// Walk balanced braces in CSS, skipping comments and quoted strings so
+// `{` / `}` inside them don't throw off the depth count. Returns the index
+// of the matching `}` (the char itself), or -1 if unbalanced.
+function findBalancedClose(css, start) {
+  let depth = 1;
+  let i = start;
+  while (i < css.length && depth > 0) {
+    const ch = css[i];
+    if (ch === "/" && css[i + 1] === "*") {
+      const end = css.indexOf("*/", i + 2);
+      if (end === -1) return -1;
+      i = end + 2;
+      continue;
+    }
+    if (ch === '"' || ch === "'") {
+      const quote = ch;
+      i++;
+      while (i < css.length && css[i] !== quote) {
+        if (css[i] === "\\") i++;
+        i++;
+      }
+      i++;
+      continue;
+    }
+    if (ch === "{") depth++;
+    else if (ch === "}") depth--;
+    i++;
+  }
+  return depth === 0 ? i - 1 : -1;
+}
+
+function parseMatchers(s) {
+  const domains = [];
+  const urlPrefixes = [];
+  const re = /([a-zA-Z][-a-zA-Z]*)\(\s*"([^"]*)"\s*\)/g;
+  let m;
+  while ((m = re.exec(s)) !== null) {
+    if (m[1] === "domain") domains.push(m[2]);
+    else if (m[1] === "url-prefix") urlPrefixes.push(m[2]);
+    // url() and regexp() forms are not used by the bundled themes — ignore.
+  }
+  return { domains, urlPrefixes };
+}
+
+function parseSections(css) {
+  const sections = [];
+  const headerRe = /@-moz-document\s+([^{]+)\{/g;
+  let m;
+  while ((m = headerRe.exec(css)) !== null) {
+    const bodyStart = headerRe.lastIndex;
+    const closeIdx = findBalancedClose(css, bodyStart);
+    if (closeIdx === -1) {
+      console.warn("[wf-themes] unbalanced @-moz-document block, skipping");
+      break;
+    }
+    sections.push({
+      ...parseMatchers(m[1]),
+      code: css.slice(bodyStart, closeIdx),
+    });
+    headerRe.lastIndex = closeIdx + 1;
+  }
+  return sections;
+}
+
+// --- loading ---------------------------------------------------------------
+
 async function loadCss() {
   await Promise.all(
     THEMES.map(async (name) => {
       const url = browser.runtime.getURL(`themes/${name}.css`);
       const resp = await fetch(url);
-      cssByTheme[name] = await resp.text();
+      themesAsSections[name] = parseSections(await resp.text());
+      console.log(
+        `[wf-themes] parsed ${name}: ${themesAsSections[name].length} section(s)`
+      );
     })
   );
+}
+
+// Reassemble the full bundle for a theme (all sections concatenated, each
+// wrapped in its original @-moz-document header).
+function fullBundleFor(theme) {
+  const sections = themesAsSections[theme];
+  if (!sections) return null;
+  return sections
+    .map((s) => {
+      const args = [
+        ...s.domains.map((d) => `domain("${d}")`),
+        ...s.urlPrefixes.map((p) => `url-prefix("${p}")`),
+      ].join(", ");
+      return `@-moz-document ${args} {\n${s.code}\n}`;
+    })
+    .join("\n");
 }
 
 async function insertInto(tabId, css) {
@@ -62,14 +152,14 @@ async function removeFrom(tabId, css) {
 }
 
 async function applyTheme(name) {
-  if (!cssByTheme[name]) {
+  if (!themesAsSections[name]) {
     console.warn(`[wf-themes] unknown theme: ${name}`);
     return;
   }
   if (name === currentTheme) return;
 
-  const prevCss = currentTheme ? cssByTheme[currentTheme] : null;
-  const nextCss = cssByTheme[name];
+  const prevCss = currentTheme ? fullBundleFor(currentTheme) : null;
+  const nextCss = fullBundleFor(name);
 
   const tabs = await browser.tabs.query({ url: URL_PATTERNS });
   await Promise.all(
@@ -87,7 +177,7 @@ browser.tabs.onUpdated.addListener(
   (tabId, info) => {
     if (info.status !== "loading") return;
     if (!currentTheme) return;
-    insertInto(tabId, cssByTheme[currentTheme]);
+    insertInto(tabId, fullBundleFor(currentTheme));
   },
   { urls: URL_PATTERNS, properties: ["status"] }
 );
