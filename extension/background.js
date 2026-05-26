@@ -14,9 +14,13 @@ const URL_PATTERNS = [
   "*://discord.com/*",
   "*://claude.ai/*",
   "*://github.com/*",
+  "*://*.github.com/*",
+  "*://viewscreen.githubusercontent.com/*",
   "*://*.reddit.com/*",
   "*://teams.microsoft.com/*",
+  "*://teams.live.com/*",
   "*://mtools-rho.vercel.app/*",
+  "http://localhost:5175/*",
 ];
 
 // themesAsSections[theme] = [{ domains: [...], urlPrefixes: [...], code }, ...]

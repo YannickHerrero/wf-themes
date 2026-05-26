@@ -17,9 +17,13 @@
     "*://discord.com/*",
     "*://claude.ai/*",
     "*://github.com/*",
+    "*://*.github.com/*",
+    "*://viewscreen.githubusercontent.com/*",
     "*://*.reddit.com/*",
     "*://teams.microsoft.com/*",
-    "*://mtools-rho.vercel.app/*"
+    "*://teams.live.com/*",
+    "*://mtools-rho.vercel.app/*",
+    "http://localhost:5175/*"
   ],
   "background": {
     "scripts": ["background.js"],
