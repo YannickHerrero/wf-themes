@@ -142,7 +142,6 @@ async function insertInto(tabId, css) {
     await browser.tabs.insertCSS(tabId, {
       code: css,
       allFrames: true,
-      cssOrigin: "user",
       runAt: "document_start",
     });
   } catch (err) {
@@ -155,7 +154,6 @@ async function removeFrom(tabId, css) {
     await browser.tabs.removeCSS(tabId, {
       code: css,
       allFrames: true,
-      cssOrigin: "user",
     });
   } catch (err) {
     // Tab may have closed or never had this CSS — ignore.
