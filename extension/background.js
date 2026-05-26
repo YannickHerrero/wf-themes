@@ -110,20 +110,31 @@ async function loadCss() {
   );
 }
 
-// Reassemble the full bundle for a theme (all sections concatenated, each
-// wrapped in its original @-moz-document header).
-function fullBundleFor(theme) {
+// `domain(d)` in @-moz-document matches when the document's host equals d or
+// is a subdomain of d — same rule as Mozilla's implementation.
+function hostMatchesDomain(host, domain) {
+  return host === domain || host.endsWith("." + domain);
+}
+
+// Pick the section(s) of `theme` that apply to `url` and return their bare
+// CSS concatenated. Match per-tab in JS so we don't have to rely on the
+// browser honouring @-moz-document in injected stylesheets.
+function cssForTabUrl(theme, url) {
   const sections = themesAsSections[theme];
-  if (!sections) return null;
-  return sections
-    .map((s) => {
-      const args = [
-        ...s.domains.map((d) => `domain("${d}")`),
-        ...s.urlPrefixes.map((p) => `url-prefix("${p}")`),
-      ].join(", ");
-      return `@-moz-document ${args} {\n${s.code}\n}`;
-    })
-    .join("\n");
+  if (!sections || !url) return null;
+  let host;
+  try {
+    host = new URL(url).hostname;
+  } catch {
+    return null;
+  }
+  const parts = [];
+  for (const s of sections) {
+    const domainHit = s.domains.some((d) => hostMatchesDomain(host, d));
+    const prefixHit = s.urlPrefixes.some((p) => url.startsWith(p));
+    if (domainHit || prefixHit) parts.push(s.code);
+  }
+  return parts.length ? parts.join("\n") : null;
 }
 
 async function insertInto(tabId, css) {
@@ -158,14 +169,14 @@ async function applyTheme(name) {
   }
   if (name === currentTheme) return;
 
-  const prevCss = currentTheme ? fullBundleFor(currentTheme) : null;
-  const nextCss = fullBundleFor(name);
-
+  const prevTheme = currentTheme;
   const tabs = await browser.tabs.query({ url: URL_PATTERNS });
   await Promise.all(
     tabs.map(async (t) => {
+      const prevCss = prevTheme ? cssForTabUrl(prevTheme, t.url) : null;
+      const nextCss = cssForTabUrl(name, t.url);
       if (prevCss) await removeFrom(t.id, prevCss);
-      await insertInto(t.id, nextCss);
+      if (nextCss) await insertInto(t.id, nextCss);
     })
   );
   currentTheme = name;
@@ -174,10 +185,11 @@ async function applyTheme(name) {
 }
 
 browser.tabs.onUpdated.addListener(
-  (tabId, info) => {
+  (tabId, info, tab) => {
     if (info.status !== "loading") return;
     if (!currentTheme) return;
-    insertInto(tabId, fullBundleFor(currentTheme));
+    const css = cssForTabUrl(currentTheme, tab.url);
+    if (css) insertInto(tabId, css);
   },
   { urls: URL_PATTERNS, properties: ["status"] }
 );
