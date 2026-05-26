@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "wf-themes",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Theme injector for Discord, Claude, GitHub, Reddit, Teams, and MTools. Driven by the wmenu global theme selector via native messaging.",
   "homepage_url": "https://github.com/YannickHerrero/wf-themes",
   "applications": {
