@@ -26,8 +26,8 @@ normal one when a new tab is opened).
   messaging host". It watches that config file with `notify`, and pushes
   `{"theme": "..."}` over stdio every time the value changes.
 - **The extension** receives messages and uses `browser.tabs.insertCSS` to
-  apply the matching bundled stylesheet to every open tab on the 6 target
-  sites: Discord, Claude, GitHub, Reddit, Microsoft Teams, MTools.
+  apply the matching bundled stylesheet to every open tab on the 8 target
+  sites: Discord, Claude, GitHub, Reddit, Microsoft Teams, MTools, Outlook, Proton Mail.
 
 The theme CSS itself lives in `extension/themes/{paper,stone,sage,clay,ink}.css`,
 copied verbatim from the [stylus](https://github.com/YannickHerrero/user-styles)
@@ -122,7 +122,7 @@ Useful for development; the extension is unloaded on browser restart.
 
 ## Verifying end-to-end
 
-1. Open a tab on one of the 6 themed sites (Discord, Claude, etc.).
+1. Open a tab on one of the 8 themed sites (Discord, Claude, etc.).
 2. In a terminal, edit `~/.config/wmenu/config.toml` and change `theme = "paper"`
    to `theme = "ink"`. Save.
 3. The browser should re-theme within ~200ms. Open a fresh tab on the same

@@ -1,8 +1,8 @@
 /* ==UserStyle==
 @name         All Sites - Stone
 @namespace    github.com/yherrero/stylus
-@version      2.2.0
-@description  Stone theme for all supported websites (Discord, Claude.ai, MTools, Teams, Reddit, GitHub)
+@version      2.4.0
+@description  Stone theme for all supported websites (Discord, Claude.ai, MTools, Teams, Outlook, Proton Mail, Reddit, GitHub)
 @author       yherrero
 @license      MIT
 ==/UserStyle== */
@@ -2054,6 +2054,643 @@
   [class*="empty-state"],
   [class*="EmptyState"] {
     background-color: #E6E8EA !important;
+  }
+}
+/* ==UserStyle==
+@name         Outlook - Stone
+@namespace    github.com/yherrero/stylus
+@version      1.0.0
+@description  Stone theme for Outlook on the web (Base16)
+@author       yherrero
+@license      MIT
+==/UserStyle== */
+@-moz-document domain("outlook.office.com"), domain("outlook.office365.com"), domain("outlook.live.com"), domain("outlook.com") {
+  html,
+  :root,
+  body,
+  .fui-FluentProvider,
+  [data-theme],
+  [class*="FluentProvider"] {
+    --colorNeutralBackground1: #E6E8EA !important;
+    --colorNeutralBackground1Hover: rgba(95, 105, 114, 0.1) !important;
+    --colorNeutralBackground1Pressed: rgba(95, 105, 114, 0.2) !important;
+    --colorNeutralBackground1Selected: rgba(74, 107, 138, 0.2) !important;
+    --colorNeutralBackground2: #D3D7DB !important;
+    --colorNeutralBackground2Hover: rgba(95, 105, 114, 0.1) !important;
+    --colorNeutralBackground2Pressed: rgba(95, 105, 114, 0.2) !important;
+    --colorNeutralBackground2Selected: rgba(74, 107, 138, 0.2) !important;
+    --colorNeutralBackground3: #D3D7DB !important;
+    --colorNeutralBackground3Hover: rgba(95, 105, 114, 0.1) !important;
+    --colorNeutralBackground3Pressed: rgba(95, 105, 114, 0.2) !important;
+    --colorNeutralBackground3Selected: rgba(74, 107, 138, 0.2) !important;
+    --colorNeutralBackground4: #DEE2E6 !important;
+    --colorNeutralBackground4Hover: rgba(95, 105, 114, 0.1) !important;
+    --colorNeutralBackground4Pressed: rgba(95, 105, 114, 0.2) !important;
+    --colorNeutralBackground4Selected: rgba(74, 107, 138, 0.2) !important;
+    --colorNeutralBackground5: #DEE2E6 !important;
+    --colorNeutralBackground5Hover: rgba(95, 105, 114, 0.1) !important;
+    --colorNeutralBackground5Pressed: rgba(95, 105, 114, 0.2) !important;
+    --colorNeutralBackground5Selected: rgba(74, 107, 138, 0.2) !important;
+    --colorNeutralBackground6: #D3D7DB !important;
+    --colorNeutralBackgroundInverted: #2D3338 !important;
+    --colorNeutralBackgroundStatic: #E6E8EA !important;
+    --colorNeutralBackgroundAlpha: rgba(230, 232, 234, 0.5) !important;
+    --colorNeutralBackgroundAlpha2: rgba(230, 232, 234, 0.8) !important;
+    --colorSubtleBackground: transparent !important;
+    --colorSubtleBackgroundHover: rgba(95, 105, 114, 0.1) !important;
+    --colorSubtleBackgroundPressed: rgba(95, 105, 114, 0.2) !important;
+    --colorSubtleBackgroundSelected: rgba(74, 107, 138, 0.2) !important;
+    --colorSubtleBackgroundLightAlphaHover: rgba(95, 105, 114, 0.1) !important;
+    --colorSubtleBackgroundLightAlphaPressed: rgba(95, 105, 114, 0.15) !important;
+    --colorSubtleBackgroundLightAlphaSelected: rgba(74, 107, 138, 0.15) !important;
+    --colorSubtleBackgroundInverted: transparent !important;
+    --colorTransparentBackground: transparent !important;
+    --colorTransparentBackgroundHover: rgba(95, 105, 114, 0.1) !important;
+    --colorTransparentBackgroundPressed: rgba(95, 105, 114, 0.2) !important;
+    --colorTransparentBackgroundSelected: rgba(74, 107, 138, 0.2) !important;
+    --colorNeutralForeground1: #2D3338 !important;
+    --colorNeutralForeground1Hover: #2D3338 !important;
+    --colorNeutralForeground1Pressed: #2D3338 !important;
+    --colorNeutralForeground1Selected: #2D3338 !important;
+    --colorNeutralForeground2: #5F6972 !important;
+    --colorNeutralForeground2Hover: #2D3338 !important;
+    --colorNeutralForeground2Pressed: #2D3338 !important;
+    --colorNeutralForeground2Selected: #2D3338 !important;
+    --colorNeutralForeground2BrandHover: #4A6B8A !important;
+    --colorNeutralForeground2BrandPressed: #385169 !important;
+    --colorNeutralForeground2BrandSelected: #4A6B8A !important;
+    --colorNeutralForeground3: #9BA3AB !important;
+    --colorNeutralForeground3Hover: #5F6972 !important;
+    --colorNeutralForeground3Pressed: #5F6972 !important;
+    --colorNeutralForeground3Selected: #5F6972 !important;
+    --colorNeutralForeground4: #9BA3AB !important;
+    --colorNeutralForegroundDisabled: #9BA3AB !important;
+    --colorNeutralForegroundInverted: #E6E8EA !important;
+    --colorNeutralForegroundOnBrand: #E6E8EA !important;
+    --colorNeutralForegroundStaticInverted: #E6E8EA !important;
+    --colorBrandBackground: #4A6B8A !important;
+    --colorBrandBackgroundHover: #415e79 !important;
+    --colorBrandBackgroundPressed: #385169 !important;
+    --colorBrandBackgroundSelected: #3e5973 !important;
+    --colorBrandBackground2: rgba(74, 107, 138, 0.15) !important;
+    --colorBrandBackground2Hover: rgba(74, 107, 138, 0.25) !important;
+    --colorBrandBackground2Pressed: rgba(74, 107, 138, 0.35) !important;
+    --colorBrandBackgroundStatic: #4A6B8A !important;
+    --colorBrandBackgroundInverted: #E6E8EA !important;
+    --colorBrandForeground1: #4A6B8A !important;
+    --colorBrandForeground2: #415e79 !important;
+    --colorBrandForeground2Hover: #385169 !important;
+    --colorBrandForeground2Pressed: #2f4458 !important;
+    --colorBrandForegroundLink: #4A6B8A !important;
+    --colorBrandForegroundLinkHover: #385169 !important;
+    --colorBrandForegroundLinkPressed: #2f4458 !important;
+    --colorBrandForegroundLinkSelected: #4A6B8A !important;
+    --colorBrandForegroundOnLight: #4A6B8A !important;
+    --colorBrandForegroundOnLightHover: #415e79 !important;
+    --colorBrandForegroundOnLightPressed: #385169 !important;
+    --colorCompoundBrandBackground: #4A6B8A !important;
+    --colorCompoundBrandBackgroundHover: #415e79 !important;
+    --colorCompoundBrandBackgroundPressed: #385169 !important;
+    --colorCompoundBrandForeground1: #4A6B8A !important;
+    --colorCompoundBrandForeground1Hover: #415e79 !important;
+    --colorCompoundBrandForeground1Pressed: #385169 !important;
+    --colorCompoundBrandStroke: #4A6B8A !important;
+    --colorCompoundBrandStrokeHover: #415e79 !important;
+    --colorCompoundBrandStrokePressed: #385169 !important;
+    --colorNeutralStroke1: rgba(95, 105, 114, 0.2) !important;
+    --colorNeutralStroke1Hover: #9BA3AB !important;
+    --colorNeutralStroke1Pressed: #9BA3AB !important;
+    --colorNeutralStroke1Selected: #4A6B8A !important;
+    --colorNeutralStroke2: rgba(95, 105, 114, 0.15) !important;
+    --colorNeutralStroke3: rgba(95, 105, 114, 0.15) !important;
+    --colorNeutralStrokeSubtle: rgba(95, 105, 114, 0.15) !important;
+    --colorNeutralStrokeAccessible: #5F6972 !important;
+    --colorNeutralStrokeAccessibleHover: #9BA3AB !important;
+    --colorNeutralStrokeAccessiblePressed: #9BA3AB !important;
+    --colorNeutralStrokeAccessibleSelected: #4A6B8A !important;
+    --colorNeutralStrokeDisabled: rgba(95, 105, 114, 0.15) !important;
+    --colorNeutralStrokeOnBrand: #E6E8EA !important;
+    --colorNeutralStrokeOnBrand2: #E6E8EA !important;
+    --colorBrandStroke1: #4A6B8A !important;
+    --colorBrandStroke2: rgba(74, 107, 138, 0.5) !important;
+    --colorBrandStroke2Hover: rgba(74, 107, 138, 0.6) !important;
+    --colorBrandStroke2Pressed: rgba(74, 107, 138, 0.7) !important;
+    --colorBrandStroke2Contrast: #4A6B8A !important;
+    --colorPaletteRedBackground1: rgba(179, 63, 63, 0.15) !important;
+    --colorPaletteRedBackground2: rgba(179, 63, 63, 0.25) !important;
+    --colorPaletteRedBackground3: #B33F3F !important;
+    --colorPaletteRedForeground1: #B33F3F !important;
+    --colorPaletteRedForeground2: #B33F3F !important;
+    --colorPaletteRedForeground3: #E6E8EA !important;
+    --colorPaletteRedBorder1: rgba(179, 63, 63, 0.4) !important;
+    --colorPaletteRedBorder2: #B33F3F !important;
+    --colorStatusDangerBackground1: rgba(179, 63, 63, 0.15) !important;
+    --colorStatusDangerBackground2: rgba(179, 63, 63, 0.25) !important;
+    --colorStatusDangerBackground3: #B33F3F !important;
+    --colorStatusDangerForeground1: #B33F3F !important;
+    --colorStatusDangerForeground2: #B33F3F !important;
+    --colorStatusDangerForeground3: #E6E8EA !important;
+    --colorStatusDangerBorder1: rgba(179, 63, 63, 0.4) !important;
+    --colorStatusDangerBorder2: #B33F3F !important;
+    --colorPaletteYellowBackground1: rgba(184, 130, 53, 0.15) !important;
+    --colorPaletteYellowBackground2: rgba(184, 130, 53, 0.25) !important;
+    --colorPaletteYellowBackground3: #B88235 !important;
+    --colorPaletteYellowForeground1: #B88235 !important;
+    --colorPaletteYellowForeground2: #90662a !important;
+    --colorPaletteYellowForeground3: #E6E8EA !important;
+    --colorPaletteYellowBorder1: rgba(184, 130, 53, 0.4) !important;
+    --colorPaletteYellowBorder2: #B88235 !important;
+    --colorStatusWarningBackground1: rgba(184, 130, 53, 0.15) !important;
+    --colorStatusWarningBackground2: rgba(184, 130, 53, 0.25) !important;
+    --colorStatusWarningBackground3: #B88235 !important;
+    --colorStatusWarningForeground1: #B88235 !important;
+    --colorStatusWarningForeground2: #90662a !important;
+    --colorStatusWarningForeground3: #E6E8EA !important;
+    --colorStatusWarningBorder1: rgba(184, 130, 53, 0.4) !important;
+    --colorStatusWarningBorder2: #B88235 !important;
+    --colorPaletteGreenBackground1: rgba(63, 122, 92, 0.15) !important;
+    --colorPaletteGreenBackground2: rgba(63, 122, 92, 0.25) !important;
+    --colorPaletteGreenBackground3: #3F7A5C !important;
+    --colorPaletteGreenForeground1: #3F7A5C !important;
+    --colorPaletteGreenForeground2: #3F7A5C !important;
+    --colorPaletteGreenForeground3: #E6E8EA !important;
+    --colorPaletteGreenBorder1: rgba(63, 122, 92, 0.4) !important;
+    --colorPaletteGreenBorder2: #3F7A5C !important;
+    --colorStatusSuccessBackground1: rgba(63, 122, 92, 0.15) !important;
+    --colorStatusSuccessBackground2: rgba(63, 122, 92, 0.25) !important;
+    --colorStatusSuccessBackground3: #3F7A5C !important;
+    --colorStatusSuccessForeground1: #3F7A5C !important;
+    --colorStatusSuccessForeground2: #3F7A5C !important;
+    --colorStatusSuccessForeground3: #E6E8EA !important;
+    --colorStatusSuccessBorder1: rgba(63, 122, 92, 0.4) !important;
+    --colorStatusSuccessBorder2: #3F7A5C !important;
+    --colorPaletteBlueBackground1: rgba(74, 107, 138, 0.15) !important;
+    --colorPaletteBlueBackground2: rgba(74, 107, 138, 0.25) !important;
+    --colorPaletteBlueBackground3: #4A6B8A !important;
+    --colorPaletteBlueForeground1: #4A6B8A !important;
+    --colorPaletteBlueForeground2: #4A6B8A !important;
+    --colorPaletteBlueForeground3: #E6E8EA !important;
+    --colorPaletteBlueBorder1: rgba(74, 107, 138, 0.4) !important;
+    --colorPaletteBlueBorder2: #4A6B8A !important;
+    --shadow2: 0 0 2px rgba(45, 51, 56, 0.1), 0 1px 2px rgba(45, 51, 56, 0.1) !important;
+    --shadow4: 0 0 2px rgba(45, 51, 56, 0.1), 0 2px 4px rgba(45, 51, 56, 0.1) !important;
+    --shadow8: 0 0 2px rgba(45, 51, 56, 0.1), 0 4px 8px rgba(45, 51, 56, 0.1) !important;
+    --shadow16: 0 0 2px rgba(45, 51, 56, 0.1), 0 8px 16px rgba(45, 51, 56, 0.1) !important;
+    --shadow28: 0 0 8px rgba(45, 51, 56, 0.1), 0 14px 28px rgba(45, 51, 56, 0.1) !important;
+    --shadow64: 0 0 8px rgba(45, 51, 56, 0.1), 0 32px 64px rgba(45, 51, 56, 0.1) !important;
+    --shadow2Brand: 0 0 2px rgba(74, 107, 138, 0.3), 0 1px 2px rgba(74, 107, 138, 0.25) !important;
+    --shadow4Brand: 0 0 2px rgba(74, 107, 138, 0.3), 0 2px 4px rgba(74, 107, 138, 0.25) !important;
+    --shadow8Brand: 0 0 2px rgba(74, 107, 138, 0.3), 0 4px 8px rgba(74, 107, 138, 0.25) !important;
+    --shadow16Brand: 0 0 2px rgba(74, 107, 138, 0.3), 0 8px 16px rgba(74, 107, 138, 0.25) !important;
+    --colorDefaultBackground1: #E6E8EA !important;
+    --colorDefaultBackground2: #D3D7DB !important;
+    --colorDefaultBackground3: #D3D7DB !important;
+    --colorDefaultBackground4: #DEE2E6 !important;
+    --colorDefaultBackground5: #DEE2E6 !important;
+    --colorDefaultForeground1: #2D3338 !important;
+    --colorDefaultForeground2: #5F6972 !important;
+    --colorDefaultForeground3: #9BA3AB !important;
+    --colorDefaultStroke1: rgba(95, 105, 114, 0.2) !important;
+    --colorDefaultStroke2: rgba(95, 105, 114, 0.15) !important;
+    --backgroundCanvas: #E6E8EA !important;
+    --backgroundCanvasAlt: #D3D7DB !important;
+    --background: #E6E8EA !important;
+    --background1: #E6E8EA !important;
+    --background2: #D3D7DB !important;
+    --background3: #D3D7DB !important;
+    --surfaceBackground: #E6E8EA !important;
+    --surfaceBackgroundAlt: #D3D7DB !important;
+    --foreground: #2D3338 !important;
+    --foreground1: #2D3338 !important;
+    --foreground2: #5F6972 !important;
+    --foreground3: #9BA3AB !important;
+    --stroke: rgba(95, 105, 114, 0.2) !important;
+    --stroke1: rgba(95, 105, 114, 0.2) !important;
+    --stroke2: rgba(95, 105, 114, 0.15) !important;
+    --themePrimary: #4A6B8A !important;
+    --themeLighterAlt: rgba(74, 107, 138, 0.05) !important;
+    --themeLighter: rgba(74, 107, 138, 0.15) !important;
+    --themeLight: rgba(74, 107, 138, 0.3) !important;
+    --themeTertiary: rgba(74, 107, 138, 0.5) !important;
+    --themeSecondary: #415e79 !important;
+    --themeDarkAlt: #385169 !important;
+    --themeDark: #2f4458 !important;
+    --themeDarker: #1d2b37 !important;
+    --neutralLighterAlt: #DEE2E6 !important;
+    --neutralLighter: #D3D7DB !important;
+    --neutralLight: #D3D7DB !important;
+    --neutralQuaternaryAlt: #DEE2E6 !important;
+    --neutralQuaternary: #DEE2E6 !important;
+    --neutralTertiaryAlt: #9BA3AB !important;
+    --neutralTertiary: #9BA3AB !important;
+    --neutralSecondary: #5F6972 !important;
+    --neutralSecondaryAlt: #5F6972 !important;
+    --neutralPrimaryAlt: #5F6972 !important;
+    --neutralPrimary: #2D3338 !important;
+    --neutralDark: #1B2024 !important;
+    --black: #2D3338 !important;
+    --white: #E6E8EA !important;
+    --neutralPrimarySurface: #E6E8EA !important;
+    --neutralSecondarySurface: #D3D7DB !important;
+    --neutralTertiarySurface: #D3D7DB !important;
+    --bodyBackground: #E6E8EA !important;
+    --bodyBackgroundHovered: rgba(95, 105, 114, 0.1) !important;
+    --bodyBackgroundChecked: rgba(74, 107, 138, 0.2) !important;
+    --bodyStandoutBackground: #D3D7DB !important;
+    --bodyFrameBackground: #D3D7DB !important;
+    --bodyFrameDivider: rgba(95, 105, 114, 0.2) !important;
+    --bodyText: #2D3338 !important;
+    --bodyTextChecked: #2D3338 !important;
+    --bodySubtext: #5F6972 !important;
+    --bodyDivider: rgba(95, 105, 114, 0.2) !important;
+    --inputBackground: #DEE2E6 !important;
+    --inputBackgroundChecked: #4A6B8A !important;
+    --inputBackgroundCheckedHovered: #415e79 !important;
+    --inputBorder: rgba(95, 105, 114, 0.2) !important;
+    --inputBorderHovered: #9BA3AB !important;
+    --inputText: #2D3338 !important;
+    --inputTextHovered: #2D3338 !important;
+    --inputPlaceholderText: #9BA3AB !important;
+    --inputFocusBorderAlt: #4A6B8A !important;
+    --inputForegroundChecked: #E6E8EA !important;
+    --link: #4A6B8A !important;
+    --linkHovered: #385169 !important;
+    --linkPressed: #2f4458 !important;
+    --communicationBlueWebPrimary: #4A6B8A !important;
+    --communicationBlueWebTint10: #5e85a9 !important;
+    --communicationBlueWebTint20: #7f9ebb !important;
+    --communicationBlueWebTint30: #a1b7cc !important;
+    --communicationBlueWebShade10: #385169 !important;
+    --communicationBlueWebShade20: #263848 !important;
+    --communicationBlueWebShade30: #151e26 !important;
+    --errorText: #B33F3F !important;
+    --warningText: #B88235 !important;
+    --successText: #3F7A5C !important;
+    --errorBackground: rgba(179, 63, 63, 0.15) !important;
+    --warningBackground: rgba(184, 130, 53, 0.15) !important;
+    --successBackground: rgba(63, 122, 92, 0.15) !important;
+    --focusBorder: #4A6B8A !important;
+    --composeNeutralBackground: #E6E8EA !important;
+    --composeNeutralBackgroundHover: rgba(95, 105, 114, 0.1) !important;
+    --composeNeutralForeground: #2D3338 !important;
+    --composeAccentBackground: #4A6B8A !important;
+    --readingPaneCardBorder: rgba(95, 105, 114, 0.15) !important;
+    --readingPaneCardFocusBorder: #4A6B8A !important;
+    --readingPaneCardBackground: #E6E8EA !important;
+    --readingPaneHeaderBackground: #E6E8EA !important;
+    --flaggedMessage: rgba(184, 130, 53, 0.2) !important;
+    --messageWebWarning: rgba(184, 130, 53, 0.2) !important;
+    --messageWebDanger: rgba(179, 63, 63, 0.2) !important;
+    --messageWebInfo: rgba(74, 107, 138, 0.2) !important;
+    --messageMobileWarningPrimary: #B88235 !important;
+    --messageMobileDangerPrimary: #B33F3F !important;
+    --presenceOnline: #3F7A5C !important;
+    --presenceAway: #B88235 !important;
+    --presenceDoNotDisturb: #B33F3F !important;
+    --presenceOffline: #9BA3AB !important;
+  }
+  * {
+    --backgroundCanvas: #E6E8EA !important;
+    --backgroundCanvasAlt: #D3D7DB !important;
+    --colorDefaultBackground1: #E6E8EA !important;
+    --colorDefaultBackground2: #D3D7DB !important;
+    --colorDefaultBackground3: #D3D7DB !important;
+    --colorDefaultBackground4: #DEE2E6 !important;
+    --colorDefaultForeground1: #2D3338 !important;
+    --colorDefaultForeground2: #5F6972 !important;
+    --colorDefaultForeground3: #9BA3AB !important;
+    --background: #E6E8EA !important;
+    --background1: #E6E8EA !important;
+    --background2: #D3D7DB !important;
+    --surfaceBackground: #E6E8EA !important;
+    --foreground: #2D3338 !important;
+    --foreground1: #2D3338 !important;
+    --neutralPrimarySurface: #E6E8EA !important;
+    --neutralSecondarySurface: #D3D7DB !important;
+    --neutralTertiarySurface: #D3D7DB !important;
+    --readingPaneCardBackground: #E6E8EA !important;
+    --composeNeutralBackground: #E6E8EA !important;
+  }
+  html,
+  body,
+  #app,
+  #appContainer,
+  #mainApp {
+    background-color: #E6E8EA !important;
+    color: #2D3338 !important;
+  }
+  #OwaTitleBar,
+  #TopBar {
+    background-color: #D3D7DB !important;
+    color: #2D3338 !important;
+    border-color: rgba(95, 105, 114, 0.2) !important;
+  }
+  input[role="search"],
+  [role="search"] input {
+    background-color: #DEE2E6 !important;
+    color: #2D3338 !important;
+  }
+  input[role="search"]::placeholder,
+  [role="search"] input::placeholder {
+    color: #9BA3AB !important;
+  }
+  #LeftRail,
+  #folderPaneDroppableContainer,
+  [role="navigation"] {
+    background-color: #D3D7DB !important;
+    color: #2D3338 !important;
+  }
+  [role="tree"] [role="treeitem"],
+  #LeftRail [role="treeitem"] {
+    color: #2D3338 !important;
+  }
+  [role="tree"] [role="treeitem"]:hover,
+  #LeftRail [role="treeitem"]:hover {
+    background-color: rgba(95, 105, 114, 0.1) !important;
+  }
+  [role="tree"] [role="treeitem"][aria-selected="true"],
+  #LeftRail [role="treeitem"][aria-selected="true"],
+  [role="tree"] [role="treeitem"].is-selected,
+  #LeftRail [role="treeitem"].is-selected {
+    background-color: rgba(74, 107, 138, 0.2) !important;
+    color: #1B2024 !important;
+  }
+  #MailList,
+  [role="main"] [role="listbox"] {
+    background-color: #E6E8EA !important;
+    color: #2D3338 !important;
+  }
+  [data-focusable-row="true"] {
+    color: #2D3338 !important;
+    border-color: rgba(95, 105, 114, 0.15) !important;
+  }
+  [data-focusable-row="true"]:hover {
+    background-color: rgba(95, 105, 114, 0.1) !important;
+  }
+  [data-focusable-row="true"][aria-selected="true"] {
+    background-color: rgba(74, 107, 138, 0.2) !important;
+    color: #1B2024 !important;
+  }
+  [data-focusable-row="true"] [aria-label*="Unread" i] {
+    color: #4A6B8A !important;
+    font-weight: 600 !important;
+  }
+  #ReadingPaneContainerId,
+  #ConversationReadingPaneContainer,
+  #mailMessageBodyContainer,
+  [id^="UniqueMessageBody_"] {
+    background-color: #E6E8EA !important;
+    color: #2D3338 !important;
+  }
+  #RibbonRoot,
+  #innerRibbonContainer {
+    background-color: #D3D7DB !important;
+    color: #2D3338 !important;
+    border-color: rgba(95, 105, 114, 0.2) !important;
+  }
+  #BottomBar {
+    background-color: #D3D7DB !important;
+    color: #5F6972 !important;
+    border-color: rgba(95, 105, 114, 0.2) !important;
+  }
+  .fui-Button:hover {
+    background-color: rgba(95, 105, 114, 0.1) !important;
+  }
+  .fui-Button:active,
+  .fui-Button[aria-pressed="true"] {
+    background-color: rgba(95, 105, 114, 0.2) !important;
+  }
+  a,
+  a:visited {
+    color: #4A6B8A !important;
+  }
+  a:hover {
+    color: #385169 !important;
+  }
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  *::-webkit-scrollbar-track {
+    background: #D3D7DB !important;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: rgba(95, 105, 114, 0.4) !important;
+    border-radius: 4px;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: rgba(95, 105, 114, 0.6) !important;
+  }
+}
+/* ==UserStyle==
+@name         Proton Mail - Stone
+@namespace    github.com/yherrero/stylus
+@version      1.0.0
+@description  Stone theme for Proton Mail on the web (Base16)
+@author       yherrero
+@license      MIT
+==/UserStyle== */
+@-moz-document domain("mail.proton.me") {
+  :root,
+  .ui-standard,
+  .ui-prominent,
+  body,
+  [data-theme-mode],
+  [data-theme-name] {
+    --background-norm: #E6E8EA !important;
+    --background-weak: #D3D7DB !important;
+    --background-strong: #DEE2E6 !important;
+    --background-invert: #2D3338 !important;
+    --background-lowered: #D3D7DB !important;
+    --background-elevated: #DEE2E6 !important;
+    --text-norm: #2D3338 !important;
+    --text-weak: #5F6972 !important;
+    --text-hint: #9BA3AB !important;
+    --text-disabled: #9BA3AB !important;
+    --text-invert: #E6E8EA !important;
+    --border-norm: rgba(95, 105, 114, 0.2) !important;
+    --border-weak: rgba(95, 105, 114, 0.15) !important;
+    --field-norm: rgba(95, 105, 114, 0.2) !important;
+    --field-hover: #9BA3AB !important;
+    --field-focus: #4A6B8A !important;
+    --field-disabled: rgba(95, 105, 114, 0.15) !important;
+    --primary: #4A6B8A !important;
+    --primary-major-1: #415e79 !important;
+    --primary-major-2: #385169 !important;
+    --primary-major-3: #2f4458 !important;
+    --primary-minor-1: rgba(74, 107, 138, 0.25) !important;
+    --primary-minor-2: rgba(74, 107, 138, 0.12) !important;
+    --primary-contrast: #E6E8EA !important;
+    --interaction-norm: #4A6B8A !important;
+    --interaction-norm-hover: #415e79 !important;
+    --interaction-norm-active: #385169 !important;
+    --interaction-norm-major-1: #415e79 !important;
+    --interaction-norm-major-2: #385169 !important;
+    --interaction-norm-major-3: #2f4458 !important;
+    --interaction-norm-minor-1: rgba(74, 107, 138, 0.25) !important;
+    --interaction-norm-minor-2: rgba(74, 107, 138, 0.12) !important;
+    --interaction-norm-contrast: #E6E8EA !important;
+    --interaction-weak: #D3D7DB !important;
+    --interaction-weak-hover: rgba(95, 105, 114, 0.1) !important;
+    --interaction-weak-active: rgba(95, 105, 114, 0.2) !important;
+    --interaction-weak-major-1: #9BA3AB !important;
+    --interaction-weak-major-2: #5F6972 !important;
+    --interaction-weak-major-3: #2D3338 !important;
+    --interaction-default: transparent !important;
+    --interaction-default-hover: rgba(95, 105, 114, 0.1) !important;
+    --interaction-default-active: rgba(95, 105, 114, 0.2) !important;
+    --focus-outline: #4A6B8A !important;
+    --focus-ring: rgba(74, 107, 138, 0.5) !important;
+    --signal-danger: #B33F3F !important;
+    --signal-danger-hover: #a03838 !important;
+    --signal-danger-active: #8d3232 !important;
+    --signal-danger-major-1: #a03838 !important;
+    --signal-danger-major-2: #8d3232 !important;
+    --signal-danger-major-3: #7a2b2b !important;
+    --signal-danger-minor-1: rgba(179, 63, 63, 0.25) !important;
+    --signal-danger-minor-2: rgba(179, 63, 63, 0.12) !important;
+    --signal-danger-contrast: #E6E8EA !important;
+    --signal-warning: #B88235 !important;
+    --signal-warning-hover: #a4742f !important;
+    --signal-warning-active: #90662a !important;
+    --signal-warning-major-1: #a4742f !important;
+    --signal-warning-major-2: #90662a !important;
+    --signal-warning-major-3: #7d5824 !important;
+    --signal-warning-minor-1: rgba(184, 130, 53, 0.25) !important;
+    --signal-warning-minor-2: rgba(184, 130, 53, 0.12) !important;
+    --signal-warning-contrast: #E6E8EA !important;
+    --signal-success: #3F7A5C !important;
+    --signal-success-hover: #36694f !important;
+    --signal-success-active: #2e5843 !important;
+    --signal-success-major-1: #36694f !important;
+    --signal-success-major-2: #2e5843 !important;
+    --signal-success-major-3: #254836 !important;
+    --signal-success-minor-1: rgba(63, 122, 92, 0.25) !important;
+    --signal-success-minor-2: rgba(63, 122, 92, 0.12) !important;
+    --signal-success-contrast: #E6E8EA !important;
+    --signal-info: #4A6B8A !important;
+    --signal-info-hover: #415e79 !important;
+    --signal-info-active: #385169 !important;
+    --signal-info-major-1: #415e79 !important;
+    --signal-info-major-2: #385169 !important;
+    --signal-info-major-3: #2f4458 !important;
+    --signal-info-minor-1: rgba(74, 107, 138, 0.25) !important;
+    --signal-info-minor-2: rgba(74, 107, 138, 0.12) !important;
+    --signal-info-contrast: #E6E8EA !important;
+    --backdrop-norm: rgba(45, 51, 56, 0.5) !important;
+    --shadow-norm-opacity: 0.15 !important;
+    --optional-scrollbar-thumb-color: rgba(95, 105, 114, 0.4) !important;
+    --optional-background-lowered: #D3D7DB !important;
+    --optional-email-item-read-background-color: #D3D7DB !important;
+    --optional-email-item-read-text-color: #5F6972 !important;
+    --optional-email-item-unread-background-color: #E6E8EA !important;
+    --optional-email-item-unread-text-color: #2D3338 !important;
+  }
+  html,
+  body,
+  .app-root,
+  #theme-root {
+    background-color: #E6E8EA !important;
+    color: #2D3338 !important;
+  }
+  .topnav-container,
+  .topnav-list {
+    background-color: #D3D7DB !important;
+    color: #2D3338 !important;
+    border-color: rgba(95, 105, 114, 0.2) !important;
+  }
+  .sidebar {
+    background-color: #D3D7DB !important;
+    color: #2D3338 !important;
+    border-color: rgba(95, 105, 114, 0.2) !important;
+  }
+  .navigation-list,
+  .navigation-link-header-group {
+    color: #2D3338 !important;
+  }
+  .navigation-item {
+    color: #2D3338 !important;
+  }
+  .navigation-link {
+    color: #2D3338 !important;
+  }
+  .navigation-link:hover {
+    background-color: rgba(95, 105, 114, 0.1) !important;
+  }
+  .navigation-link.is-active,
+  .navigation-link[aria-current="page"],
+  .navigation-link[aria-current="true"] {
+    background-color: rgba(74, 107, 138, 0.2) !important;
+    color: #1B2024 !important;
+  }
+  .sidebar-meter-storage {
+    background-color: #DEE2E6 !important;
+    color: #5F6972 !important;
+  }
+  #mailbox,
+  [data-testid="mailbox"],
+  .items-column-list,
+  .main-area--with-toolbar,
+  .main-area--row-mode {
+    background-color: #E6E8EA !important;
+    color: #2D3338 !important;
+  }
+  .toolbar,
+  nav.toolbar,
+  .toolbar--heavy {
+    background-color: #D3D7DB !important;
+    color: #2D3338 !important;
+    border-color: rgba(95, 105, 114, 0.2) !important;
+  }
+  [data-testid^="message-item:"] {
+    color: #2D3338 !important;
+    border-color: rgba(95, 105, 114, 0.15) !important;
+  }
+  [data-testid^="message-item:"]:hover {
+    background-color: rgba(95, 105, 114, 0.1) !important;
+  }
+  [data-testid^="message-item:"].is-selected,
+  [data-testid^="message-item:"][aria-selected="true"] {
+    background-color: rgba(74, 107, 138, 0.2) !important;
+    color: #1B2024 !important;
+  }
+  .message-container,
+  .message-content,
+  .view-column-detail,
+  .conversation-view,
+  [data-testid*="message-view"] {
+    background-color: #E6E8EA !important;
+    color: #2D3338 !important;
+  }
+  .composer,
+  [data-testid="composer"],
+  .modal-two-dialog,
+  .modal-two-content {
+    background-color: #E6E8EA !important;
+    color: #2D3338 !important;
+    border-color: rgba(95, 105, 114, 0.2) !important;
+  }
+  a,
+  a:visited,
+  .color-primary {
+    color: #4A6B8A !important;
+  }
+  a:hover {
+    color: #385169 !important;
+  }
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  *::-webkit-scrollbar-track {
+    background: #D3D7DB !important;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: rgba(95, 105, 114, 0.4) !important;
+    border-radius: 4px;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: rgba(95, 105, 114, 0.6) !important;
   }
 }
 /* ==UserStyle==

@@ -1,8 +1,8 @@
 /* ==UserStyle==
 @name         All Sites - Paper
 @namespace    github.com/yherrero/stylus
-@version      2.2.0
-@description  Paper theme for all supported websites (Discord, Claude.ai, MTools, Teams, Reddit, GitHub)
+@version      2.4.0
+@description  Paper theme for all supported websites (Discord, Claude.ai, MTools, Teams, Outlook, Proton Mail, Reddit, GitHub)
 @author       yherrero
 @license      MIT
 ==/UserStyle== */
@@ -2054,6 +2054,643 @@
   [class*="empty-state"],
   [class*="EmptyState"] {
     background-color: #F4EBD9 !important;
+  }
+}
+/* ==UserStyle==
+@name         Outlook - Paper
+@namespace    github.com/yherrero/stylus
+@version      1.0.0
+@description  Paper theme for Outlook on the web (Base16)
+@author       yherrero
+@license      MIT
+==/UserStyle== */
+@-moz-document domain("outlook.office.com"), domain("outlook.office365.com"), domain("outlook.live.com"), domain("outlook.com") {
+  html,
+  :root,
+  body,
+  .fui-FluentProvider,
+  [data-theme],
+  [class*="FluentProvider"] {
+    --colorNeutralBackground1: #F4EBD9 !important;
+    --colorNeutralBackground1Hover: rgba(107, 94, 78, 0.1) !important;
+    --colorNeutralBackground1Pressed: rgba(107, 94, 78, 0.2) !important;
+    --colorNeutralBackground1Selected: rgba(181, 89, 58, 0.2) !important;
+    --colorNeutralBackground2: #E5D8C0 !important;
+    --colorNeutralBackground2Hover: rgba(107, 94, 78, 0.1) !important;
+    --colorNeutralBackground2Pressed: rgba(107, 94, 78, 0.2) !important;
+    --colorNeutralBackground2Selected: rgba(181, 89, 58, 0.2) !important;
+    --colorNeutralBackground3: #E5D8C0 !important;
+    --colorNeutralBackground3Hover: rgba(107, 94, 78, 0.1) !important;
+    --colorNeutralBackground3Pressed: rgba(107, 94, 78, 0.2) !important;
+    --colorNeutralBackground3Selected: rgba(181, 89, 58, 0.2) !important;
+    --colorNeutralBackground4: #EFE3CC !important;
+    --colorNeutralBackground4Hover: rgba(107, 94, 78, 0.1) !important;
+    --colorNeutralBackground4Pressed: rgba(107, 94, 78, 0.2) !important;
+    --colorNeutralBackground4Selected: rgba(181, 89, 58, 0.2) !important;
+    --colorNeutralBackground5: #EFE3CC !important;
+    --colorNeutralBackground5Hover: rgba(107, 94, 78, 0.1) !important;
+    --colorNeutralBackground5Pressed: rgba(107, 94, 78, 0.2) !important;
+    --colorNeutralBackground5Selected: rgba(181, 89, 58, 0.2) !important;
+    --colorNeutralBackground6: #E5D8C0 !important;
+    --colorNeutralBackgroundInverted: #2B241B !important;
+    --colorNeutralBackgroundStatic: #F4EBD9 !important;
+    --colorNeutralBackgroundAlpha: rgba(244, 235, 217, 0.5) !important;
+    --colorNeutralBackgroundAlpha2: rgba(244, 235, 217, 0.8) !important;
+    --colorSubtleBackground: transparent !important;
+    --colorSubtleBackgroundHover: rgba(107, 94, 78, 0.1) !important;
+    --colorSubtleBackgroundPressed: rgba(107, 94, 78, 0.2) !important;
+    --colorSubtleBackgroundSelected: rgba(181, 89, 58, 0.2) !important;
+    --colorSubtleBackgroundLightAlphaHover: rgba(107, 94, 78, 0.1) !important;
+    --colorSubtleBackgroundLightAlphaPressed: rgba(107, 94, 78, 0.15) !important;
+    --colorSubtleBackgroundLightAlphaSelected: rgba(181, 89, 58, 0.15) !important;
+    --colorSubtleBackgroundInverted: transparent !important;
+    --colorTransparentBackground: transparent !important;
+    --colorTransparentBackgroundHover: rgba(107, 94, 78, 0.1) !important;
+    --colorTransparentBackgroundPressed: rgba(107, 94, 78, 0.2) !important;
+    --colorTransparentBackgroundSelected: rgba(181, 89, 58, 0.2) !important;
+    --colorNeutralForeground1: #2B241B !important;
+    --colorNeutralForeground1Hover: #2B241B !important;
+    --colorNeutralForeground1Pressed: #2B241B !important;
+    --colorNeutralForeground1Selected: #2B241B !important;
+    --colorNeutralForeground2: #6B5E4E !important;
+    --colorNeutralForeground2Hover: #2B241B !important;
+    --colorNeutralForeground2Pressed: #2B241B !important;
+    --colorNeutralForeground2Selected: #2B241B !important;
+    --colorNeutralForeground2BrandHover: #B5593A !important;
+    --colorNeutralForeground2BrandPressed: #8e462e !important;
+    --colorNeutralForeground2BrandSelected: #B5593A !important;
+    --colorNeutralForeground3: #A49580 !important;
+    --colorNeutralForeground3Hover: #6B5E4E !important;
+    --colorNeutralForeground3Pressed: #6B5E4E !important;
+    --colorNeutralForeground3Selected: #6B5E4E !important;
+    --colorNeutralForeground4: #A49580 !important;
+    --colorNeutralForegroundDisabled: #A49580 !important;
+    --colorNeutralForegroundInverted: #F4EBD9 !important;
+    --colorNeutralForegroundOnBrand: #F4EBD9 !important;
+    --colorNeutralForegroundStaticInverted: #F4EBD9 !important;
+    --colorBrandBackground: #B5593A !important;
+    --colorBrandBackgroundHover: #a25034 !important;
+    --colorBrandBackgroundPressed: #8e462e !important;
+    --colorBrandBackgroundSelected: #9a4c31 !important;
+    --colorBrandBackground2: rgba(181, 89, 58, 0.15) !important;
+    --colorBrandBackground2Hover: rgba(181, 89, 58, 0.25) !important;
+    --colorBrandBackground2Pressed: rgba(181, 89, 58, 0.35) !important;
+    --colorBrandBackgroundStatic: #B5593A !important;
+    --colorBrandBackgroundInverted: #F4EBD9 !important;
+    --colorBrandForeground1: #B5593A !important;
+    --colorBrandForeground2: #a25034 !important;
+    --colorBrandForeground2Hover: #8e462e !important;
+    --colorBrandForeground2Pressed: #7b3d27 !important;
+    --colorBrandForegroundLink: #B5593A !important;
+    --colorBrandForegroundLinkHover: #8e462e !important;
+    --colorBrandForegroundLinkPressed: #7b3d27 !important;
+    --colorBrandForegroundLinkSelected: #B5593A !important;
+    --colorBrandForegroundOnLight: #B5593A !important;
+    --colorBrandForegroundOnLightHover: #a25034 !important;
+    --colorBrandForegroundOnLightPressed: #8e462e !important;
+    --colorCompoundBrandBackground: #B5593A !important;
+    --colorCompoundBrandBackgroundHover: #a25034 !important;
+    --colorCompoundBrandBackgroundPressed: #8e462e !important;
+    --colorCompoundBrandForeground1: #B5593A !important;
+    --colorCompoundBrandForeground1Hover: #a25034 !important;
+    --colorCompoundBrandForeground1Pressed: #8e462e !important;
+    --colorCompoundBrandStroke: #B5593A !important;
+    --colorCompoundBrandStrokeHover: #a25034 !important;
+    --colorCompoundBrandStrokePressed: #8e462e !important;
+    --colorNeutralStroke1: rgba(107, 94, 78, 0.2) !important;
+    --colorNeutralStroke1Hover: #A49580 !important;
+    --colorNeutralStroke1Pressed: #A49580 !important;
+    --colorNeutralStroke1Selected: #B5593A !important;
+    --colorNeutralStroke2: rgba(107, 94, 78, 0.15) !important;
+    --colorNeutralStroke3: rgba(107, 94, 78, 0.15) !important;
+    --colorNeutralStrokeSubtle: rgba(107, 94, 78, 0.15) !important;
+    --colorNeutralStrokeAccessible: #6B5E4E !important;
+    --colorNeutralStrokeAccessibleHover: #A49580 !important;
+    --colorNeutralStrokeAccessiblePressed: #A49580 !important;
+    --colorNeutralStrokeAccessibleSelected: #B5593A !important;
+    --colorNeutralStrokeDisabled: rgba(107, 94, 78, 0.15) !important;
+    --colorNeutralStrokeOnBrand: #F4EBD9 !important;
+    --colorNeutralStrokeOnBrand2: #F4EBD9 !important;
+    --colorBrandStroke1: #B5593A !important;
+    --colorBrandStroke2: rgba(181, 89, 58, 0.5) !important;
+    --colorBrandStroke2Hover: rgba(181, 89, 58, 0.6) !important;
+    --colorBrandStroke2Pressed: rgba(181, 89, 58, 0.7) !important;
+    --colorBrandStroke2Contrast: #B5593A !important;
+    --colorPaletteRedBackground1: rgba(179, 53, 37, 0.15) !important;
+    --colorPaletteRedBackground2: rgba(179, 53, 37, 0.25) !important;
+    --colorPaletteRedBackground3: #B33525 !important;
+    --colorPaletteRedForeground1: #B33525 !important;
+    --colorPaletteRedForeground2: #B33525 !important;
+    --colorPaletteRedForeground3: #F4EBD9 !important;
+    --colorPaletteRedBorder1: rgba(179, 53, 37, 0.4) !important;
+    --colorPaletteRedBorder2: #B33525 !important;
+    --colorStatusDangerBackground1: rgba(179, 53, 37, 0.15) !important;
+    --colorStatusDangerBackground2: rgba(179, 53, 37, 0.25) !important;
+    --colorStatusDangerBackground3: #B33525 !important;
+    --colorStatusDangerForeground1: #B33525 !important;
+    --colorStatusDangerForeground2: #B33525 !important;
+    --colorStatusDangerForeground3: #F4EBD9 !important;
+    --colorStatusDangerBorder1: rgba(179, 53, 37, 0.4) !important;
+    --colorStatusDangerBorder2: #B33525 !important;
+    --colorPaletteYellowBackground1: rgba(200, 138, 44, 0.15) !important;
+    --colorPaletteYellowBackground2: rgba(200, 138, 44, 0.25) !important;
+    --colorPaletteYellowBackground3: #C88A2C !important;
+    --colorPaletteYellowForeground1: #C88A2C !important;
+    --colorPaletteYellowForeground2: #9e6d23 !important;
+    --colorPaletteYellowForeground3: #F4EBD9 !important;
+    --colorPaletteYellowBorder1: rgba(200, 138, 44, 0.4) !important;
+    --colorPaletteYellowBorder2: #C88A2C !important;
+    --colorStatusWarningBackground1: rgba(200, 138, 44, 0.15) !important;
+    --colorStatusWarningBackground2: rgba(200, 138, 44, 0.25) !important;
+    --colorStatusWarningBackground3: #C88A2C !important;
+    --colorStatusWarningForeground1: #C88A2C !important;
+    --colorStatusWarningForeground2: #9e6d23 !important;
+    --colorStatusWarningForeground3: #F4EBD9 !important;
+    --colorStatusWarningBorder1: rgba(200, 138, 44, 0.4) !important;
+    --colorStatusWarningBorder2: #C88A2C !important;
+    --colorPaletteGreenBackground1: rgba(79, 122, 62, 0.15) !important;
+    --colorPaletteGreenBackground2: rgba(79, 122, 62, 0.25) !important;
+    --colorPaletteGreenBackground3: #4F7A3E !important;
+    --colorPaletteGreenForeground1: #4F7A3E !important;
+    --colorPaletteGreenForeground2: #4F7A3E !important;
+    --colorPaletteGreenForeground3: #F4EBD9 !important;
+    --colorPaletteGreenBorder1: rgba(79, 122, 62, 0.4) !important;
+    --colorPaletteGreenBorder2: #4F7A3E !important;
+    --colorStatusSuccessBackground1: rgba(79, 122, 62, 0.15) !important;
+    --colorStatusSuccessBackground2: rgba(79, 122, 62, 0.25) !important;
+    --colorStatusSuccessBackground3: #4F7A3E !important;
+    --colorStatusSuccessForeground1: #4F7A3E !important;
+    --colorStatusSuccessForeground2: #4F7A3E !important;
+    --colorStatusSuccessForeground3: #F4EBD9 !important;
+    --colorStatusSuccessBorder1: rgba(79, 122, 62, 0.4) !important;
+    --colorStatusSuccessBorder2: #4F7A3E !important;
+    --colorPaletteBlueBackground1: rgba(181, 89, 58, 0.15) !important;
+    --colorPaletteBlueBackground2: rgba(181, 89, 58, 0.25) !important;
+    --colorPaletteBlueBackground3: #B5593A !important;
+    --colorPaletteBlueForeground1: #B5593A !important;
+    --colorPaletteBlueForeground2: #B5593A !important;
+    --colorPaletteBlueForeground3: #F4EBD9 !important;
+    --colorPaletteBlueBorder1: rgba(181, 89, 58, 0.4) !important;
+    --colorPaletteBlueBorder2: #B5593A !important;
+    --shadow2: 0 0 2px rgba(43, 36, 27, 0.1), 0 1px 2px rgba(43, 36, 27, 0.1) !important;
+    --shadow4: 0 0 2px rgba(43, 36, 27, 0.1), 0 2px 4px rgba(43, 36, 27, 0.1) !important;
+    --shadow8: 0 0 2px rgba(43, 36, 27, 0.1), 0 4px 8px rgba(43, 36, 27, 0.1) !important;
+    --shadow16: 0 0 2px rgba(43, 36, 27, 0.1), 0 8px 16px rgba(43, 36, 27, 0.1) !important;
+    --shadow28: 0 0 8px rgba(43, 36, 27, 0.1), 0 14px 28px rgba(43, 36, 27, 0.1) !important;
+    --shadow64: 0 0 8px rgba(43, 36, 27, 0.1), 0 32px 64px rgba(43, 36, 27, 0.1) !important;
+    --shadow2Brand: 0 0 2px rgba(181, 89, 58, 0.3), 0 1px 2px rgba(181, 89, 58, 0.25) !important;
+    --shadow4Brand: 0 0 2px rgba(181, 89, 58, 0.3), 0 2px 4px rgba(181, 89, 58, 0.25) !important;
+    --shadow8Brand: 0 0 2px rgba(181, 89, 58, 0.3), 0 4px 8px rgba(181, 89, 58, 0.25) !important;
+    --shadow16Brand: 0 0 2px rgba(181, 89, 58, 0.3), 0 8px 16px rgba(181, 89, 58, 0.25) !important;
+    --colorDefaultBackground1: #F4EBD9 !important;
+    --colorDefaultBackground2: #E5D8C0 !important;
+    --colorDefaultBackground3: #E5D8C0 !important;
+    --colorDefaultBackground4: #EFE3CC !important;
+    --colorDefaultBackground5: #EFE3CC !important;
+    --colorDefaultForeground1: #2B241B !important;
+    --colorDefaultForeground2: #6B5E4E !important;
+    --colorDefaultForeground3: #A49580 !important;
+    --colorDefaultStroke1: rgba(107, 94, 78, 0.2) !important;
+    --colorDefaultStroke2: rgba(107, 94, 78, 0.15) !important;
+    --backgroundCanvas: #F4EBD9 !important;
+    --backgroundCanvasAlt: #E5D8C0 !important;
+    --background: #F4EBD9 !important;
+    --background1: #F4EBD9 !important;
+    --background2: #E5D8C0 !important;
+    --background3: #E5D8C0 !important;
+    --surfaceBackground: #F4EBD9 !important;
+    --surfaceBackgroundAlt: #E5D8C0 !important;
+    --foreground: #2B241B !important;
+    --foreground1: #2B241B !important;
+    --foreground2: #6B5E4E !important;
+    --foreground3: #A49580 !important;
+    --stroke: rgba(107, 94, 78, 0.2) !important;
+    --stroke1: rgba(107, 94, 78, 0.2) !important;
+    --stroke2: rgba(107, 94, 78, 0.15) !important;
+    --themePrimary: #B5593A !important;
+    --themeLighterAlt: rgba(181, 89, 58, 0.05) !important;
+    --themeLighter: rgba(181, 89, 58, 0.15) !important;
+    --themeLight: rgba(181, 89, 58, 0.3) !important;
+    --themeTertiary: rgba(181, 89, 58, 0.5) !important;
+    --themeSecondary: #a25034 !important;
+    --themeDarkAlt: #8e462e !important;
+    --themeDark: #7b3d27 !important;
+    --themeDarker: #542a1b !important;
+    --neutralLighterAlt: #EFE3CC !important;
+    --neutralLighter: #E5D8C0 !important;
+    --neutralLight: #E5D8C0 !important;
+    --neutralQuaternaryAlt: #EFE3CC !important;
+    --neutralQuaternary: #EFE3CC !important;
+    --neutralTertiaryAlt: #A49580 !important;
+    --neutralTertiary: #A49580 !important;
+    --neutralSecondary: #6B5E4E !important;
+    --neutralSecondaryAlt: #6B5E4E !important;
+    --neutralPrimaryAlt: #6B5E4E !important;
+    --neutralPrimary: #2B241B !important;
+    --neutralDark: #1A1410 !important;
+    --black: #2B241B !important;
+    --white: #F4EBD9 !important;
+    --neutralPrimarySurface: #F4EBD9 !important;
+    --neutralSecondarySurface: #E5D8C0 !important;
+    --neutralTertiarySurface: #E5D8C0 !important;
+    --bodyBackground: #F4EBD9 !important;
+    --bodyBackgroundHovered: rgba(107, 94, 78, 0.1) !important;
+    --bodyBackgroundChecked: rgba(181, 89, 58, 0.2) !important;
+    --bodyStandoutBackground: #E5D8C0 !important;
+    --bodyFrameBackground: #E5D8C0 !important;
+    --bodyFrameDivider: rgba(107, 94, 78, 0.2) !important;
+    --bodyText: #2B241B !important;
+    --bodyTextChecked: #2B241B !important;
+    --bodySubtext: #6B5E4E !important;
+    --bodyDivider: rgba(107, 94, 78, 0.2) !important;
+    --inputBackground: #EFE3CC !important;
+    --inputBackgroundChecked: #B5593A !important;
+    --inputBackgroundCheckedHovered: #a25034 !important;
+    --inputBorder: rgba(107, 94, 78, 0.2) !important;
+    --inputBorderHovered: #A49580 !important;
+    --inputText: #2B241B !important;
+    --inputTextHovered: #2B241B !important;
+    --inputPlaceholderText: #A49580 !important;
+    --inputFocusBorderAlt: #B5593A !important;
+    --inputForegroundChecked: #F4EBD9 !important;
+    --link: #B5593A !important;
+    --linkHovered: #8e462e !important;
+    --linkPressed: #7b3d27 !important;
+    --communicationBlueWebPrimary: #B5593A !important;
+    --communicationBlueWebTint10: #ca7558 !important;
+    --communicationBlueWebTint20: #d6957f !important;
+    --communicationBlueWebTint30: #e2b5a6 !important;
+    --communicationBlueWebShade10: #8e462e !important;
+    --communicationBlueWebShade20: #683321 !important;
+    --communicationBlueWebShade30: #412015 !important;
+    --errorText: #B33525 !important;
+    --warningText: #C88A2C !important;
+    --successText: #4F7A3E !important;
+    --errorBackground: rgba(179, 53, 37, 0.15) !important;
+    --warningBackground: rgba(200, 138, 44, 0.15) !important;
+    --successBackground: rgba(79, 122, 62, 0.15) !important;
+    --focusBorder: #B5593A !important;
+    --composeNeutralBackground: #F4EBD9 !important;
+    --composeNeutralBackgroundHover: rgba(107, 94, 78, 0.1) !important;
+    --composeNeutralForeground: #2B241B !important;
+    --composeAccentBackground: #B5593A !important;
+    --readingPaneCardBorder: rgba(107, 94, 78, 0.15) !important;
+    --readingPaneCardFocusBorder: #B5593A !important;
+    --readingPaneCardBackground: #F4EBD9 !important;
+    --readingPaneHeaderBackground: #F4EBD9 !important;
+    --flaggedMessage: rgba(200, 138, 44, 0.2) !important;
+    --messageWebWarning: rgba(200, 138, 44, 0.2) !important;
+    --messageWebDanger: rgba(179, 53, 37, 0.2) !important;
+    --messageWebInfo: rgba(181, 89, 58, 0.2) !important;
+    --messageMobileWarningPrimary: #C88A2C !important;
+    --messageMobileDangerPrimary: #B33525 !important;
+    --presenceOnline: #4F7A3E !important;
+    --presenceAway: #C88A2C !important;
+    --presenceDoNotDisturb: #B33525 !important;
+    --presenceOffline: #A49580 !important;
+  }
+  * {
+    --backgroundCanvas: #F4EBD9 !important;
+    --backgroundCanvasAlt: #E5D8C0 !important;
+    --colorDefaultBackground1: #F4EBD9 !important;
+    --colorDefaultBackground2: #E5D8C0 !important;
+    --colorDefaultBackground3: #E5D8C0 !important;
+    --colorDefaultBackground4: #EFE3CC !important;
+    --colorDefaultForeground1: #2B241B !important;
+    --colorDefaultForeground2: #6B5E4E !important;
+    --colorDefaultForeground3: #A49580 !important;
+    --background: #F4EBD9 !important;
+    --background1: #F4EBD9 !important;
+    --background2: #E5D8C0 !important;
+    --surfaceBackground: #F4EBD9 !important;
+    --foreground: #2B241B !important;
+    --foreground1: #2B241B !important;
+    --neutralPrimarySurface: #F4EBD9 !important;
+    --neutralSecondarySurface: #E5D8C0 !important;
+    --neutralTertiarySurface: #E5D8C0 !important;
+    --readingPaneCardBackground: #F4EBD9 !important;
+    --composeNeutralBackground: #F4EBD9 !important;
+  }
+  html,
+  body,
+  #app,
+  #appContainer,
+  #mainApp {
+    background-color: #F4EBD9 !important;
+    color: #2B241B !important;
+  }
+  #OwaTitleBar,
+  #TopBar {
+    background-color: #E5D8C0 !important;
+    color: #2B241B !important;
+    border-color: rgba(107, 94, 78, 0.2) !important;
+  }
+  input[role="search"],
+  [role="search"] input {
+    background-color: #EFE3CC !important;
+    color: #2B241B !important;
+  }
+  input[role="search"]::placeholder,
+  [role="search"] input::placeholder {
+    color: #A49580 !important;
+  }
+  #LeftRail,
+  #folderPaneDroppableContainer,
+  [role="navigation"] {
+    background-color: #E5D8C0 !important;
+    color: #2B241B !important;
+  }
+  [role="tree"] [role="treeitem"],
+  #LeftRail [role="treeitem"] {
+    color: #2B241B !important;
+  }
+  [role="tree"] [role="treeitem"]:hover,
+  #LeftRail [role="treeitem"]:hover {
+    background-color: rgba(107, 94, 78, 0.1) !important;
+  }
+  [role="tree"] [role="treeitem"][aria-selected="true"],
+  #LeftRail [role="treeitem"][aria-selected="true"],
+  [role="tree"] [role="treeitem"].is-selected,
+  #LeftRail [role="treeitem"].is-selected {
+    background-color: rgba(181, 89, 58, 0.2) !important;
+    color: #1A1410 !important;
+  }
+  #MailList,
+  [role="main"] [role="listbox"] {
+    background-color: #F4EBD9 !important;
+    color: #2B241B !important;
+  }
+  [data-focusable-row="true"] {
+    color: #2B241B !important;
+    border-color: rgba(107, 94, 78, 0.15) !important;
+  }
+  [data-focusable-row="true"]:hover {
+    background-color: rgba(107, 94, 78, 0.1) !important;
+  }
+  [data-focusable-row="true"][aria-selected="true"] {
+    background-color: rgba(181, 89, 58, 0.2) !important;
+    color: #1A1410 !important;
+  }
+  [data-focusable-row="true"] [aria-label*="Unread" i] {
+    color: #B5593A !important;
+    font-weight: 600 !important;
+  }
+  #ReadingPaneContainerId,
+  #ConversationReadingPaneContainer,
+  #mailMessageBodyContainer,
+  [id^="UniqueMessageBody_"] {
+    background-color: #F4EBD9 !important;
+    color: #2B241B !important;
+  }
+  #RibbonRoot,
+  #innerRibbonContainer {
+    background-color: #E5D8C0 !important;
+    color: #2B241B !important;
+    border-color: rgba(107, 94, 78, 0.2) !important;
+  }
+  #BottomBar {
+    background-color: #E5D8C0 !important;
+    color: #6B5E4E !important;
+    border-color: rgba(107, 94, 78, 0.2) !important;
+  }
+  .fui-Button:hover {
+    background-color: rgba(107, 94, 78, 0.1) !important;
+  }
+  .fui-Button:active,
+  .fui-Button[aria-pressed="true"] {
+    background-color: rgba(107, 94, 78, 0.2) !important;
+  }
+  a,
+  a:visited {
+    color: #B5593A !important;
+  }
+  a:hover {
+    color: #8e462e !important;
+  }
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  *::-webkit-scrollbar-track {
+    background: #E5D8C0 !important;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: rgba(107, 94, 78, 0.4) !important;
+    border-radius: 4px;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: rgba(107, 94, 78, 0.6) !important;
+  }
+}
+/* ==UserStyle==
+@name         Proton Mail - Paper
+@namespace    github.com/yherrero/stylus
+@version      1.0.0
+@description  Paper theme for Proton Mail on the web (Base16)
+@author       yherrero
+@license      MIT
+==/UserStyle== */
+@-moz-document domain("mail.proton.me") {
+  :root,
+  .ui-standard,
+  .ui-prominent,
+  body,
+  [data-theme-mode],
+  [data-theme-name] {
+    --background-norm: #F4EBD9 !important;
+    --background-weak: #E5D8C0 !important;
+    --background-strong: #EFE3CC !important;
+    --background-invert: #2B241B !important;
+    --background-lowered: #E5D8C0 !important;
+    --background-elevated: #EFE3CC !important;
+    --text-norm: #2B241B !important;
+    --text-weak: #6B5E4E !important;
+    --text-hint: #A49580 !important;
+    --text-disabled: #A49580 !important;
+    --text-invert: #F4EBD9 !important;
+    --border-norm: rgba(107, 94, 78, 0.2) !important;
+    --border-weak: rgba(107, 94, 78, 0.15) !important;
+    --field-norm: rgba(107, 94, 78, 0.2) !important;
+    --field-hover: #A49580 !important;
+    --field-focus: #B5593A !important;
+    --field-disabled: rgba(107, 94, 78, 0.15) !important;
+    --primary: #B5593A !important;
+    --primary-major-1: #a25034 !important;
+    --primary-major-2: #8e462e !important;
+    --primary-major-3: #7b3d27 !important;
+    --primary-minor-1: rgba(181, 89, 58, 0.25) !important;
+    --primary-minor-2: rgba(181, 89, 58, 0.12) !important;
+    --primary-contrast: #F4EBD9 !important;
+    --interaction-norm: #B5593A !important;
+    --interaction-norm-hover: #a25034 !important;
+    --interaction-norm-active: #8e462e !important;
+    --interaction-norm-major-1: #a25034 !important;
+    --interaction-norm-major-2: #8e462e !important;
+    --interaction-norm-major-3: #7b3d27 !important;
+    --interaction-norm-minor-1: rgba(181, 89, 58, 0.25) !important;
+    --interaction-norm-minor-2: rgba(181, 89, 58, 0.12) !important;
+    --interaction-norm-contrast: #F4EBD9 !important;
+    --interaction-weak: #E5D8C0 !important;
+    --interaction-weak-hover: rgba(107, 94, 78, 0.1) !important;
+    --interaction-weak-active: rgba(107, 94, 78, 0.2) !important;
+    --interaction-weak-major-1: #A49580 !important;
+    --interaction-weak-major-2: #6B5E4E !important;
+    --interaction-weak-major-3: #2B241B !important;
+    --interaction-default: transparent !important;
+    --interaction-default-hover: rgba(107, 94, 78, 0.1) !important;
+    --interaction-default-active: rgba(107, 94, 78, 0.2) !important;
+    --focus-outline: #B5593A !important;
+    --focus-ring: rgba(181, 89, 58, 0.5) !important;
+    --signal-danger: #B33525 !important;
+    --signal-danger-hover: #9e2f21 !important;
+    --signal-danger-active: #89281c !important;
+    --signal-danger-major-1: #9e2f21 !important;
+    --signal-danger-major-2: #89281c !important;
+    --signal-danger-major-3: #742218 !important;
+    --signal-danger-minor-1: rgba(179, 53, 37, 0.25) !important;
+    --signal-danger-minor-2: rgba(179, 53, 37, 0.12) !important;
+    --signal-danger-contrast: #F4EBD9 !important;
+    --signal-warning: #C88A2C !important;
+    --signal-warning-hover: #b37c27 !important;
+    --signal-warning-active: #9e6d23 !important;
+    --signal-warning-major-1: #b37c27 !important;
+    --signal-warning-major-2: #9e6d23 !important;
+    --signal-warning-major-3: #895f1e !important;
+    --signal-warning-minor-1: rgba(200, 138, 44, 0.25) !important;
+    --signal-warning-minor-2: rgba(200, 138, 44, 0.12) !important;
+    --signal-warning-contrast: #F4EBD9 !important;
+    --signal-success: #4F7A3E !important;
+    --signal-success-hover: #446935 !important;
+    --signal-success-active: #39582d !important;
+    --signal-success-major-1: #446935 !important;
+    --signal-success-major-2: #39582d !important;
+    --signal-success-major-3: #2e4724 !important;
+    --signal-success-minor-1: rgba(79, 122, 62, 0.25) !important;
+    --signal-success-minor-2: rgba(79, 122, 62, 0.12) !important;
+    --signal-success-contrast: #F4EBD9 !important;
+    --signal-info: #B5593A !important;
+    --signal-info-hover: #a25034 !important;
+    --signal-info-active: #8e462e !important;
+    --signal-info-major-1: #a25034 !important;
+    --signal-info-major-2: #8e462e !important;
+    --signal-info-major-3: #7b3d27 !important;
+    --signal-info-minor-1: rgba(181, 89, 58, 0.25) !important;
+    --signal-info-minor-2: rgba(181, 89, 58, 0.12) !important;
+    --signal-info-contrast: #F4EBD9 !important;
+    --backdrop-norm: rgba(43, 36, 27, 0.5) !important;
+    --shadow-norm-opacity: 0.15 !important;
+    --optional-scrollbar-thumb-color: rgba(107, 94, 78, 0.4) !important;
+    --optional-background-lowered: #E5D8C0 !important;
+    --optional-email-item-read-background-color: #E5D8C0 !important;
+    --optional-email-item-read-text-color: #6B5E4E !important;
+    --optional-email-item-unread-background-color: #F4EBD9 !important;
+    --optional-email-item-unread-text-color: #2B241B !important;
+  }
+  html,
+  body,
+  .app-root,
+  #theme-root {
+    background-color: #F4EBD9 !important;
+    color: #2B241B !important;
+  }
+  .topnav-container,
+  .topnav-list {
+    background-color: #E5D8C0 !important;
+    color: #2B241B !important;
+    border-color: rgba(107, 94, 78, 0.2) !important;
+  }
+  .sidebar {
+    background-color: #E5D8C0 !important;
+    color: #2B241B !important;
+    border-color: rgba(107, 94, 78, 0.2) !important;
+  }
+  .navigation-list,
+  .navigation-link-header-group {
+    color: #2B241B !important;
+  }
+  .navigation-item {
+    color: #2B241B !important;
+  }
+  .navigation-link {
+    color: #2B241B !important;
+  }
+  .navigation-link:hover {
+    background-color: rgba(107, 94, 78, 0.1) !important;
+  }
+  .navigation-link.is-active,
+  .navigation-link[aria-current="page"],
+  .navigation-link[aria-current="true"] {
+    background-color: rgba(181, 89, 58, 0.2) !important;
+    color: #1A1410 !important;
+  }
+  .sidebar-meter-storage {
+    background-color: #EFE3CC !important;
+    color: #6B5E4E !important;
+  }
+  #mailbox,
+  [data-testid="mailbox"],
+  .items-column-list,
+  .main-area--with-toolbar,
+  .main-area--row-mode {
+    background-color: #F4EBD9 !important;
+    color: #2B241B !important;
+  }
+  .toolbar,
+  nav.toolbar,
+  .toolbar--heavy {
+    background-color: #E5D8C0 !important;
+    color: #2B241B !important;
+    border-color: rgba(107, 94, 78, 0.2) !important;
+  }
+  [data-testid^="message-item:"] {
+    color: #2B241B !important;
+    border-color: rgba(107, 94, 78, 0.15) !important;
+  }
+  [data-testid^="message-item:"]:hover {
+    background-color: rgba(107, 94, 78, 0.1) !important;
+  }
+  [data-testid^="message-item:"].is-selected,
+  [data-testid^="message-item:"][aria-selected="true"] {
+    background-color: rgba(181, 89, 58, 0.2) !important;
+    color: #1A1410 !important;
+  }
+  .message-container,
+  .message-content,
+  .view-column-detail,
+  .conversation-view,
+  [data-testid*="message-view"] {
+    background-color: #F4EBD9 !important;
+    color: #2B241B !important;
+  }
+  .composer,
+  [data-testid="composer"],
+  .modal-two-dialog,
+  .modal-two-content {
+    background-color: #F4EBD9 !important;
+    color: #2B241B !important;
+    border-color: rgba(107, 94, 78, 0.2) !important;
+  }
+  a,
+  a:visited,
+  .color-primary {
+    color: #B5593A !important;
+  }
+  a:hover {
+    color: #8e462e !important;
+  }
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  *::-webkit-scrollbar-track {
+    background: #E5D8C0 !important;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: rgba(107, 94, 78, 0.4) !important;
+    border-radius: 4px;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: rgba(107, 94, 78, 0.6) !important;
   }
 }
 /* ==UserStyle==

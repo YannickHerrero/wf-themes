@@ -19,6 +19,11 @@ const URL_PATTERNS = [
   "*://*.reddit.com/*",
   "*://teams.microsoft.com/*",
   "*://teams.live.com/*",
+  "*://outlook.office.com/*",
+  "*://outlook.office365.com/*",
+  "*://outlook.live.com/*",
+  "*://outlook.com/*",
+  "*://mail.proton.me/*",
   "*://mtools-rho.vercel.app/*",
   "http://localhost:5175/*",
 ];
