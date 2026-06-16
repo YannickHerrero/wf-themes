@@ -169,7 +169,20 @@ async function removeFrom(tabId, css) {
   }
 }
 
-async function applyTheme(name) {
+// Serialize theme applications. Without this, two messages arriving in quick
+// succession both read `currentTheme` before either updates it, so neither
+// removes what the other just inserted — the tab ends up with two themes
+// layered on top of each other.
+let applyChain = Promise.resolve();
+
+function applyTheme(name) {
+  applyChain = applyChain
+    .then(() => doApplyTheme(name))
+    .catch((err) => console.error(`[wf-themes] applyTheme failed:`, err));
+  return applyChain;
+}
+
+async function doApplyTheme(name) {
   if (!themesAsSections[name]) {
     console.warn(`[wf-themes] unknown theme: ${name}`);
     return;
@@ -177,6 +190,9 @@ async function applyTheme(name) {
   if (name === currentTheme) return;
 
   const prevTheme = currentTheme;
+  currentTheme = name;
+  await browser.storage.local.set({ [STORAGE_KEY]: name });
+
   const tabs = await browser.tabs.query({ url: URL_PATTERNS });
   await Promise.all(
     tabs.map(async (t) => {
@@ -186,8 +202,6 @@ async function applyTheme(name) {
       if (nextCss) await insertInto(t.id, nextCss);
     })
   );
-  currentTheme = name;
-  await browser.storage.local.set({ [STORAGE_KEY]: name });
   console.log(`[wf-themes] applied ${name} to ${tabs.length} tab(s)`);
 }
 
