@@ -205,6 +205,12 @@ async function doApplyTheme(name) {
   console.log(`[wf-themes] applied ${name} to ${tabs.length} tab(s)`);
 }
 
+browser.runtime.onMessage.addListener((msg) => {
+  if (msg && msg.type === "setTheme" && typeof msg.theme === "string") {
+    applyTheme(msg.theme);
+  }
+});
+
 browser.tabs.onUpdated.addListener(
   (tabId, info, tab) => {
     if (info.status !== "loading") return;

@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "wf-themes",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Theme injector for Discord, Claude, GitHub, Reddit, Teams, MTools, Outlook, and Proton Mail. Driven by the wmenu global theme selector via native messaging.",
   "homepage_url": "https://github.com/YannickHerrero/wf-themes",
   "applications": {
@@ -33,5 +33,14 @@
   "background": {
     "scripts": ["background.js"],
     "persistent": true
+  },
+  "browser_action": {
+    "default_title": "wf-themes",
+    "default_popup": "popup.html",
+    "default_icon": "icons/icon.svg"
+  },
+  "icons": {
+    "48": "icons/icon.svg",
+    "96": "icons/icon.svg"
   }
 }
