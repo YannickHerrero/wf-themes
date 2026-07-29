@@ -137,6 +137,8 @@ Useful for development; the extension is unloaded on browser restart.
 
 ## Adding custom supported sites without rebuilding
 
+See [`docs/custom-sites.md`](docs/custom-sites.md) for the exact procedure.
+
 After installing this version once, new sites can be added by dropping `.css`
 files into the native host's watched folder. No XPI rebuild, re-sign, or
 browser extension reinstall is needed. To make this possible, the extension
@@ -253,6 +255,8 @@ wf-themes/
 │       ├── paper.css   stone.css   sage.css   clay.css   ink.css
 ├── custom-sites/
 │   └── example.css                         (versioned custom site template)
+├── docs/
+│   └── custom-sites.md                     (how to add custom websites)
 ├── native-host/
 │   ├── Cargo.toml
 │   └── src/main.rs
