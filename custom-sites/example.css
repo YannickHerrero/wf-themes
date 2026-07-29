@@ -1,0 +1,54 @@
+/*
+ * Example custom site style for wf-themes.
+ *
+ * Copy this file to the watched folder and change example.com to your site:
+ *   Linux:   ~/.config/wf-themes/sites/example.css
+ *   Windows: %APPDATA%\wf-themes\config\sites\example.css
+ *
+ * Each @wf-theme block contains normal @-moz-document userstyle blocks.
+ */
+
+@wf-theme paper {
+  @-moz-document domain("example.com") {
+    body {
+      background: #E5D8C0 !important;
+      color: #151515 !important;
+    }
+  }
+}
+
+@wf-theme stone {
+  @-moz-document domain("example.com") {
+    body {
+      background: #D3D7DB !important;
+      color: #151515 !important;
+    }
+  }
+}
+
+@wf-theme sage {
+  @-moz-document domain("example.com") {
+    body {
+      background: #CCD4BE !important;
+      color: #151515 !important;
+    }
+  }
+}
+
+@wf-theme clay {
+  @-moz-document domain("example.com") {
+    body {
+      background: #D9C0A8 !important;
+      color: #151515 !important;
+    }
+  }
+}
+
+@wf-theme ink {
+  @-moz-document domain("example.com") {
+    body {
+      background: #151515 !important;
+      color: #E5D8C0 !important;
+    }
+  }
+}

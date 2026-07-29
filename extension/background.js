@@ -2,7 +2,7 @@
 //
 // Connects to the wf-themes native messaging host, listens for theme change
 // messages produced by the host as it watches ~/.config/wmenu/config.toml,
-// and applies the matching bundled CSS to the 6 target sites.
+// and applies the matching bundled + custom CSS to matching sites.
 
 const NATIVE_HOST = "com.yannick.wf_themes";
 const STORAGE_KEY = "currentTheme";
@@ -10,29 +10,18 @@ const DEFAULT_THEME = "paper";
 
 const THEMES = ["paper", "stone", "sage", "clay", "ink"];
 
-const URL_PATTERNS = [
-  "*://discord.com/*",
-  "*://claude.ai/*",
-  "*://github.com/*",
-  "*://*.github.com/*",
-  "*://viewscreen.githubusercontent.com/*",
-  "*://*.reddit.com/*",
-  "*://teams.microsoft.com/*",
-  "*://teams.live.com/*",
-  "*://outlook.office.com/*",
-  "*://outlook.office365.com/*",
-  "*://outlook.live.com/*",
-  "*://outlook.com/*",
-  "*://mail.proton.me/*",
-  "*://mtools-rho.vercel.app/*",
-  "http://localhost:5175/*",
-];
+// Site support is data-driven: bundled styles provide their own @-moz-document
+// matchers, and custom styles arrive from the native host's watched folder.
+// The manifest grants <all_urls> so new custom sites do not require a rebuild.
+const URL_PATTERNS = ["<all_urls>"];
 
-// themesAsSections[theme] = [{ domains: [...], urlPrefixes: [...], code }, ...]
+// bundledThemeSections[theme] = [{ domains: [...], urlPrefixes: [...], code }, ...]
 // One entry per `@-moz-document` block parsed out of the bundled .user.css.
 // `code` is the bare inner CSS — the wrapper is discarded.
-const themesAsSections = {};
+const bundledThemeSections = {};
+const customThemeSections = {};
 let currentTheme = null;
+const insertedCssByTab = new Map();
 
 let port = null;
 let reconnectDelayMs = 1000;
@@ -104,6 +93,30 @@ function parseSections(css) {
   return sections;
 }
 
+function parseCustomStyle(css, sourceName) {
+  const byTheme = {};
+  const headerRe = /@wf-theme\s+([a-zA-Z0-9_-]+)\s*\{/g;
+  let m;
+  while ((m = headerRe.exec(css)) !== null) {
+    const theme = m[1];
+    const bodyStart = headerRe.lastIndex;
+    const closeIdx = findBalancedClose(css, bodyStart);
+    if (closeIdx === -1) {
+      console.warn(`[wf-themes] unbalanced @wf-theme block in ${sourceName}`);
+      break;
+    }
+    if (THEMES.includes(theme)) {
+      byTheme[theme] = (byTheme[theme] || []).concat(
+        parseSections(css.slice(bodyStart, closeIdx))
+      );
+    } else {
+      console.warn(`[wf-themes] unknown custom theme ${theme} in ${sourceName}`);
+    }
+    headerRe.lastIndex = closeIdx + 1;
+  }
+  return byTheme;
+}
+
 // --- loading ---------------------------------------------------------------
 
 async function loadCss() {
@@ -111,12 +124,31 @@ async function loadCss() {
     THEMES.map(async (name) => {
       const url = browser.runtime.getURL(`themes/${name}.css`);
       const resp = await fetch(url);
-      themesAsSections[name] = parseSections(await resp.text());
+      bundledThemeSections[name] = parseSections(await resp.text());
+      customThemeSections[name] = [];
       console.log(
-        `[wf-themes] parsed ${name}: ${themesAsSections[name].length} section(s)`
+        `[wf-themes] parsed ${name}: ${bundledThemeSections[name].length} bundled section(s)`
       );
     })
   );
+}
+
+async function loadCustomStyles(styles) {
+  for (const theme of THEMES) customThemeSections[theme] = [];
+
+  for (const style of styles || []) {
+    if (!style || typeof style.css !== "string") continue;
+    const sourceName = style.name || "custom style";
+    const parsed = parseCustomStyle(style.css, sourceName);
+    for (const theme of THEMES) {
+      customThemeSections[theme].push(...(parsed[theme] || []));
+    }
+  }
+
+  console.log(
+    `[wf-themes] loaded ${(styles || []).length} custom style file(s)`
+  );
+  if (currentTheme) await applyTheme(currentTheme, { force: true });
 }
 
 // `domain(d)` in @-moz-document matches when the document's host equals d or
@@ -129,8 +161,11 @@ function hostMatchesDomain(host, domain) {
 // CSS concatenated. Match per-tab in JS so we don't have to rely on the
 // browser honouring @-moz-document in injected stylesheets.
 function cssForTabUrl(theme, url) {
-  const sections = themesAsSections[theme];
-  if (!sections || !url) return null;
+  const sections = [
+    ...(bundledThemeSections[theme] || []),
+    ...(customThemeSections[theme] || []),
+  ];
+  if (!sections.length || !url) return null;
   let host;
   try {
     host = new URL(url).hostname;
@@ -153,6 +188,7 @@ async function insertInto(tabId, css) {
       allFrames: true,
       runAt: "document_start",
     });
+    insertedCssByTab.set(tabId, css);
   } catch (err) {
     // Privileged pages reject insertCSS — ignore.
   }
@@ -164,6 +200,7 @@ async function removeFrom(tabId, css) {
       code: css,
       allFrames: true,
     });
+    insertedCssByTab.delete(tabId);
   } catch (err) {
     // Tab may have closed or never had this CSS — ignore.
   }
@@ -175,31 +212,30 @@ async function removeFrom(tabId, css) {
 // layered on top of each other.
 let applyChain = Promise.resolve();
 
-function applyTheme(name) {
+function applyTheme(name, options = {}) {
   applyChain = applyChain
-    .then(() => doApplyTheme(name))
+    .then(() => doApplyTheme(name, options))
     .catch((err) => console.error(`[wf-themes] applyTheme failed:`, err));
   return applyChain;
 }
 
-async function doApplyTheme(name) {
-  if (!themesAsSections[name]) {
+async function doApplyTheme(name, { force = false } = {}) {
+  if (!bundledThemeSections[name]) {
     console.warn(`[wf-themes] unknown theme: ${name}`);
     return;
   }
-  if (name === currentTheme) return;
+  if (name === currentTheme && !force) return;
 
-  const prevTheme = currentTheme;
   currentTheme = name;
   await browser.storage.local.set({ [STORAGE_KEY]: name });
 
   const tabs = await browser.tabs.query({ url: URL_PATTERNS });
   await Promise.all(
     tabs.map(async (t) => {
-      const prevCss = prevTheme ? cssForTabUrl(prevTheme, t.url) : null;
+      const oldCss = insertedCssByTab.get(t.id);
       const nextCss = cssForTabUrl(name, t.url);
-      if (prevCss) await removeFrom(t.id, prevCss);
-      if (nextCss) await insertInto(t.id, nextCss);
+      if (oldCss && oldCss !== nextCss) await removeFrom(t.id, oldCss);
+      if (nextCss && oldCss !== nextCss) await insertInto(t.id, nextCss);
     })
   );
   console.log(`[wf-themes] applied ${name} to ${tabs.length} tab(s)`);
@@ -221,6 +257,10 @@ browser.tabs.onUpdated.addListener(
   { urls: URL_PATTERNS, properties: ["status"] }
 );
 
+browser.tabs.onRemoved.addListener((tabId) => {
+  insertedCssByTab.delete(tabId);
+});
+
 function connectNativeHost() {
   try {
     port = browser.runtime.connectNative(NATIVE_HOST);
@@ -231,6 +271,11 @@ function connectNativeHost() {
   }
 
   port.onMessage.addListener((msg) => {
+    if (msg && Array.isArray(msg.customStyles)) {
+      reconnectDelayMs = 1000;
+      loadCustomStyles(msg.customStyles);
+      return;
+    }
     if (!msg || typeof msg.theme !== "string") {
       console.warn(`[wf-themes] ignoring malformed message:`, msg);
       return;

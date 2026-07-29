@@ -1,7 +1,9 @@
 # wf-themes
 
-Firefox extension that themes a fixed set of websites and reacts in real time
-to the active theme published by [wmenu](https://github.com/YannickHerrero/wmenu).
+Firefox/Zen extension that themes websites and reacts in real time to the
+active theme published by [wmenu](https://github.com/YannickHerrero/wmenu).
+Bundled sites ship in the signed extension; extra sites can be added later by
+placing CSS files in a native-host watched folder.
 
 Pick a theme in wmenu → matching CSS is applied across all open tabs within a
 few hundred milliseconds. No clicks, no Stylus, no page reload (beyond the
@@ -22,17 +24,21 @@ normal one when a new tab is opened).
 
 - **wmenu** persists its current theme to `~/.config/wmenu/config.toml`
   (key `theme`, lowercase: `paper|stone|sage|clay|ink`).
-- **wf-themes-host** is a small Rust binary that Firefox spawns as a "native
-  messaging host". It watches that config file with `notify`, and pushes
-  `{"theme": "..."}` over stdio every time the value changes.
+- **wf-themes-host** is a small Rust binary that Firefox/Zen spawns as a
+  "native messaging host". It watches that config file with `notify`, and
+  pushes `{"theme": "..."}` over stdio every time the value changes. It also
+  watches a `wf-themes/sites` folder and pushes custom `.css` files whenever
+  they change.
 - **The extension** receives messages and uses `browser.tabs.insertCSS` to
-  apply the matching bundled stylesheet to every open tab on the 8 target
-  sites: Discord, Claude, GitHub, Reddit, Microsoft Teams, MTools, Outlook, Proton Mail.
+  apply the matching bundled and custom stylesheets to matching open tabs.
 
-The theme CSS itself lives in `extension/themes/{paper,stone,sage,clay,ink}.css`,
-copied verbatim from the [stylus](https://github.com/YannickHerrero/user-styles)
-repo (`styles/all/*.user.css`). The two repos are intentionally independent —
-re-run `scripts/sync-themes.sh` after a stylus change.
+The bundled theme CSS itself lives in
+`extension/themes/{paper,stone,sage,clay,ink}.css`, copied verbatim from the
+[stylus](https://github.com/YannickHerrero/user-styles) repo
+(`styles/all/*.user.css`). The two repos are intentionally independent — re-run
+`scripts/sync-themes.sh` after a stylus change. Custom site styles that should
+be versioned with this repo live in `custom-sites/` and can be copied or
+symlinked into the watched runtime folder.
 
 ## Install
 
@@ -122,14 +128,77 @@ Useful for development; the extension is unloaded on browser restart.
 
 ## Verifying end-to-end
 
-1. Open a tab on one of the 8 themed sites (Discord, Claude, etc.).
+1. Open a tab on one of the bundled or custom themed sites (Discord, Claude, etc.).
 2. In a terminal, edit `~/.config/wmenu/config.toml` and change `theme = "paper"`
    to `theme = "ink"`. Save.
 3. The browser should re-theme within ~200ms. Open a fresh tab on the same
    site — already themed.
 4. Switch back via the wmenu UI; same result.
 
-## Re-syncing themes from stylus
+## Adding custom supported sites without rebuilding
+
+After installing this version once, new sites can be added by dropping `.css`
+files into the native host's watched folder. No XPI rebuild, re-sign, or
+browser extension reinstall is needed. To make this possible, the extension
+requests `<all_urls>` permission and only injects CSS when a bundled or custom
+`@-moz-document` matcher applies.
+
+Watched folder:
+
+- Linux: `~/.config/wf-themes/sites/`
+- Windows: `%APPDATA%\wf-themes\config\sites\`
+
+The native host creates the folder automatically when the browser connects. If
+you want the custom site files to be saved in this repo too, keep them under
+`custom-sites/` and copy or symlink them into the watched folder.
+
+Example Windows setup from PowerShell:
+
+```powershell
+New-Item -ItemType Directory -Force "$env:APPDATA\wf-themes\config\sites"
+Copy-Item .\custom-sites\example.css "$env:APPDATA\wf-themes\config\sites\example.css"
+```
+
+Example Linux setup:
+
+```bash
+mkdir -p ~/.config/wf-themes/sites
+cp custom-sites/example.css ~/.config/wf-themes/sites/example.css
+```
+
+Custom site files use one file per website, with all wf-themes themes inside
+that file. Each `@wf-theme <name>` block may contain one or more normal
+`@-moz-document` blocks:
+
+```css
+@wf-theme paper {
+  @-moz-document domain("example.com") {
+    body {
+      background: #E5D8C0 !important;
+      color: #151515 !important;
+    }
+  }
+}
+
+@wf-theme ink {
+  @-moz-document domain("example.com") {
+    body {
+      background: #151515 !important;
+      color: #E5D8C0 !important;
+    }
+  }
+}
+```
+
+Supported theme names are `paper`, `stone`, `sage`, `clay`, and `ink`. Supported
+matchers are the same ones used by the bundled styles today: `domain("...")`
+and `url-prefix("...")`.
+
+When a file in the watched folder is created, edited, renamed, or deleted, the
+native host pushes the new custom style set to the extension and the current
+theme is re-applied to open tabs.
+
+## Re-syncing bundled themes from stylus
 
 If a theme palette changes in the [stylus](https://github.com/YannickHerrero/user-styles) repo:
 
@@ -163,12 +232,15 @@ bash scripts/build-xpi.sh           # rebuild the .xpi
 - **Manual host smoke test** (Linux/WSL):
   ```bash
   printf '\x00\x00\x00\x00' | ~/.local/bin/wf-themes-host
-  # → prints a length-prefixed JSON {"theme":"<current>"} then exits on EOF
+  # → prints length-prefixed JSON messages for the current theme and custom styles, then exits on EOF
   ```
 - **Theme not changing on save** — confirm wmenu actually wrote the file:
   `cat ~/.config/wmenu/config.toml | grep theme`. Some editors save via
   rename which can briefly remove and re-add the file; the host watches the
   parent dir to survive this, but unusual save patterns may need adjustment.
+- **Custom site file not applying** — confirm the file is in the watched runtime
+  folder, not only in `custom-sites/`, and that it uses `@wf-theme <name>` blocks
+  containing `@-moz-document domain("...")` or `url-prefix("...")` blocks.
 
 ## Layout
 
@@ -179,6 +251,8 @@ wf-themes/
 │   ├── background.js
 │   └── themes/
 │       ├── paper.css   stone.css   sage.css   clay.css   ink.css
+├── custom-sites/
+│   └── example.css                         (versioned custom site template)
 ├── native-host/
 │   ├── Cargo.toml
 │   └── src/main.rs

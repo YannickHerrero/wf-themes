@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
   "name": "wf-themes",
-  "version": "0.1.5",
-  "description": "Theme injector for Discord, Claude, GitHub, Reddit, Teams, MTools, Outlook, and Proton Mail. Driven by the wmenu global theme selector via native messaging.",
+  "version": "0.2.0",
+  "description": "Theme injector driven by the wmenu global theme selector via native messaging, with custom sites loaded from a watched folder.",
   "homepage_url": "https://github.com/YannickHerrero/wf-themes",
   "applications": {
     "gecko": {
@@ -14,21 +14,7 @@
     "tabs",
     "storage",
     "nativeMessaging",
-    "*://discord.com/*",
-    "*://claude.ai/*",
-    "*://github.com/*",
-    "*://*.github.com/*",
-    "*://viewscreen.githubusercontent.com/*",
-    "*://*.reddit.com/*",
-    "*://teams.microsoft.com/*",
-    "*://teams.live.com/*",
-    "*://outlook.office.com/*",
-    "*://outlook.office365.com/*",
-    "*://outlook.live.com/*",
-    "*://outlook.com/*",
-    "*://mail.proton.me/*",
-    "*://mtools-rho.vercel.app/*",
-    "http://localhost:5175/*"
+    "<all_urls>"
   ],
   "background": {
     "scripts": ["background.js"],
