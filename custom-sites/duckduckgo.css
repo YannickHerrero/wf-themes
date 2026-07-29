@@ -1,0 +1,519 @@
+/*
+ * DuckDuckGo custom site style for wf-themes.
+ * Matcher covers search, settings, and other DuckDuckGo pages.
+ */
+
+@wf-theme paper {
+  @-moz-document domain("duckduckgo.com") {
+    html {
+      --wf-bg: #E5D8C0;
+      --wf-fg: #151515;
+      --wf-surface: color-mix(in srgb, var(--wf-bg) 86%, white);
+      --wf-surface-2: color-mix(in srgb, var(--wf-bg) 72%, white);
+      --wf-border: color-mix(in srgb, var(--wf-fg) 18%, transparent);
+      --wf-muted: color-mix(in srgb, var(--wf-fg) 68%, var(--wf-bg));
+      --wf-link: #1e42a4;
+    }
+
+    html,
+    body,
+    .site-wrapper,
+    #web_content_wrapper,
+    #react-layout,
+    [data-testid="web-vertical"] {
+      background: var(--wf-bg) !important;
+      color: var(--wf-fg) !important;
+    }
+
+    #header_wrapper,
+    #header,
+    .header-wrap,
+    .footer,
+    .nav-menu--slideout {
+      background: var(--wf-bg) !important;
+      color: var(--wf-fg) !important;
+      border-color: var(--wf-border) !important;
+    }
+
+    #search_form,
+    [data-testid="search-form-input-wrapper"],
+    #search_form_input,
+    article[data-testid="result"],
+    [data-testid="duckbar"],
+    [data-testid="dropdown-options"],
+    [role="menu"],
+    .related-searches,
+    .react-module,
+    [data-testid="duckassist-answer-content"],
+    #more-results,
+    input,
+    textarea,
+    select,
+    button {
+      background: var(--wf-surface) !important;
+      color: var(--wf-fg) !important;
+      border-color: var(--wf-border) !important;
+      box-shadow: none !important;
+    }
+
+    article[data-testid="result"],
+    [data-testid="dropdown-options"],
+    [role="menu"],
+    .react-module,
+    .related-searches {
+      border: 1px solid var(--wf-border) !important;
+      border-radius: 12px !important;
+    }
+
+    a,
+    a span,
+    [data-testid="result-title-a"],
+    .result__a {
+      color: var(--wf-link) !important;
+    }
+
+    p,
+    span,
+    li,
+    h1,
+    h2,
+    h3,
+    h4,
+    [class*="snippet"],
+    [data-result="snippet"] {
+      color: inherit !important;
+    }
+
+    svg,
+    path {
+      color: currentColor !important;
+    }
+
+    [class*="url"],
+    [data-testid="result-extras-url-link"],
+    [data-testid="result-extras-url-link"] * {
+      color: var(--wf-muted) !important;
+    }
+
+    mark,
+    b,
+    strong,
+    [aria-selected="true"],
+    [aria-checked="true"] {
+      background: var(--wf-surface-2) !important;
+      color: var(--wf-fg) !important;
+    }
+  }
+}
+
+@wf-theme stone {
+  @-moz-document domain("duckduckgo.com") {
+    html {
+      --wf-bg: #D3D7DB;
+      --wf-fg: #151515;
+      --wf-surface: color-mix(in srgb, var(--wf-bg) 86%, white);
+      --wf-surface-2: color-mix(in srgb, var(--wf-bg) 72%, white);
+      --wf-border: color-mix(in srgb, var(--wf-fg) 18%, transparent);
+      --wf-muted: color-mix(in srgb, var(--wf-fg) 68%, var(--wf-bg));
+      --wf-link: #1e42a4;
+    }
+
+    html,
+    body,
+    .site-wrapper,
+    #web_content_wrapper,
+    #react-layout,
+    [data-testid="web-vertical"] {
+      background: var(--wf-bg) !important;
+      color: var(--wf-fg) !important;
+    }
+
+    #header_wrapper,
+    #header,
+    .header-wrap,
+    .footer,
+    .nav-menu--slideout {
+      background: var(--wf-bg) !important;
+      color: var(--wf-fg) !important;
+      border-color: var(--wf-border) !important;
+    }
+
+    #search_form,
+    [data-testid="search-form-input-wrapper"],
+    #search_form_input,
+    article[data-testid="result"],
+    [data-testid="duckbar"],
+    [data-testid="dropdown-options"],
+    [role="menu"],
+    .related-searches,
+    .react-module,
+    [data-testid="duckassist-answer-content"],
+    #more-results,
+    input,
+    textarea,
+    select,
+    button {
+      background: var(--wf-surface) !important;
+      color: var(--wf-fg) !important;
+      border-color: var(--wf-border) !important;
+      box-shadow: none !important;
+    }
+
+    article[data-testid="result"],
+    [data-testid="dropdown-options"],
+    [role="menu"],
+    .react-module,
+    .related-searches {
+      border: 1px solid var(--wf-border) !important;
+      border-radius: 12px !important;
+    }
+
+    a,
+    a span,
+    [data-testid="result-title-a"],
+    .result__a {
+      color: var(--wf-link) !important;
+    }
+
+    p,
+    span,
+    li,
+    h1,
+    h2,
+    h3,
+    h4,
+    [class*="snippet"],
+    [data-result="snippet"] {
+      color: inherit !important;
+    }
+
+    svg,
+    path {
+      color: currentColor !important;
+    }
+
+    [class*="url"],
+    [data-testid="result-extras-url-link"],
+    [data-testid="result-extras-url-link"] * {
+      color: var(--wf-muted) !important;
+    }
+
+    mark,
+    b,
+    strong,
+    [aria-selected="true"],
+    [aria-checked="true"] {
+      background: var(--wf-surface-2) !important;
+      color: var(--wf-fg) !important;
+    }
+  }
+}
+
+@wf-theme sage {
+  @-moz-document domain("duckduckgo.com") {
+    html {
+      --wf-bg: #CCD4BE;
+      --wf-fg: #151515;
+      --wf-surface: color-mix(in srgb, var(--wf-bg) 86%, white);
+      --wf-surface-2: color-mix(in srgb, var(--wf-bg) 72%, white);
+      --wf-border: color-mix(in srgb, var(--wf-fg) 18%, transparent);
+      --wf-muted: color-mix(in srgb, var(--wf-fg) 68%, var(--wf-bg));
+      --wf-link: #1e42a4;
+    }
+
+    html,
+    body,
+    .site-wrapper,
+    #web_content_wrapper,
+    #react-layout,
+    [data-testid="web-vertical"] {
+      background: var(--wf-bg) !important;
+      color: var(--wf-fg) !important;
+    }
+
+    #header_wrapper,
+    #header,
+    .header-wrap,
+    .footer,
+    .nav-menu--slideout {
+      background: var(--wf-bg) !important;
+      color: var(--wf-fg) !important;
+      border-color: var(--wf-border) !important;
+    }
+
+    #search_form,
+    [data-testid="search-form-input-wrapper"],
+    #search_form_input,
+    article[data-testid="result"],
+    [data-testid="duckbar"],
+    [data-testid="dropdown-options"],
+    [role="menu"],
+    .related-searches,
+    .react-module,
+    [data-testid="duckassist-answer-content"],
+    #more-results,
+    input,
+    textarea,
+    select,
+    button {
+      background: var(--wf-surface) !important;
+      color: var(--wf-fg) !important;
+      border-color: var(--wf-border) !important;
+      box-shadow: none !important;
+    }
+
+    article[data-testid="result"],
+    [data-testid="dropdown-options"],
+    [role="menu"],
+    .react-module,
+    .related-searches {
+      border: 1px solid var(--wf-border) !important;
+      border-radius: 12px !important;
+    }
+
+    a,
+    a span,
+    [data-testid="result-title-a"],
+    .result__a {
+      color: var(--wf-link) !important;
+    }
+
+    p,
+    span,
+    li,
+    h1,
+    h2,
+    h3,
+    h4,
+    [class*="snippet"],
+    [data-result="snippet"] {
+      color: inherit !important;
+    }
+
+    svg,
+    path {
+      color: currentColor !important;
+    }
+
+    [class*="url"],
+    [data-testid="result-extras-url-link"],
+    [data-testid="result-extras-url-link"] * {
+      color: var(--wf-muted) !important;
+    }
+
+    mark,
+    b,
+    strong,
+    [aria-selected="true"],
+    [aria-checked="true"] {
+      background: var(--wf-surface-2) !important;
+      color: var(--wf-fg) !important;
+    }
+  }
+}
+
+@wf-theme clay {
+  @-moz-document domain("duckduckgo.com") {
+    html {
+      --wf-bg: #D9C0A8;
+      --wf-fg: #151515;
+      --wf-surface: color-mix(in srgb, var(--wf-bg) 86%, white);
+      --wf-surface-2: color-mix(in srgb, var(--wf-bg) 72%, white);
+      --wf-border: color-mix(in srgb, var(--wf-fg) 18%, transparent);
+      --wf-muted: color-mix(in srgb, var(--wf-fg) 68%, var(--wf-bg));
+      --wf-link: #1e42a4;
+    }
+
+    html,
+    body,
+    .site-wrapper,
+    #web_content_wrapper,
+    #react-layout,
+    [data-testid="web-vertical"] {
+      background: var(--wf-bg) !important;
+      color: var(--wf-fg) !important;
+    }
+
+    #header_wrapper,
+    #header,
+    .header-wrap,
+    .footer,
+    .nav-menu--slideout {
+      background: var(--wf-bg) !important;
+      color: var(--wf-fg) !important;
+      border-color: var(--wf-border) !important;
+    }
+
+    #search_form,
+    [data-testid="search-form-input-wrapper"],
+    #search_form_input,
+    article[data-testid="result"],
+    [data-testid="duckbar"],
+    [data-testid="dropdown-options"],
+    [role="menu"],
+    .related-searches,
+    .react-module,
+    [data-testid="duckassist-answer-content"],
+    #more-results,
+    input,
+    textarea,
+    select,
+    button {
+      background: var(--wf-surface) !important;
+      color: var(--wf-fg) !important;
+      border-color: var(--wf-border) !important;
+      box-shadow: none !important;
+    }
+
+    article[data-testid="result"],
+    [data-testid="dropdown-options"],
+    [role="menu"],
+    .react-module,
+    .related-searches {
+      border: 1px solid var(--wf-border) !important;
+      border-radius: 12px !important;
+    }
+
+    a,
+    a span,
+    [data-testid="result-title-a"],
+    .result__a {
+      color: var(--wf-link) !important;
+    }
+
+    p,
+    span,
+    li,
+    h1,
+    h2,
+    h3,
+    h4,
+    [class*="snippet"],
+    [data-result="snippet"] {
+      color: inherit !important;
+    }
+
+    svg,
+    path {
+      color: currentColor !important;
+    }
+
+    [class*="url"],
+    [data-testid="result-extras-url-link"],
+    [data-testid="result-extras-url-link"] * {
+      color: var(--wf-muted) !important;
+    }
+
+    mark,
+    b,
+    strong,
+    [aria-selected="true"],
+    [aria-checked="true"] {
+      background: var(--wf-surface-2) !important;
+      color: var(--wf-fg) !important;
+    }
+  }
+}
+
+@wf-theme ink {
+  @-moz-document domain("duckduckgo.com") {
+    html {
+      --wf-bg: #151515;
+      --wf-fg: #E5D8C0;
+      --wf-surface: color-mix(in srgb, var(--wf-bg) 88%, var(--wf-fg));
+      --wf-surface-2: color-mix(in srgb, var(--wf-bg) 78%, var(--wf-fg));
+      --wf-border: color-mix(in srgb, var(--wf-fg) 24%, transparent);
+      --wf-muted: color-mix(in srgb, var(--wf-fg) 68%, var(--wf-bg));
+      --wf-link: #8fabf9;
+    }
+
+    html,
+    body,
+    .site-wrapper,
+    #web_content_wrapper,
+    #react-layout,
+    [data-testid="web-vertical"] {
+      background: var(--wf-bg) !important;
+      color: var(--wf-fg) !important;
+    }
+
+    #header_wrapper,
+    #header,
+    .header-wrap,
+    .footer,
+    .nav-menu--slideout {
+      background: var(--wf-bg) !important;
+      color: var(--wf-fg) !important;
+      border-color: var(--wf-border) !important;
+    }
+
+    #search_form,
+    [data-testid="search-form-input-wrapper"],
+    #search_form_input,
+    article[data-testid="result"],
+    [data-testid="duckbar"],
+    [data-testid="dropdown-options"],
+    [role="menu"],
+    .related-searches,
+    .react-module,
+    [data-testid="duckassist-answer-content"],
+    #more-results,
+    input,
+    textarea,
+    select,
+    button {
+      background: var(--wf-surface) !important;
+      color: var(--wf-fg) !important;
+      border-color: var(--wf-border) !important;
+      box-shadow: none !important;
+    }
+
+    article[data-testid="result"],
+    [data-testid="dropdown-options"],
+    [role="menu"],
+    .react-module,
+    .related-searches {
+      border: 1px solid var(--wf-border) !important;
+      border-radius: 12px !important;
+    }
+
+    a,
+    a span,
+    [data-testid="result-title-a"],
+    .result__a {
+      color: var(--wf-link) !important;
+    }
+
+    p,
+    span,
+    li,
+    h1,
+    h2,
+    h3,
+    h4,
+    [class*="snippet"],
+    [data-result="snippet"] {
+      color: inherit !important;
+    }
+
+    svg,
+    path {
+      color: currentColor !important;
+    }
+
+    [class*="url"],
+    [data-testid="result-extras-url-link"],
+    [data-testid="result-extras-url-link"] * {
+      color: var(--wf-muted) !important;
+    }
+
+    mark,
+    b,
+    strong,
+    [aria-selected="true"],
+    [aria-checked="true"] {
+      background: var(--wf-surface-2) !important;
+      color: var(--wf-fg) !important;
+    }
+  }
+}
