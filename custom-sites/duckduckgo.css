@@ -65,6 +65,18 @@
       border-radius: 12px !important;
     }
 
+    .XvPRmQVeIoCP5lQhICTv.DrcNDXeWs90rE8UOUh96::before,
+    .XvPRmQVeIoCP5lQhICTv.DrcNDXeWs90rE8UOUh96::after,
+    .ph1UFslrkUMqoYJEtp3t.hnKIeVb9Fi3YMCZAeQvR::before,
+    .ph1UFslrkUMqoYJEtp3t.hnKIeVb9Fi3YMCZAeQvR::after {
+      content: none !important;
+      display: none !important;
+    }
+
+    .footer {
+      display: none !important;
+    }
+
     a,
     a span,
     [data-testid="result-title-a"],
@@ -166,6 +178,18 @@
     .related-searches {
       border: 1px solid var(--wf-border) !important;
       border-radius: 12px !important;
+    }
+
+    .XvPRmQVeIoCP5lQhICTv.DrcNDXeWs90rE8UOUh96::before,
+    .XvPRmQVeIoCP5lQhICTv.DrcNDXeWs90rE8UOUh96::after,
+    .ph1UFslrkUMqoYJEtp3t.hnKIeVb9Fi3YMCZAeQvR::before,
+    .ph1UFslrkUMqoYJEtp3t.hnKIeVb9Fi3YMCZAeQvR::after {
+      content: none !important;
+      display: none !important;
+    }
+
+    .footer {
+      display: none !important;
     }
 
     a,
@@ -271,6 +295,18 @@
       border-radius: 12px !important;
     }
 
+    .XvPRmQVeIoCP5lQhICTv.DrcNDXeWs90rE8UOUh96::before,
+    .XvPRmQVeIoCP5lQhICTv.DrcNDXeWs90rE8UOUh96::after,
+    .ph1UFslrkUMqoYJEtp3t.hnKIeVb9Fi3YMCZAeQvR::before,
+    .ph1UFslrkUMqoYJEtp3t.hnKIeVb9Fi3YMCZAeQvR::after {
+      content: none !important;
+      display: none !important;
+    }
+
+    .footer {
+      display: none !important;
+    }
+
     a,
     a span,
     [data-testid="result-title-a"],
@@ -374,6 +410,18 @@
       border-radius: 12px !important;
     }
 
+    .XvPRmQVeIoCP5lQhICTv.DrcNDXeWs90rE8UOUh96::before,
+    .XvPRmQVeIoCP5lQhICTv.DrcNDXeWs90rE8UOUh96::after,
+    .ph1UFslrkUMqoYJEtp3t.hnKIeVb9Fi3YMCZAeQvR::before,
+    .ph1UFslrkUMqoYJEtp3t.hnKIeVb9Fi3YMCZAeQvR::after {
+      content: none !important;
+      display: none !important;
+    }
+
+    .footer {
+      display: none !important;
+    }
+
     a,
     a span,
     [data-testid="result-title-a"],
@@ -475,6 +523,18 @@
     .related-searches {
       border: 1px solid var(--wf-border) !important;
       border-radius: 12px !important;
+    }
+
+    .XvPRmQVeIoCP5lQhICTv.DrcNDXeWs90rE8UOUh96::before,
+    .XvPRmQVeIoCP5lQhICTv.DrcNDXeWs90rE8UOUh96::after,
+    .ph1UFslrkUMqoYJEtp3t.hnKIeVb9Fi3YMCZAeQvR::before,
+    .ph1UFslrkUMqoYJEtp3t.hnKIeVb9Fi3YMCZAeQvR::after {
+      content: none !important;
+      display: none !important;
+    }
+
+    .footer {
+      display: none !important;
     }
 
     a,
