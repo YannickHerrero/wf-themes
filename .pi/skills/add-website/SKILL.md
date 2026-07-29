@@ -76,38 +76,34 @@ a conservative scaffold that can be refined later.
    selectors and TODO comments.
 9. Do not edit `extension/themes/*.css` for custom websites.
 10. Do not rebuild or re-sign the extension for a custom website-only change.
-11. Run `git diff --check` after editing.
-12. Commit the change as one atomic commit:
+11. Install the custom site file into the Windows watched runtime folder used
+    by Zen/Firefox on Windows. This is required for this user's setup.
+
+    From WSL/Linux, use `wslpath` so the command works even if the distro or
+    repo path changes:
+
+    ```bash
+    WIN_SRC="$(wslpath -w custom-sites/<slug>.css)"
+    powershell.exe -NoProfile -Command "
+      New-Item -ItemType Directory -Force \"\$env:APPDATA\\wf-themes\\config\\sites\" | Out-Null
+      Copy-Item \"${WIN_SRC}\" \"\$env:APPDATA\\wf-themes\\config\\sites\\<slug>.css\" -Force
+    "
+    ```
+
+    If operating directly in Windows PowerShell instead of WSL, use:
+
+    ```powershell
+    New-Item -ItemType Directory -Force "$env:APPDATA\wf-themes\config\sites" | Out-Null
+    Copy-Item .\custom-sites\<slug>.css "$env:APPDATA\wf-themes\config\sites\<slug>.css" -Force
+    ```
+
+12. Run `git diff --check` after editing.
+13. Commit the change as one atomic commit:
 
     ```bash
     git add custom-sites/<slug>.css
     git commit -m "style: add <site> custom theme"
     ```
-
-## Optional runtime install
-
-After creating the versioned file, ask the user whether to install it into the
-watched runtime folder now.
-
-If yes, copy it to the platform-specific watched folder.
-
-Linux:
-
-```bash
-mkdir -p ~/.config/wf-themes/sites
-cp custom-sites/<slug>.css ~/.config/wf-themes/sites/<slug>.css
-```
-
-Windows from WSL:
-
-```bash
-powershell.exe -NoProfile -Command '
-  New-Item -ItemType Directory -Force "$env:APPDATA\wf-themes\config\sites" | Out-Null
-  Copy-Item "\\wsl.localhost\Debian\home\yannick\dev\wf-themes\custom-sites\<slug>.css" "$env:APPDATA\wf-themes\config\sites\<slug>.css" -Force
-'
-```
-
-Adjust the WSL distro/path if the repo path differs.
 
 ## Final response
 
@@ -115,6 +111,6 @@ Summarize:
 
 - created/updated file path
 - matcher used (`domain(...)` or `url-prefix(...)`)
-- whether it was copied to the watched runtime folder
+- confirm it was copied to the Windows watched runtime folder (`%APPDATA%\wf-themes\config\sites\`)
 - commit hash
 - any selectors/TODOs that need manual verification
