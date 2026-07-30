@@ -50,7 +50,6 @@
     .region-content,
     .page-content,
     .absolute-fill {
-      background-color: var(--wf-bg) !important;
       color: var(--wf-fg) !important;
     }
 
@@ -216,7 +215,6 @@
     .region-content,
     .page-content,
     .absolute-fill {
-      background-color: var(--wf-bg) !important;
       color: var(--wf-fg) !important;
     }
 
@@ -382,7 +380,6 @@
     .region-content,
     .page-content,
     .absolute-fill {
-      background-color: var(--wf-bg) !important;
       color: var(--wf-fg) !important;
     }
 
@@ -548,7 +545,6 @@
     .region-content,
     .page-content,
     .absolute-fill {
-      background-color: var(--wf-bg) !important;
       color: var(--wf-fg) !important;
     }
 
@@ -714,7 +710,6 @@
     .region-content,
     .page-content,
     .absolute-fill {
-      background-color: var(--wf-bg) !important;
       color: var(--wf-fg) !important;
     }
 
