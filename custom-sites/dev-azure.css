@@ -8,11 +8,11 @@
     html {
       --wf-bg: #E5D8C0;
       --wf-fg: #151515;
-      --wf-surface: color-mix(in srgb, var(--wf-bg) 88%, white);
-      --wf-surface-2: color-mix(in srgb, var(--wf-bg) 76%, white);
-      --wf-surface-3: color-mix(in srgb, var(--wf-bg) 64%, white);
-      --wf-border: color-mix(in srgb, var(--wf-fg) 18%, transparent);
-      --wf-muted: color-mix(in srgb, var(--wf-fg) 62%, var(--wf-bg));
+      --wf-surface: #EFE7D7;
+      --wf-surface-2: #E8DCC6;
+      --wf-surface-3: #DED0B8;
+      --wf-border: #00000033;
+      --wf-muted: #4D4D4D;
       --wf-link: #1e42a4;
       --palette-neutral-0: var(--wf-bg) !important;
       --palette-neutral-2: var(--wf-surface) !important;
@@ -21,21 +21,24 @@
       --palette-neutral-8: var(--wf-surface-2) !important;
       --palette-neutral-10: var(--wf-surface-3) !important;
       --palette-neutral-20: var(--wf-border) !important;
+      --palette-neutral-30: var(--wf-border) !important;
       --palette-neutral-60: var(--wf-muted) !important;
+      --palette-neutral-70: var(--wf-muted) !important;
       --palette-neutral-80: var(--wf-fg) !important;
       --palette-neutral-100: var(--wf-fg) !important;
       --text-primary-color: var(--wf-fg) !important;
       --text-secondary-color: var(--wf-muted) !important;
       --background-color: var(--wf-bg) !important;
-      --communication-background: var(--wf-link) !important;
-      --communication-foreground: var(--wf-bg) !important;
+      --callout-background-color: var(--wf-surface) !important;
       --component-grid-row-hover-color: var(--wf-surface-2) !important;
       --component-grid-selected-row-color: var(--wf-surface-3) !important;
       --component-grid-cell-bottom-border-color: var(--wf-border) !important;
       --nav-header-background: var(--wf-surface) !important;
       --nav-header-text-primary-color: var(--wf-fg) !important;
+      --nav-header-text-secondary-color: var(--wf-muted) !important;
       --nav-vertical-background-color: var(--wf-surface) !important;
       --nav-vertical-text-primary-color: var(--wf-fg) !important;
+      --nav-vertical-text-secondary-color: var(--wf-muted) !important;
       --nav-vertical-active-item-background: var(--wf-surface-3) !important;
       --nav-vertical-item-hover-background: var(--wf-surface-2) !important;
     }
@@ -44,42 +47,69 @@
     body,
     .region-page,
     .vertical-layout,
-    .region-header,
     .region-content,
-    .project-header,
     .page-content,
-    .absolute-fill,
-    .v-scroll-auto {
-      background: var(--wf-bg) !important;
+    .absolute-fill {
+      background-color: var(--wf-bg) !important;
       color: var(--wf-fg) !important;
     }
 
+    .region-header,
+    .project-header,
     .bolt-header,
+    .bolt-header-with-commandbar,
     .bolt-header-commandbar,
-    .bolt-breadcrumb,
     .bolt-breadcrumb-container,
+    .bolt-breadcrumb,
     .bolt-tabbar-tabs,
+    .repos-pr-listing-filterbar,
+    .vss-FilterBar,
+    .vss-FilterBar--item,
+    .bolt-filterbar-white,
+    .bolt-card,
+    .bolt-panel,
+    .bolt-callout,
     .bolt-table,
     .bolt-list,
     .bolt-list-row,
     .bolt-table-row,
-    .bolt-filterbar-white,
+    .bolt-table-cell,
+    .bolt-list-cell,
     .bolt-textfield,
+    .bolt-textfield-input,
     .bolt-identitypickerdropdown,
-    .bolt-callout,
-    .bolt-panel,
-    .bolt-card,
+    .bolt-identitypickerdropdown-container,
     .mectrl_dropdownbody,
     [role="menu"],
     [role="dialog"],
+    [role="grid"],
+    [role="row"],
+    [role="gridcell"],
     input,
     textarea,
     select,
     button {
-      background: var(--wf-surface) !important;
+      background-color: var(--wf-surface) !important;
       color: var(--wf-fg) !important;
       border-color: var(--wf-border) !important;
       box-shadow: none !important;
+    }
+
+    .bolt-list-row:nth-child(even),
+    .bolt-table-row:nth-child(even),
+    .bolt-table-cell-content,
+    .bolt-table-two-line-cell,
+    .bolt-table-two-line-cell-item,
+    .navigation-link,
+    .navigation-element,
+    .hub,
+    .hub-group,
+    .bolt-tab,
+    .bolt-button,
+    .bolt-header-command-item-button {
+      background-color: transparent !important;
+      color: var(--wf-fg) !important;
+      border-color: var(--wf-border) !important;
     }
 
     .bolt-list-row:hover,
@@ -89,58 +119,44 @@
     .navigation-link:hover,
     .navigation-element:hover,
     .bolt-focus-treatment:hover {
-      background: var(--wf-surface-2) !important;
+      background-color: var(--wf-surface-2) !important;
+      color: var(--wf-fg) !important;
     }
 
     .selected,
     [aria-selected="true"],
     [aria-current="page"],
+    .displayed,
     .bolt-list-row-selected,
     .bolt-table-row-selected {
-      background: var(--wf-surface-3) !important;
-      color: var(--wf-fg) !important;
-    }
-
-    .bolt-table-cell,
-    .bolt-list-cell,
-    .bolt-tab,
-    .bolt-breadcrumb-list-item,
-    .bolt-header-command-item-button,
-    .bolt-button,
-    .navigation-link,
-    .hub,
-    .hub-group {
-      border-color: var(--wf-border) !important;
+      background-color: var(--wf-surface-3) !important;
       color: var(--wf-fg) !important;
     }
 
     a,
+    a span,
     .bolt-link,
     .bolt-link-button,
     .bolt-table-link,
-    .primary-text,
-    .font-weight-semibold {
+    .primary-text {
       color: var(--wf-link) !important;
     }
 
-    p,
-    span,
-    div,
-    td,
-    th,
-    li,
+    .primary-text,
+    .font-weight-semibold,
     h1,
     h2,
     h3,
     h4,
     label {
-      color: inherit !important;
+      color: var(--wf-fg) !important;
     }
 
     .secondary-text,
     .text-ellipsis,
-    .bolt-table-two-line-cell-item,
-    time {
+    time,
+    .body-s,
+    .monospaced-xs {
       color: var(--wf-muted) !important;
     }
 
@@ -158,11 +174,11 @@
     html {
       --wf-bg: #D3D7DB;
       --wf-fg: #151515;
-      --wf-surface: color-mix(in srgb, var(--wf-bg) 88%, white);
-      --wf-surface-2: color-mix(in srgb, var(--wf-bg) 76%, white);
-      --wf-surface-3: color-mix(in srgb, var(--wf-bg) 64%, white);
-      --wf-border: color-mix(in srgb, var(--wf-fg) 18%, transparent);
-      --wf-muted: color-mix(in srgb, var(--wf-fg) 62%, var(--wf-bg));
+      --wf-surface: #E5E8EB;
+      --wf-surface-2: #D9DEE3;
+      --wf-surface-3: #CBD2D8;
+      --wf-border: #00000033;
+      --wf-muted: #4D4D4D;
       --wf-link: #1e42a4;
       --palette-neutral-0: var(--wf-bg) !important;
       --palette-neutral-2: var(--wf-surface) !important;
@@ -171,21 +187,24 @@
       --palette-neutral-8: var(--wf-surface-2) !important;
       --palette-neutral-10: var(--wf-surface-3) !important;
       --palette-neutral-20: var(--wf-border) !important;
+      --palette-neutral-30: var(--wf-border) !important;
       --palette-neutral-60: var(--wf-muted) !important;
+      --palette-neutral-70: var(--wf-muted) !important;
       --palette-neutral-80: var(--wf-fg) !important;
       --palette-neutral-100: var(--wf-fg) !important;
       --text-primary-color: var(--wf-fg) !important;
       --text-secondary-color: var(--wf-muted) !important;
       --background-color: var(--wf-bg) !important;
-      --communication-background: var(--wf-link) !important;
-      --communication-foreground: var(--wf-bg) !important;
+      --callout-background-color: var(--wf-surface) !important;
       --component-grid-row-hover-color: var(--wf-surface-2) !important;
       --component-grid-selected-row-color: var(--wf-surface-3) !important;
       --component-grid-cell-bottom-border-color: var(--wf-border) !important;
       --nav-header-background: var(--wf-surface) !important;
       --nav-header-text-primary-color: var(--wf-fg) !important;
+      --nav-header-text-secondary-color: var(--wf-muted) !important;
       --nav-vertical-background-color: var(--wf-surface) !important;
       --nav-vertical-text-primary-color: var(--wf-fg) !important;
+      --nav-vertical-text-secondary-color: var(--wf-muted) !important;
       --nav-vertical-active-item-background: var(--wf-surface-3) !important;
       --nav-vertical-item-hover-background: var(--wf-surface-2) !important;
     }
@@ -194,42 +213,69 @@
     body,
     .region-page,
     .vertical-layout,
-    .region-header,
     .region-content,
-    .project-header,
     .page-content,
-    .absolute-fill,
-    .v-scroll-auto {
-      background: var(--wf-bg) !important;
+    .absolute-fill {
+      background-color: var(--wf-bg) !important;
       color: var(--wf-fg) !important;
     }
 
+    .region-header,
+    .project-header,
     .bolt-header,
+    .bolt-header-with-commandbar,
     .bolt-header-commandbar,
-    .bolt-breadcrumb,
     .bolt-breadcrumb-container,
+    .bolt-breadcrumb,
     .bolt-tabbar-tabs,
+    .repos-pr-listing-filterbar,
+    .vss-FilterBar,
+    .vss-FilterBar--item,
+    .bolt-filterbar-white,
+    .bolt-card,
+    .bolt-panel,
+    .bolt-callout,
     .bolt-table,
     .bolt-list,
     .bolt-list-row,
     .bolt-table-row,
-    .bolt-filterbar-white,
+    .bolt-table-cell,
+    .bolt-list-cell,
     .bolt-textfield,
+    .bolt-textfield-input,
     .bolt-identitypickerdropdown,
-    .bolt-callout,
-    .bolt-panel,
-    .bolt-card,
+    .bolt-identitypickerdropdown-container,
     .mectrl_dropdownbody,
     [role="menu"],
     [role="dialog"],
+    [role="grid"],
+    [role="row"],
+    [role="gridcell"],
     input,
     textarea,
     select,
     button {
-      background: var(--wf-surface) !important;
+      background-color: var(--wf-surface) !important;
       color: var(--wf-fg) !important;
       border-color: var(--wf-border) !important;
       box-shadow: none !important;
+    }
+
+    .bolt-list-row:nth-child(even),
+    .bolt-table-row:nth-child(even),
+    .bolt-table-cell-content,
+    .bolt-table-two-line-cell,
+    .bolt-table-two-line-cell-item,
+    .navigation-link,
+    .navigation-element,
+    .hub,
+    .hub-group,
+    .bolt-tab,
+    .bolt-button,
+    .bolt-header-command-item-button {
+      background-color: transparent !important;
+      color: var(--wf-fg) !important;
+      border-color: var(--wf-border) !important;
     }
 
     .bolt-list-row:hover,
@@ -239,58 +285,44 @@
     .navigation-link:hover,
     .navigation-element:hover,
     .bolt-focus-treatment:hover {
-      background: var(--wf-surface-2) !important;
+      background-color: var(--wf-surface-2) !important;
+      color: var(--wf-fg) !important;
     }
 
     .selected,
     [aria-selected="true"],
     [aria-current="page"],
+    .displayed,
     .bolt-list-row-selected,
     .bolt-table-row-selected {
-      background: var(--wf-surface-3) !important;
-      color: var(--wf-fg) !important;
-    }
-
-    .bolt-table-cell,
-    .bolt-list-cell,
-    .bolt-tab,
-    .bolt-breadcrumb-list-item,
-    .bolt-header-command-item-button,
-    .bolt-button,
-    .navigation-link,
-    .hub,
-    .hub-group {
-      border-color: var(--wf-border) !important;
+      background-color: var(--wf-surface-3) !important;
       color: var(--wf-fg) !important;
     }
 
     a,
+    a span,
     .bolt-link,
     .bolt-link-button,
     .bolt-table-link,
-    .primary-text,
-    .font-weight-semibold {
+    .primary-text {
       color: var(--wf-link) !important;
     }
 
-    p,
-    span,
-    div,
-    td,
-    th,
-    li,
+    .primary-text,
+    .font-weight-semibold,
     h1,
     h2,
     h3,
     h4,
     label {
-      color: inherit !important;
+      color: var(--wf-fg) !important;
     }
 
     .secondary-text,
     .text-ellipsis,
-    .bolt-table-two-line-cell-item,
-    time {
+    time,
+    .body-s,
+    .monospaced-xs {
       color: var(--wf-muted) !important;
     }
 
@@ -308,11 +340,11 @@
     html {
       --wf-bg: #CCD4BE;
       --wf-fg: #151515;
-      --wf-surface: color-mix(in srgb, var(--wf-bg) 88%, white);
-      --wf-surface-2: color-mix(in srgb, var(--wf-bg) 76%, white);
-      --wf-surface-3: color-mix(in srgb, var(--wf-bg) 64%, white);
-      --wf-border: color-mix(in srgb, var(--wf-fg) 18%, transparent);
-      --wf-muted: color-mix(in srgb, var(--wf-fg) 62%, var(--wf-bg));
+      --wf-surface: #E2E8D8;
+      --wf-surface-2: #D3DDC6;
+      --wf-surface-3: #C4D0B4;
+      --wf-border: #00000033;
+      --wf-muted: #4D4D4D;
       --wf-link: #1e42a4;
       --palette-neutral-0: var(--wf-bg) !important;
       --palette-neutral-2: var(--wf-surface) !important;
@@ -321,21 +353,24 @@
       --palette-neutral-8: var(--wf-surface-2) !important;
       --palette-neutral-10: var(--wf-surface-3) !important;
       --palette-neutral-20: var(--wf-border) !important;
+      --palette-neutral-30: var(--wf-border) !important;
       --palette-neutral-60: var(--wf-muted) !important;
+      --palette-neutral-70: var(--wf-muted) !important;
       --palette-neutral-80: var(--wf-fg) !important;
       --palette-neutral-100: var(--wf-fg) !important;
       --text-primary-color: var(--wf-fg) !important;
       --text-secondary-color: var(--wf-muted) !important;
       --background-color: var(--wf-bg) !important;
-      --communication-background: var(--wf-link) !important;
-      --communication-foreground: var(--wf-bg) !important;
+      --callout-background-color: var(--wf-surface) !important;
       --component-grid-row-hover-color: var(--wf-surface-2) !important;
       --component-grid-selected-row-color: var(--wf-surface-3) !important;
       --component-grid-cell-bottom-border-color: var(--wf-border) !important;
       --nav-header-background: var(--wf-surface) !important;
       --nav-header-text-primary-color: var(--wf-fg) !important;
+      --nav-header-text-secondary-color: var(--wf-muted) !important;
       --nav-vertical-background-color: var(--wf-surface) !important;
       --nav-vertical-text-primary-color: var(--wf-fg) !important;
+      --nav-vertical-text-secondary-color: var(--wf-muted) !important;
       --nav-vertical-active-item-background: var(--wf-surface-3) !important;
       --nav-vertical-item-hover-background: var(--wf-surface-2) !important;
     }
@@ -344,42 +379,69 @@
     body,
     .region-page,
     .vertical-layout,
-    .region-header,
     .region-content,
-    .project-header,
     .page-content,
-    .absolute-fill,
-    .v-scroll-auto {
-      background: var(--wf-bg) !important;
+    .absolute-fill {
+      background-color: var(--wf-bg) !important;
       color: var(--wf-fg) !important;
     }
 
+    .region-header,
+    .project-header,
     .bolt-header,
+    .bolt-header-with-commandbar,
     .bolt-header-commandbar,
-    .bolt-breadcrumb,
     .bolt-breadcrumb-container,
+    .bolt-breadcrumb,
     .bolt-tabbar-tabs,
+    .repos-pr-listing-filterbar,
+    .vss-FilterBar,
+    .vss-FilterBar--item,
+    .bolt-filterbar-white,
+    .bolt-card,
+    .bolt-panel,
+    .bolt-callout,
     .bolt-table,
     .bolt-list,
     .bolt-list-row,
     .bolt-table-row,
-    .bolt-filterbar-white,
+    .bolt-table-cell,
+    .bolt-list-cell,
     .bolt-textfield,
+    .bolt-textfield-input,
     .bolt-identitypickerdropdown,
-    .bolt-callout,
-    .bolt-panel,
-    .bolt-card,
+    .bolt-identitypickerdropdown-container,
     .mectrl_dropdownbody,
     [role="menu"],
     [role="dialog"],
+    [role="grid"],
+    [role="row"],
+    [role="gridcell"],
     input,
     textarea,
     select,
     button {
-      background: var(--wf-surface) !important;
+      background-color: var(--wf-surface) !important;
       color: var(--wf-fg) !important;
       border-color: var(--wf-border) !important;
       box-shadow: none !important;
+    }
+
+    .bolt-list-row:nth-child(even),
+    .bolt-table-row:nth-child(even),
+    .bolt-table-cell-content,
+    .bolt-table-two-line-cell,
+    .bolt-table-two-line-cell-item,
+    .navigation-link,
+    .navigation-element,
+    .hub,
+    .hub-group,
+    .bolt-tab,
+    .bolt-button,
+    .bolt-header-command-item-button {
+      background-color: transparent !important;
+      color: var(--wf-fg) !important;
+      border-color: var(--wf-border) !important;
     }
 
     .bolt-list-row:hover,
@@ -389,58 +451,44 @@
     .navigation-link:hover,
     .navigation-element:hover,
     .bolt-focus-treatment:hover {
-      background: var(--wf-surface-2) !important;
+      background-color: var(--wf-surface-2) !important;
+      color: var(--wf-fg) !important;
     }
 
     .selected,
     [aria-selected="true"],
     [aria-current="page"],
+    .displayed,
     .bolt-list-row-selected,
     .bolt-table-row-selected {
-      background: var(--wf-surface-3) !important;
-      color: var(--wf-fg) !important;
-    }
-
-    .bolt-table-cell,
-    .bolt-list-cell,
-    .bolt-tab,
-    .bolt-breadcrumb-list-item,
-    .bolt-header-command-item-button,
-    .bolt-button,
-    .navigation-link,
-    .hub,
-    .hub-group {
-      border-color: var(--wf-border) !important;
+      background-color: var(--wf-surface-3) !important;
       color: var(--wf-fg) !important;
     }
 
     a,
+    a span,
     .bolt-link,
     .bolt-link-button,
     .bolt-table-link,
-    .primary-text,
-    .font-weight-semibold {
+    .primary-text {
       color: var(--wf-link) !important;
     }
 
-    p,
-    span,
-    div,
-    td,
-    th,
-    li,
+    .primary-text,
+    .font-weight-semibold,
     h1,
     h2,
     h3,
     h4,
     label {
-      color: inherit !important;
+      color: var(--wf-fg) !important;
     }
 
     .secondary-text,
     .text-ellipsis,
-    .bolt-table-two-line-cell-item,
-    time {
+    time,
+    .body-s,
+    .monospaced-xs {
       color: var(--wf-muted) !important;
     }
 
@@ -458,11 +506,11 @@
     html {
       --wf-bg: #D9C0A8;
       --wf-fg: #151515;
-      --wf-surface: color-mix(in srgb, var(--wf-bg) 88%, white);
-      --wf-surface-2: color-mix(in srgb, var(--wf-bg) 76%, white);
-      --wf-surface-3: color-mix(in srgb, var(--wf-bg) 64%, white);
-      --wf-border: color-mix(in srgb, var(--wf-fg) 18%, transparent);
-      --wf-muted: color-mix(in srgb, var(--wf-fg) 62%, var(--wf-bg));
+      --wf-surface: #EAD9C8;
+      --wf-surface-2: #DEC8B1;
+      --wf-surface-3: #D2B79D;
+      --wf-border: #00000033;
+      --wf-muted: #4D4D4D;
       --wf-link: #1e42a4;
       --palette-neutral-0: var(--wf-bg) !important;
       --palette-neutral-2: var(--wf-surface) !important;
@@ -471,21 +519,24 @@
       --palette-neutral-8: var(--wf-surface-2) !important;
       --palette-neutral-10: var(--wf-surface-3) !important;
       --palette-neutral-20: var(--wf-border) !important;
+      --palette-neutral-30: var(--wf-border) !important;
       --palette-neutral-60: var(--wf-muted) !important;
+      --palette-neutral-70: var(--wf-muted) !important;
       --palette-neutral-80: var(--wf-fg) !important;
       --palette-neutral-100: var(--wf-fg) !important;
       --text-primary-color: var(--wf-fg) !important;
       --text-secondary-color: var(--wf-muted) !important;
       --background-color: var(--wf-bg) !important;
-      --communication-background: var(--wf-link) !important;
-      --communication-foreground: var(--wf-bg) !important;
+      --callout-background-color: var(--wf-surface) !important;
       --component-grid-row-hover-color: var(--wf-surface-2) !important;
       --component-grid-selected-row-color: var(--wf-surface-3) !important;
       --component-grid-cell-bottom-border-color: var(--wf-border) !important;
       --nav-header-background: var(--wf-surface) !important;
       --nav-header-text-primary-color: var(--wf-fg) !important;
+      --nav-header-text-secondary-color: var(--wf-muted) !important;
       --nav-vertical-background-color: var(--wf-surface) !important;
       --nav-vertical-text-primary-color: var(--wf-fg) !important;
+      --nav-vertical-text-secondary-color: var(--wf-muted) !important;
       --nav-vertical-active-item-background: var(--wf-surface-3) !important;
       --nav-vertical-item-hover-background: var(--wf-surface-2) !important;
     }
@@ -494,42 +545,69 @@
     body,
     .region-page,
     .vertical-layout,
-    .region-header,
     .region-content,
-    .project-header,
     .page-content,
-    .absolute-fill,
-    .v-scroll-auto {
-      background: var(--wf-bg) !important;
+    .absolute-fill {
+      background-color: var(--wf-bg) !important;
       color: var(--wf-fg) !important;
     }
 
+    .region-header,
+    .project-header,
     .bolt-header,
+    .bolt-header-with-commandbar,
     .bolt-header-commandbar,
-    .bolt-breadcrumb,
     .bolt-breadcrumb-container,
+    .bolt-breadcrumb,
     .bolt-tabbar-tabs,
+    .repos-pr-listing-filterbar,
+    .vss-FilterBar,
+    .vss-FilterBar--item,
+    .bolt-filterbar-white,
+    .bolt-card,
+    .bolt-panel,
+    .bolt-callout,
     .bolt-table,
     .bolt-list,
     .bolt-list-row,
     .bolt-table-row,
-    .bolt-filterbar-white,
+    .bolt-table-cell,
+    .bolt-list-cell,
     .bolt-textfield,
+    .bolt-textfield-input,
     .bolt-identitypickerdropdown,
-    .bolt-callout,
-    .bolt-panel,
-    .bolt-card,
+    .bolt-identitypickerdropdown-container,
     .mectrl_dropdownbody,
     [role="menu"],
     [role="dialog"],
+    [role="grid"],
+    [role="row"],
+    [role="gridcell"],
     input,
     textarea,
     select,
     button {
-      background: var(--wf-surface) !important;
+      background-color: var(--wf-surface) !important;
       color: var(--wf-fg) !important;
       border-color: var(--wf-border) !important;
       box-shadow: none !important;
+    }
+
+    .bolt-list-row:nth-child(even),
+    .bolt-table-row:nth-child(even),
+    .bolt-table-cell-content,
+    .bolt-table-two-line-cell,
+    .bolt-table-two-line-cell-item,
+    .navigation-link,
+    .navigation-element,
+    .hub,
+    .hub-group,
+    .bolt-tab,
+    .bolt-button,
+    .bolt-header-command-item-button {
+      background-color: transparent !important;
+      color: var(--wf-fg) !important;
+      border-color: var(--wf-border) !important;
     }
 
     .bolt-list-row:hover,
@@ -539,58 +617,44 @@
     .navigation-link:hover,
     .navigation-element:hover,
     .bolt-focus-treatment:hover {
-      background: var(--wf-surface-2) !important;
+      background-color: var(--wf-surface-2) !important;
+      color: var(--wf-fg) !important;
     }
 
     .selected,
     [aria-selected="true"],
     [aria-current="page"],
+    .displayed,
     .bolt-list-row-selected,
     .bolt-table-row-selected {
-      background: var(--wf-surface-3) !important;
-      color: var(--wf-fg) !important;
-    }
-
-    .bolt-table-cell,
-    .bolt-list-cell,
-    .bolt-tab,
-    .bolt-breadcrumb-list-item,
-    .bolt-header-command-item-button,
-    .bolt-button,
-    .navigation-link,
-    .hub,
-    .hub-group {
-      border-color: var(--wf-border) !important;
+      background-color: var(--wf-surface-3) !important;
       color: var(--wf-fg) !important;
     }
 
     a,
+    a span,
     .bolt-link,
     .bolt-link-button,
     .bolt-table-link,
-    .primary-text,
-    .font-weight-semibold {
+    .primary-text {
       color: var(--wf-link) !important;
     }
 
-    p,
-    span,
-    div,
-    td,
-    th,
-    li,
+    .primary-text,
+    .font-weight-semibold,
     h1,
     h2,
     h3,
     h4,
     label {
-      color: inherit !important;
+      color: var(--wf-fg) !important;
     }
 
     .secondary-text,
     .text-ellipsis,
-    .bolt-table-two-line-cell-item,
-    time {
+    time,
+    .body-s,
+    .monospaced-xs {
       color: var(--wf-muted) !important;
     }
 
@@ -608,11 +672,11 @@
     html {
       --wf-bg: #151515;
       --wf-fg: #E5D8C0;
-      --wf-surface: color-mix(in srgb, var(--wf-bg) 88%, var(--wf-fg));
-      --wf-surface-2: color-mix(in srgb, var(--wf-bg) 78%, var(--wf-fg));
-      --wf-surface-3: color-mix(in srgb, var(--wf-bg) 68%, var(--wf-fg));
-      --wf-border: color-mix(in srgb, var(--wf-fg) 24%, transparent);
-      --wf-muted: color-mix(in srgb, var(--wf-fg) 68%, var(--wf-bg));
+      --wf-surface: #23211D;
+      --wf-surface-2: #2E2A24;
+      --wf-surface-3: #3A342B;
+      --wf-border: #E5D8C04D;
+      --wf-muted: #B9AD98;
       --wf-link: #8fabf9;
       --palette-neutral-0: var(--wf-bg) !important;
       --palette-neutral-2: var(--wf-surface) !important;
@@ -621,21 +685,24 @@
       --palette-neutral-8: var(--wf-surface-2) !important;
       --palette-neutral-10: var(--wf-surface-3) !important;
       --palette-neutral-20: var(--wf-border) !important;
+      --palette-neutral-30: var(--wf-border) !important;
       --palette-neutral-60: var(--wf-muted) !important;
+      --palette-neutral-70: var(--wf-muted) !important;
       --palette-neutral-80: var(--wf-fg) !important;
       --palette-neutral-100: var(--wf-fg) !important;
       --text-primary-color: var(--wf-fg) !important;
       --text-secondary-color: var(--wf-muted) !important;
       --background-color: var(--wf-bg) !important;
-      --communication-background: var(--wf-link) !important;
-      --communication-foreground: var(--wf-bg) !important;
+      --callout-background-color: var(--wf-surface) !important;
       --component-grid-row-hover-color: var(--wf-surface-2) !important;
       --component-grid-selected-row-color: var(--wf-surface-3) !important;
       --component-grid-cell-bottom-border-color: var(--wf-border) !important;
       --nav-header-background: var(--wf-surface) !important;
       --nav-header-text-primary-color: var(--wf-fg) !important;
+      --nav-header-text-secondary-color: var(--wf-muted) !important;
       --nav-vertical-background-color: var(--wf-surface) !important;
       --nav-vertical-text-primary-color: var(--wf-fg) !important;
+      --nav-vertical-text-secondary-color: var(--wf-muted) !important;
       --nav-vertical-active-item-background: var(--wf-surface-3) !important;
       --nav-vertical-item-hover-background: var(--wf-surface-2) !important;
     }
@@ -644,42 +711,69 @@
     body,
     .region-page,
     .vertical-layout,
-    .region-header,
     .region-content,
-    .project-header,
     .page-content,
-    .absolute-fill,
-    .v-scroll-auto {
-      background: var(--wf-bg) !important;
+    .absolute-fill {
+      background-color: var(--wf-bg) !important;
       color: var(--wf-fg) !important;
     }
 
+    .region-header,
+    .project-header,
     .bolt-header,
+    .bolt-header-with-commandbar,
     .bolt-header-commandbar,
-    .bolt-breadcrumb,
     .bolt-breadcrumb-container,
+    .bolt-breadcrumb,
     .bolt-tabbar-tabs,
+    .repos-pr-listing-filterbar,
+    .vss-FilterBar,
+    .vss-FilterBar--item,
+    .bolt-filterbar-white,
+    .bolt-card,
+    .bolt-panel,
+    .bolt-callout,
     .bolt-table,
     .bolt-list,
     .bolt-list-row,
     .bolt-table-row,
-    .bolt-filterbar-white,
+    .bolt-table-cell,
+    .bolt-list-cell,
     .bolt-textfield,
+    .bolt-textfield-input,
     .bolt-identitypickerdropdown,
-    .bolt-callout,
-    .bolt-panel,
-    .bolt-card,
+    .bolt-identitypickerdropdown-container,
     .mectrl_dropdownbody,
     [role="menu"],
     [role="dialog"],
+    [role="grid"],
+    [role="row"],
+    [role="gridcell"],
     input,
     textarea,
     select,
     button {
-      background: var(--wf-surface) !important;
+      background-color: var(--wf-surface) !important;
       color: var(--wf-fg) !important;
       border-color: var(--wf-border) !important;
       box-shadow: none !important;
+    }
+
+    .bolt-list-row:nth-child(even),
+    .bolt-table-row:nth-child(even),
+    .bolt-table-cell-content,
+    .bolt-table-two-line-cell,
+    .bolt-table-two-line-cell-item,
+    .navigation-link,
+    .navigation-element,
+    .hub,
+    .hub-group,
+    .bolt-tab,
+    .bolt-button,
+    .bolt-header-command-item-button {
+      background-color: transparent !important;
+      color: var(--wf-fg) !important;
+      border-color: var(--wf-border) !important;
     }
 
     .bolt-list-row:hover,
@@ -689,58 +783,44 @@
     .navigation-link:hover,
     .navigation-element:hover,
     .bolt-focus-treatment:hover {
-      background: var(--wf-surface-2) !important;
+      background-color: var(--wf-surface-2) !important;
+      color: var(--wf-fg) !important;
     }
 
     .selected,
     [aria-selected="true"],
     [aria-current="page"],
+    .displayed,
     .bolt-list-row-selected,
     .bolt-table-row-selected {
-      background: var(--wf-surface-3) !important;
-      color: var(--wf-fg) !important;
-    }
-
-    .bolt-table-cell,
-    .bolt-list-cell,
-    .bolt-tab,
-    .bolt-breadcrumb-list-item,
-    .bolt-header-command-item-button,
-    .bolt-button,
-    .navigation-link,
-    .hub,
-    .hub-group {
-      border-color: var(--wf-border) !important;
+      background-color: var(--wf-surface-3) !important;
       color: var(--wf-fg) !important;
     }
 
     a,
+    a span,
     .bolt-link,
     .bolt-link-button,
     .bolt-table-link,
-    .primary-text,
-    .font-weight-semibold {
+    .primary-text {
       color: var(--wf-link) !important;
     }
 
-    p,
-    span,
-    div,
-    td,
-    th,
-    li,
+    .primary-text,
+    .font-weight-semibold,
     h1,
     h2,
     h3,
     h4,
     label {
-      color: inherit !important;
+      color: var(--wf-fg) !important;
     }
 
     .secondary-text,
     .text-ellipsis,
-    .bolt-table-two-line-cell-item,
-    time {
+    time,
+    .body-s,
+    .monospaced-xs {
       color: var(--wf-muted) !important;
     }
 
