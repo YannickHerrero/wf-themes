@@ -53,6 +53,10 @@
       color: var(--wf-fg) !important;
     }
 
+    body {
+      background-color: #E5E8EB !important;
+    }
+
     .region-header,
     .project-header,
     .bolt-header,
@@ -216,6 +220,10 @@
     .page-content,
     .absolute-fill {
       color: var(--wf-fg) !important;
+    }
+
+    body {
+      background-color: #E5E8EB !important;
     }
 
     .region-header,
@@ -383,6 +391,10 @@
       color: var(--wf-fg) !important;
     }
 
+    body {
+      background-color: #E5E8EB !important;
+    }
+
     .region-header,
     .project-header,
     .bolt-header,
@@ -548,6 +560,10 @@
       color: var(--wf-fg) !important;
     }
 
+    body {
+      background-color: #E5E8EB !important;
+    }
+
     .region-header,
     .project-header,
     .bolt-header,
@@ -711,6 +727,10 @@
     .page-content,
     .absolute-fill {
       color: var(--wf-fg) !important;
+    }
+
+    body {
+      background-color: #E5E8EB !important;
     }
 
     .region-header,
