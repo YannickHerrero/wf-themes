@@ -1,0 +1,754 @@
+/*
+ * Azure DevOps custom site style for wf-themes.
+ * Matcher covers organizations and projects under dev.azure.com.
+ */
+
+@wf-theme paper {
+  @-moz-document domain("dev.azure.com") {
+    html {
+      --wf-bg: #E5D8C0;
+      --wf-fg: #151515;
+      --wf-surface: color-mix(in srgb, var(--wf-bg) 88%, white);
+      --wf-surface-2: color-mix(in srgb, var(--wf-bg) 76%, white);
+      --wf-surface-3: color-mix(in srgb, var(--wf-bg) 64%, white);
+      --wf-border: color-mix(in srgb, var(--wf-fg) 18%, transparent);
+      --wf-muted: color-mix(in srgb, var(--wf-fg) 62%, var(--wf-bg));
+      --wf-link: #1e42a4;
+      --palette-neutral-0: var(--wf-bg) !important;
+      --palette-neutral-2: var(--wf-surface) !important;
+      --palette-neutral-4: var(--wf-surface) !important;
+      --palette-neutral-6: var(--wf-surface-2) !important;
+      --palette-neutral-8: var(--wf-surface-2) !important;
+      --palette-neutral-10: var(--wf-surface-3) !important;
+      --palette-neutral-20: var(--wf-border) !important;
+      --palette-neutral-60: var(--wf-muted) !important;
+      --palette-neutral-80: var(--wf-fg) !important;
+      --palette-neutral-100: var(--wf-fg) !important;
+      --text-primary-color: var(--wf-fg) !important;
+      --text-secondary-color: var(--wf-muted) !important;
+      --background-color: var(--wf-bg) !important;
+      --communication-background: var(--wf-link) !important;
+      --communication-foreground: var(--wf-bg) !important;
+      --component-grid-row-hover-color: var(--wf-surface-2) !important;
+      --component-grid-selected-row-color: var(--wf-surface-3) !important;
+      --component-grid-cell-bottom-border-color: var(--wf-border) !important;
+      --nav-header-background: var(--wf-surface) !important;
+      --nav-header-text-primary-color: var(--wf-fg) !important;
+      --nav-vertical-background-color: var(--wf-surface) !important;
+      --nav-vertical-text-primary-color: var(--wf-fg) !important;
+      --nav-vertical-active-item-background: var(--wf-surface-3) !important;
+      --nav-vertical-item-hover-background: var(--wf-surface-2) !important;
+    }
+
+    html,
+    body,
+    .region-page,
+    .vertical-layout,
+    .region-header,
+    .region-content,
+    .project-header,
+    .page-content,
+    .absolute-fill,
+    .v-scroll-auto {
+      background: var(--wf-bg) !important;
+      color: var(--wf-fg) !important;
+    }
+
+    .bolt-header,
+    .bolt-header-commandbar,
+    .bolt-breadcrumb,
+    .bolt-breadcrumb-container,
+    .bolt-tabbar-tabs,
+    .bolt-table,
+    .bolt-list,
+    .bolt-list-row,
+    .bolt-table-row,
+    .bolt-filterbar-white,
+    .bolt-textfield,
+    .bolt-identitypickerdropdown,
+    .bolt-callout,
+    .bolt-panel,
+    .bolt-card,
+    .mectrl_dropdownbody,
+    [role="menu"],
+    [role="dialog"],
+    input,
+    textarea,
+    select,
+    button {
+      background: var(--wf-surface) !important;
+      color: var(--wf-fg) !important;
+      border-color: var(--wf-border) !important;
+      box-shadow: none !important;
+    }
+
+    .bolt-list-row:hover,
+    .bolt-table-row:hover,
+    .bolt-tab:hover,
+    .bolt-button:hover,
+    .navigation-link:hover,
+    .navigation-element:hover,
+    .bolt-focus-treatment:hover {
+      background: var(--wf-surface-2) !important;
+    }
+
+    .selected,
+    [aria-selected="true"],
+    [aria-current="page"],
+    .bolt-list-row-selected,
+    .bolt-table-row-selected {
+      background: var(--wf-surface-3) !important;
+      color: var(--wf-fg) !important;
+    }
+
+    .bolt-table-cell,
+    .bolt-list-cell,
+    .bolt-tab,
+    .bolt-breadcrumb-list-item,
+    .bolt-header-command-item-button,
+    .bolt-button,
+    .navigation-link,
+    .hub,
+    .hub-group {
+      border-color: var(--wf-border) !important;
+      color: var(--wf-fg) !important;
+    }
+
+    a,
+    .bolt-link,
+    .bolt-link-button,
+    .bolt-table-link,
+    .primary-text,
+    .font-weight-semibold {
+      color: var(--wf-link) !important;
+    }
+
+    p,
+    span,
+    div,
+    td,
+    th,
+    li,
+    h1,
+    h2,
+    h3,
+    h4,
+    label {
+      color: inherit !important;
+    }
+
+    .secondary-text,
+    .text-ellipsis,
+    .bolt-table-two-line-cell-item,
+    time {
+      color: var(--wf-muted) !important;
+    }
+
+    svg,
+    path,
+    .fabric-icon,
+    .bowtie-icon {
+      color: currentColor !important;
+    }
+  }
+}
+
+@wf-theme stone {
+  @-moz-document domain("dev.azure.com") {
+    html {
+      --wf-bg: #D3D7DB;
+      --wf-fg: #151515;
+      --wf-surface: color-mix(in srgb, var(--wf-bg) 88%, white);
+      --wf-surface-2: color-mix(in srgb, var(--wf-bg) 76%, white);
+      --wf-surface-3: color-mix(in srgb, var(--wf-bg) 64%, white);
+      --wf-border: color-mix(in srgb, var(--wf-fg) 18%, transparent);
+      --wf-muted: color-mix(in srgb, var(--wf-fg) 62%, var(--wf-bg));
+      --wf-link: #1e42a4;
+      --palette-neutral-0: var(--wf-bg) !important;
+      --palette-neutral-2: var(--wf-surface) !important;
+      --palette-neutral-4: var(--wf-surface) !important;
+      --palette-neutral-6: var(--wf-surface-2) !important;
+      --palette-neutral-8: var(--wf-surface-2) !important;
+      --palette-neutral-10: var(--wf-surface-3) !important;
+      --palette-neutral-20: var(--wf-border) !important;
+      --palette-neutral-60: var(--wf-muted) !important;
+      --palette-neutral-80: var(--wf-fg) !important;
+      --palette-neutral-100: var(--wf-fg) !important;
+      --text-primary-color: var(--wf-fg) !important;
+      --text-secondary-color: var(--wf-muted) !important;
+      --background-color: var(--wf-bg) !important;
+      --communication-background: var(--wf-link) !important;
+      --communication-foreground: var(--wf-bg) !important;
+      --component-grid-row-hover-color: var(--wf-surface-2) !important;
+      --component-grid-selected-row-color: var(--wf-surface-3) !important;
+      --component-grid-cell-bottom-border-color: var(--wf-border) !important;
+      --nav-header-background: var(--wf-surface) !important;
+      --nav-header-text-primary-color: var(--wf-fg) !important;
+      --nav-vertical-background-color: var(--wf-surface) !important;
+      --nav-vertical-text-primary-color: var(--wf-fg) !important;
+      --nav-vertical-active-item-background: var(--wf-surface-3) !important;
+      --nav-vertical-item-hover-background: var(--wf-surface-2) !important;
+    }
+
+    html,
+    body,
+    .region-page,
+    .vertical-layout,
+    .region-header,
+    .region-content,
+    .project-header,
+    .page-content,
+    .absolute-fill,
+    .v-scroll-auto {
+      background: var(--wf-bg) !important;
+      color: var(--wf-fg) !important;
+    }
+
+    .bolt-header,
+    .bolt-header-commandbar,
+    .bolt-breadcrumb,
+    .bolt-breadcrumb-container,
+    .bolt-tabbar-tabs,
+    .bolt-table,
+    .bolt-list,
+    .bolt-list-row,
+    .bolt-table-row,
+    .bolt-filterbar-white,
+    .bolt-textfield,
+    .bolt-identitypickerdropdown,
+    .bolt-callout,
+    .bolt-panel,
+    .bolt-card,
+    .mectrl_dropdownbody,
+    [role="menu"],
+    [role="dialog"],
+    input,
+    textarea,
+    select,
+    button {
+      background: var(--wf-surface) !important;
+      color: var(--wf-fg) !important;
+      border-color: var(--wf-border) !important;
+      box-shadow: none !important;
+    }
+
+    .bolt-list-row:hover,
+    .bolt-table-row:hover,
+    .bolt-tab:hover,
+    .bolt-button:hover,
+    .navigation-link:hover,
+    .navigation-element:hover,
+    .bolt-focus-treatment:hover {
+      background: var(--wf-surface-2) !important;
+    }
+
+    .selected,
+    [aria-selected="true"],
+    [aria-current="page"],
+    .bolt-list-row-selected,
+    .bolt-table-row-selected {
+      background: var(--wf-surface-3) !important;
+      color: var(--wf-fg) !important;
+    }
+
+    .bolt-table-cell,
+    .bolt-list-cell,
+    .bolt-tab,
+    .bolt-breadcrumb-list-item,
+    .bolt-header-command-item-button,
+    .bolt-button,
+    .navigation-link,
+    .hub,
+    .hub-group {
+      border-color: var(--wf-border) !important;
+      color: var(--wf-fg) !important;
+    }
+
+    a,
+    .bolt-link,
+    .bolt-link-button,
+    .bolt-table-link,
+    .primary-text,
+    .font-weight-semibold {
+      color: var(--wf-link) !important;
+    }
+
+    p,
+    span,
+    div,
+    td,
+    th,
+    li,
+    h1,
+    h2,
+    h3,
+    h4,
+    label {
+      color: inherit !important;
+    }
+
+    .secondary-text,
+    .text-ellipsis,
+    .bolt-table-two-line-cell-item,
+    time {
+      color: var(--wf-muted) !important;
+    }
+
+    svg,
+    path,
+    .fabric-icon,
+    .bowtie-icon {
+      color: currentColor !important;
+    }
+  }
+}
+
+@wf-theme sage {
+  @-moz-document domain("dev.azure.com") {
+    html {
+      --wf-bg: #CCD4BE;
+      --wf-fg: #151515;
+      --wf-surface: color-mix(in srgb, var(--wf-bg) 88%, white);
+      --wf-surface-2: color-mix(in srgb, var(--wf-bg) 76%, white);
+      --wf-surface-3: color-mix(in srgb, var(--wf-bg) 64%, white);
+      --wf-border: color-mix(in srgb, var(--wf-fg) 18%, transparent);
+      --wf-muted: color-mix(in srgb, var(--wf-fg) 62%, var(--wf-bg));
+      --wf-link: #1e42a4;
+      --palette-neutral-0: var(--wf-bg) !important;
+      --palette-neutral-2: var(--wf-surface) !important;
+      --palette-neutral-4: var(--wf-surface) !important;
+      --palette-neutral-6: var(--wf-surface-2) !important;
+      --palette-neutral-8: var(--wf-surface-2) !important;
+      --palette-neutral-10: var(--wf-surface-3) !important;
+      --palette-neutral-20: var(--wf-border) !important;
+      --palette-neutral-60: var(--wf-muted) !important;
+      --palette-neutral-80: var(--wf-fg) !important;
+      --palette-neutral-100: var(--wf-fg) !important;
+      --text-primary-color: var(--wf-fg) !important;
+      --text-secondary-color: var(--wf-muted) !important;
+      --background-color: var(--wf-bg) !important;
+      --communication-background: var(--wf-link) !important;
+      --communication-foreground: var(--wf-bg) !important;
+      --component-grid-row-hover-color: var(--wf-surface-2) !important;
+      --component-grid-selected-row-color: var(--wf-surface-3) !important;
+      --component-grid-cell-bottom-border-color: var(--wf-border) !important;
+      --nav-header-background: var(--wf-surface) !important;
+      --nav-header-text-primary-color: var(--wf-fg) !important;
+      --nav-vertical-background-color: var(--wf-surface) !important;
+      --nav-vertical-text-primary-color: var(--wf-fg) !important;
+      --nav-vertical-active-item-background: var(--wf-surface-3) !important;
+      --nav-vertical-item-hover-background: var(--wf-surface-2) !important;
+    }
+
+    html,
+    body,
+    .region-page,
+    .vertical-layout,
+    .region-header,
+    .region-content,
+    .project-header,
+    .page-content,
+    .absolute-fill,
+    .v-scroll-auto {
+      background: var(--wf-bg) !important;
+      color: var(--wf-fg) !important;
+    }
+
+    .bolt-header,
+    .bolt-header-commandbar,
+    .bolt-breadcrumb,
+    .bolt-breadcrumb-container,
+    .bolt-tabbar-tabs,
+    .bolt-table,
+    .bolt-list,
+    .bolt-list-row,
+    .bolt-table-row,
+    .bolt-filterbar-white,
+    .bolt-textfield,
+    .bolt-identitypickerdropdown,
+    .bolt-callout,
+    .bolt-panel,
+    .bolt-card,
+    .mectrl_dropdownbody,
+    [role="menu"],
+    [role="dialog"],
+    input,
+    textarea,
+    select,
+    button {
+      background: var(--wf-surface) !important;
+      color: var(--wf-fg) !important;
+      border-color: var(--wf-border) !important;
+      box-shadow: none !important;
+    }
+
+    .bolt-list-row:hover,
+    .bolt-table-row:hover,
+    .bolt-tab:hover,
+    .bolt-button:hover,
+    .navigation-link:hover,
+    .navigation-element:hover,
+    .bolt-focus-treatment:hover {
+      background: var(--wf-surface-2) !important;
+    }
+
+    .selected,
+    [aria-selected="true"],
+    [aria-current="page"],
+    .bolt-list-row-selected,
+    .bolt-table-row-selected {
+      background: var(--wf-surface-3) !important;
+      color: var(--wf-fg) !important;
+    }
+
+    .bolt-table-cell,
+    .bolt-list-cell,
+    .bolt-tab,
+    .bolt-breadcrumb-list-item,
+    .bolt-header-command-item-button,
+    .bolt-button,
+    .navigation-link,
+    .hub,
+    .hub-group {
+      border-color: var(--wf-border) !important;
+      color: var(--wf-fg) !important;
+    }
+
+    a,
+    .bolt-link,
+    .bolt-link-button,
+    .bolt-table-link,
+    .primary-text,
+    .font-weight-semibold {
+      color: var(--wf-link) !important;
+    }
+
+    p,
+    span,
+    div,
+    td,
+    th,
+    li,
+    h1,
+    h2,
+    h3,
+    h4,
+    label {
+      color: inherit !important;
+    }
+
+    .secondary-text,
+    .text-ellipsis,
+    .bolt-table-two-line-cell-item,
+    time {
+      color: var(--wf-muted) !important;
+    }
+
+    svg,
+    path,
+    .fabric-icon,
+    .bowtie-icon {
+      color: currentColor !important;
+    }
+  }
+}
+
+@wf-theme clay {
+  @-moz-document domain("dev.azure.com") {
+    html {
+      --wf-bg: #D9C0A8;
+      --wf-fg: #151515;
+      --wf-surface: color-mix(in srgb, var(--wf-bg) 88%, white);
+      --wf-surface-2: color-mix(in srgb, var(--wf-bg) 76%, white);
+      --wf-surface-3: color-mix(in srgb, var(--wf-bg) 64%, white);
+      --wf-border: color-mix(in srgb, var(--wf-fg) 18%, transparent);
+      --wf-muted: color-mix(in srgb, var(--wf-fg) 62%, var(--wf-bg));
+      --wf-link: #1e42a4;
+      --palette-neutral-0: var(--wf-bg) !important;
+      --palette-neutral-2: var(--wf-surface) !important;
+      --palette-neutral-4: var(--wf-surface) !important;
+      --palette-neutral-6: var(--wf-surface-2) !important;
+      --palette-neutral-8: var(--wf-surface-2) !important;
+      --palette-neutral-10: var(--wf-surface-3) !important;
+      --palette-neutral-20: var(--wf-border) !important;
+      --palette-neutral-60: var(--wf-muted) !important;
+      --palette-neutral-80: var(--wf-fg) !important;
+      --palette-neutral-100: var(--wf-fg) !important;
+      --text-primary-color: var(--wf-fg) !important;
+      --text-secondary-color: var(--wf-muted) !important;
+      --background-color: var(--wf-bg) !important;
+      --communication-background: var(--wf-link) !important;
+      --communication-foreground: var(--wf-bg) !important;
+      --component-grid-row-hover-color: var(--wf-surface-2) !important;
+      --component-grid-selected-row-color: var(--wf-surface-3) !important;
+      --component-grid-cell-bottom-border-color: var(--wf-border) !important;
+      --nav-header-background: var(--wf-surface) !important;
+      --nav-header-text-primary-color: var(--wf-fg) !important;
+      --nav-vertical-background-color: var(--wf-surface) !important;
+      --nav-vertical-text-primary-color: var(--wf-fg) !important;
+      --nav-vertical-active-item-background: var(--wf-surface-3) !important;
+      --nav-vertical-item-hover-background: var(--wf-surface-2) !important;
+    }
+
+    html,
+    body,
+    .region-page,
+    .vertical-layout,
+    .region-header,
+    .region-content,
+    .project-header,
+    .page-content,
+    .absolute-fill,
+    .v-scroll-auto {
+      background: var(--wf-bg) !important;
+      color: var(--wf-fg) !important;
+    }
+
+    .bolt-header,
+    .bolt-header-commandbar,
+    .bolt-breadcrumb,
+    .bolt-breadcrumb-container,
+    .bolt-tabbar-tabs,
+    .bolt-table,
+    .bolt-list,
+    .bolt-list-row,
+    .bolt-table-row,
+    .bolt-filterbar-white,
+    .bolt-textfield,
+    .bolt-identitypickerdropdown,
+    .bolt-callout,
+    .bolt-panel,
+    .bolt-card,
+    .mectrl_dropdownbody,
+    [role="menu"],
+    [role="dialog"],
+    input,
+    textarea,
+    select,
+    button {
+      background: var(--wf-surface) !important;
+      color: var(--wf-fg) !important;
+      border-color: var(--wf-border) !important;
+      box-shadow: none !important;
+    }
+
+    .bolt-list-row:hover,
+    .bolt-table-row:hover,
+    .bolt-tab:hover,
+    .bolt-button:hover,
+    .navigation-link:hover,
+    .navigation-element:hover,
+    .bolt-focus-treatment:hover {
+      background: var(--wf-surface-2) !important;
+    }
+
+    .selected,
+    [aria-selected="true"],
+    [aria-current="page"],
+    .bolt-list-row-selected,
+    .bolt-table-row-selected {
+      background: var(--wf-surface-3) !important;
+      color: var(--wf-fg) !important;
+    }
+
+    .bolt-table-cell,
+    .bolt-list-cell,
+    .bolt-tab,
+    .bolt-breadcrumb-list-item,
+    .bolt-header-command-item-button,
+    .bolt-button,
+    .navigation-link,
+    .hub,
+    .hub-group {
+      border-color: var(--wf-border) !important;
+      color: var(--wf-fg) !important;
+    }
+
+    a,
+    .bolt-link,
+    .bolt-link-button,
+    .bolt-table-link,
+    .primary-text,
+    .font-weight-semibold {
+      color: var(--wf-link) !important;
+    }
+
+    p,
+    span,
+    div,
+    td,
+    th,
+    li,
+    h1,
+    h2,
+    h3,
+    h4,
+    label {
+      color: inherit !important;
+    }
+
+    .secondary-text,
+    .text-ellipsis,
+    .bolt-table-two-line-cell-item,
+    time {
+      color: var(--wf-muted) !important;
+    }
+
+    svg,
+    path,
+    .fabric-icon,
+    .bowtie-icon {
+      color: currentColor !important;
+    }
+  }
+}
+
+@wf-theme ink {
+  @-moz-document domain("dev.azure.com") {
+    html {
+      --wf-bg: #151515;
+      --wf-fg: #E5D8C0;
+      --wf-surface: color-mix(in srgb, var(--wf-bg) 88%, var(--wf-fg));
+      --wf-surface-2: color-mix(in srgb, var(--wf-bg) 78%, var(--wf-fg));
+      --wf-surface-3: color-mix(in srgb, var(--wf-bg) 68%, var(--wf-fg));
+      --wf-border: color-mix(in srgb, var(--wf-fg) 24%, transparent);
+      --wf-muted: color-mix(in srgb, var(--wf-fg) 68%, var(--wf-bg));
+      --wf-link: #8fabf9;
+      --palette-neutral-0: var(--wf-bg) !important;
+      --palette-neutral-2: var(--wf-surface) !important;
+      --palette-neutral-4: var(--wf-surface) !important;
+      --palette-neutral-6: var(--wf-surface-2) !important;
+      --palette-neutral-8: var(--wf-surface-2) !important;
+      --palette-neutral-10: var(--wf-surface-3) !important;
+      --palette-neutral-20: var(--wf-border) !important;
+      --palette-neutral-60: var(--wf-muted) !important;
+      --palette-neutral-80: var(--wf-fg) !important;
+      --palette-neutral-100: var(--wf-fg) !important;
+      --text-primary-color: var(--wf-fg) !important;
+      --text-secondary-color: var(--wf-muted) !important;
+      --background-color: var(--wf-bg) !important;
+      --communication-background: var(--wf-link) !important;
+      --communication-foreground: var(--wf-bg) !important;
+      --component-grid-row-hover-color: var(--wf-surface-2) !important;
+      --component-grid-selected-row-color: var(--wf-surface-3) !important;
+      --component-grid-cell-bottom-border-color: var(--wf-border) !important;
+      --nav-header-background: var(--wf-surface) !important;
+      --nav-header-text-primary-color: var(--wf-fg) !important;
+      --nav-vertical-background-color: var(--wf-surface) !important;
+      --nav-vertical-text-primary-color: var(--wf-fg) !important;
+      --nav-vertical-active-item-background: var(--wf-surface-3) !important;
+      --nav-vertical-item-hover-background: var(--wf-surface-2) !important;
+    }
+
+    html,
+    body,
+    .region-page,
+    .vertical-layout,
+    .region-header,
+    .region-content,
+    .project-header,
+    .page-content,
+    .absolute-fill,
+    .v-scroll-auto {
+      background: var(--wf-bg) !important;
+      color: var(--wf-fg) !important;
+    }
+
+    .bolt-header,
+    .bolt-header-commandbar,
+    .bolt-breadcrumb,
+    .bolt-breadcrumb-container,
+    .bolt-tabbar-tabs,
+    .bolt-table,
+    .bolt-list,
+    .bolt-list-row,
+    .bolt-table-row,
+    .bolt-filterbar-white,
+    .bolt-textfield,
+    .bolt-identitypickerdropdown,
+    .bolt-callout,
+    .bolt-panel,
+    .bolt-card,
+    .mectrl_dropdownbody,
+    [role="menu"],
+    [role="dialog"],
+    input,
+    textarea,
+    select,
+    button {
+      background: var(--wf-surface) !important;
+      color: var(--wf-fg) !important;
+      border-color: var(--wf-border) !important;
+      box-shadow: none !important;
+    }
+
+    .bolt-list-row:hover,
+    .bolt-table-row:hover,
+    .bolt-tab:hover,
+    .bolt-button:hover,
+    .navigation-link:hover,
+    .navigation-element:hover,
+    .bolt-focus-treatment:hover {
+      background: var(--wf-surface-2) !important;
+    }
+
+    .selected,
+    [aria-selected="true"],
+    [aria-current="page"],
+    .bolt-list-row-selected,
+    .bolt-table-row-selected {
+      background: var(--wf-surface-3) !important;
+      color: var(--wf-fg) !important;
+    }
+
+    .bolt-table-cell,
+    .bolt-list-cell,
+    .bolt-tab,
+    .bolt-breadcrumb-list-item,
+    .bolt-header-command-item-button,
+    .bolt-button,
+    .navigation-link,
+    .hub,
+    .hub-group {
+      border-color: var(--wf-border) !important;
+      color: var(--wf-fg) !important;
+    }
+
+    a,
+    .bolt-link,
+    .bolt-link-button,
+    .bolt-table-link,
+    .primary-text,
+    .font-weight-semibold {
+      color: var(--wf-link) !important;
+    }
+
+    p,
+    span,
+    div,
+    td,
+    th,
+    li,
+    h1,
+    h2,
+    h3,
+    h4,
+    label {
+      color: inherit !important;
+    }
+
+    .secondary-text,
+    .text-ellipsis,
+    .bolt-table-two-line-cell-item,
+    time {
+      color: var(--wf-muted) !important;
+    }
+
+    svg,
+    path,
+    .fabric-icon,
+    .bowtie-icon {
+      color: currentColor !important;
+    }
+  }
+}
