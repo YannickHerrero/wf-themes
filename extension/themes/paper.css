@@ -436,6 +436,9 @@
   [class*="guilds"][class*="wrapper"]:hover {
     opacity: 1;
   }
+  [data-testid="quest-bar-container"] {
+    display: none !important;
+  }
   [class*="message"] [class*="avatar"],
   [class*="message"] [class*="Avatar"],
   [class*="chatContent"] [class*="avatar"],
