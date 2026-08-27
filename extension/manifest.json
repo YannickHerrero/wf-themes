@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "wf-themes",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Theme injector driven by the wmenu global theme selector via native messaging, with custom sites loaded from a watched folder.",
   "homepage_url": "https://github.com/YannickHerrero/wf-themes",
   "applications": {
